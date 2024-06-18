@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.channel-container {
+    width: 80%;
+    max-width: 1200px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.channel-logo img {
+    max-width: 300px; /* Réduction de la taille du logo */
+    height: auto;
+    margin-bottom: 10px; /* Espace entre le logo et le lecteur vidéo */
+}
+
+.channel-player {
+    width: 100%;
+}
+
+.channel-player iframe {
+    width: 100%;
+    height: 500px; /* Ajuster la hauteur selon vos besoins */
+    border: none;
+}
+
+.home-button {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    z-index: 2000; /* Assure que le bouton est au-dessus des autres éléments */
+}
+
+.home-button img {
+    width: 60px;
+    height: auto;
+}
+
+.channel-program {
+    width: 100%; /* Centrage et ajustement de la largeur */
+    max-width: 1200px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centrage du texte */
+}
+
+.channel-program h2 {
+    font-size: 40px; /* Agrandissement de la taille du titre */
+}

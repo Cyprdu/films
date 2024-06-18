@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programme TV</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div id="programmeTV"></div>
+
+<script>
+$(document).ready(function() {
+    // URL du programme TV à récupérer
+    var url = 'https://www.programme-television.org/chaines-tv/tf1#14-06-2024/5/grandes-chaines//Jour';
+
+    // Requête AJAX pour récupérer le contenu de la page
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function(response) {
+            // Extraction des données pertinentes ici
+            var programme = $(response).find('.programme .content').html();
+            $('#programmeTV').html(programme);
+        },
+        error: function() {
+            $('#programmeTV').html('<p>Erreur lors du chargement du programme TV.</p>');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
