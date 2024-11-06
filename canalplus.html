@@ -78,6 +78,19 @@
         var video = document.getElementById('video');
         var videoContainer = document.querySelector('.video-container');
 
+        // Fonction pour mettre la vidéo en plein écran
+        function goFullScreen() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) { // Firefox
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) { // Chrome, Safari et Opera
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE/Edge
+                video.msRequestFullscreen();
+            }
+        }
+
         // Lorsque le bouton Play est cliqué
         playButton.addEventListener('click', function() {
             // Cacher la vignette et le bouton Play
@@ -87,6 +100,9 @@
             // Afficher et lire la vidéo
             video.style.display = 'block';
             video.play();
+
+            // Passer la vidéo en plein écran après avoir cliqué sur Play
+            goFullScreen();
         });
 
         // Vérifie si Hls.js est supporté par le navigateur
