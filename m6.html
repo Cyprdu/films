@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -145,6 +144,40 @@
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
+
+        // Ajouter un événement pour la sortie du plein écran
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                // Lorsque l'utilisateur sort du plein écran
+                console.log("Sortie du plein écran");
+
+                // Rediriger vers la page spécifiée
+                window.location.href = "https://iptv01.netlify.app/tv";  // Rediriger vers l'URL spécifiée
+            }
+        });
+
+        // Gérer les autres préfixes de navigateur pour la sortie du plein écran
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!document.webkitFullscreenElement) {
+                console.log("Sortie du plein écran (webkit)");
+                window.location.href = "https://iptv01.netlify.app/tv"; // Rediriger vers l'URL spécifiée
+            }
+        });
+
+        document.addEventListener('mozfullscreenchange', function() {
+            if (!document.mozFullScreenElement) {
+                console.log("Sortie du plein écran (moz)");
+                window.location.href = "https://iptv01.netlify.app/tv"; // Rediriger vers l'URL spécifiée
+            }
+        });
+
+        document.addEventListener('msfullscreenchange', function() {
+            if (!document.msFullscreenElement) {
+                console.log("Sortie du plein écran (ms)");
+                window.location.href = "https://iptv01.netlify.app/tv"; // Rediriger vers l'URL spécifiée
+            }
+        });
+
     </script>
 
 </body>
