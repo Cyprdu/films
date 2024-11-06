@@ -33,16 +33,19 @@
             border-radius: 10px;
         }
 
-        /* Le bouton Play */
+        /* Le logo Play centré */
         .play-button {
             background-color: rgba(0, 0, 0, 0.6);
-            color: white;
-            font-size: 30px;
-            padding: 20px 40px;
-            border-radius: 50%;
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 80px;
+            height: 80px;
+            background-image: url('https://uxwing.com/wp-content/themes/uxwing/download/video-photography-multimedia/play-icon.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 50%;
         }
 
         .play-button:hover {
@@ -60,8 +63,8 @@
 <body>
 
     <div class="video-container">
-        <!-- Bouton Play -->
-        <button class="play-button" id="playButton">Play</button>
+        <!-- Logo Play centré -->
+        <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
             <source src="https://iptv.frembed.pro/live/A6B56AC724C0686C98984A5A92CA1DC1/106.m3u8" type="application/x-mpegURL">
