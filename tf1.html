@@ -144,6 +144,15 @@
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
+                // Écouteur d'événement pour détecter la sortie du mode plein écran
+        document.addEventListener('fullscreenchange', checkFullScreenExit);
+        document.addEventListener('webkitfullscreenchange', checkFullScreenExit);
+        document.addEventListener('mozfullscreenchange', checkFullScreenExit);
+        document.addEventListener('msfullscreenchange', checkFullScreenExit);
+
+        // Rediriger si la vidéo est terminée
+        video.addEventListener('ended', function() {
+            window.location.href = 'https://iptv01.netlify.app/tv';
     </script>
 
 </body>
