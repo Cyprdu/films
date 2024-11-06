@@ -144,6 +144,40 @@
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
+
+        // Ajouter un événement pour la sortie du plein écran
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                // Lorsque l'utilisateur sort du plein écran
+                console.log("Sortie du plein écran");
+
+                // Rediriger vers la page d'accueil
+                window.location.href = "index.html";  // Remplacez "index.html" par votre page d'accueil
+            }
+        });
+
+        // Gérer les autres préfixes de navigateur pour la sortie du plein écran
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!document.webkitFullscreenElement) {
+                console.log("Sortie du plein écran (webkit)");
+                window.location.href = "index.html"; // Rediriger vers la page d'accueil
+            }
+        });
+
+        document.addEventListener('mozfullscreenchange', function() {
+            if (!document.mozFullScreenElement) {
+                console.log("Sortie du plein écran (moz)");
+                window.location.href = "index.html"; // Rediriger vers la page d'accueil
+            }
+        });
+
+        document.addEventListener('msfullscreenchange', function() {
+            if (!document.msFullscreenElement) {
+                console.log("Sortie du plein écran (ms)");
+                window.location.href = "index.html"; // Rediriger vers la page d'accueil
+            }
+        });
+
     </script>
 
 </body>
