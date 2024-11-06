@@ -144,25 +144,26 @@
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
+
         // Fonction pour quitter le mode plein écran et rediriger
-function checkFullScreenExit() {
-    if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
-        // L'utilisateur a quitté le mode plein écran, rediriger vers /tv
-        window.location.href = 'https://iptv01.netlify.app/tv';
-    }
-}
+        function checkFullScreenExit() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // L'utilisateur a quitté le mode plein écran, rediriger vers https://iptv01.netlify.app/tv
+                window.location.href = 'https://iptv01.netlify.app/tv';
+            }
+        }
 
-// Écouteur d'événement pour détecter la sortie du mode plein écran
-document.addEventListener('fullscreenchange', checkFullScreenExit);
-document.addEventListener('webkitfullscreenchange', checkFullScreenExit);
-document.addEventListener('mozfullscreenchange', checkFullScreenExit);
-document.addEventListener('msfullscreenchange', checkFullScreenExit);
+        // Écouteur d'événement pour détecter la sortie du mode plein écran
+        document.addEventListener('fullscreenchange', checkFullScreenExit);
+        document.addEventListener('webkitfullscreenchange', checkFullScreenExit);
+        document.addEventListener('mozfullscreenchange', checkFullScreenExit);
+        document.addEventListener('msfullscreenchange', checkFullScreenExit);
 
-// Rediriger si la vidéo est terminée
-video.addEventListener('ended', function() {
-    window.location.href = 'https://iptv01.netlify.app/tv';
-});
-
+        // Rediriger si la vidéo est terminée
+        video.addEventListener('ended', function() {
+            window.location.href = 'https://iptv01.netlify.app/tv';
+        });
+    </script>
 
 </body>
 </html>
