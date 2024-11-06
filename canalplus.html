@@ -39,8 +39,8 @@
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            width: 100px;
-            height: 100px;
+            width: 80px;  /* Réduction de la taille du bouton */
+            height: 80px;  /* Réduction de la taille du bouton */
             background-image: url('file:///C:/Users/pveyr/Downloads/jouer.png');
             background-size: contain;
             background-repeat: no-repeat;
@@ -49,17 +49,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            transform: scale(1);  /* Initial scale */
+            transform: scale(1);  /* Taille de départ */
         }
 
         .play-button:hover {
             background-color: rgba(0, 0, 0, 0.8);
-            transform: scale(1.1);  /* Zoom effect on hover */
+            transform: scale(1.1);  /* Légère animation de zoom au survol */
         }
 
         /* Animation du play bouton */
         .play-button.clicked {
-            animation: playAnimation 0.5s ease-out forwards;
+            animation: playAnimation 0.3s ease-out forwards;
         }
 
         /* Keyframes pour l'animation du bouton */
@@ -68,7 +68,7 @@
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.2);
+                transform: scale(1.1);  /* Un agrandissement plus léger */
             }
             100% {
                 transform: scale(1);
