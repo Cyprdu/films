@@ -144,6 +144,32 @@
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
+
+        // Fonction pour gérer la sortie du plein écran et rediriger
+        document.addEventListener("fullscreenchange", function() {
+            if (!document.fullscreenElement) {
+                // Redirige vers la page tv.html lorsque l'utilisateur quitte le plein écran
+                window.location.href = "tv.html";
+            }
+        });
+
+        document.addEventListener("webkitfullscreenchange", function() {
+            if (!document.webkitFullscreenElement) {
+                window.location.href = "tv.html";
+            }
+        });
+
+        document.addEventListener("mozfullscreenchange", function() {
+            if (!document.mozFullScreenElement) {
+                window.location.href = "tv.html";
+            }
+        });
+
+        document.addEventListener("msfullscreenchange", function() {
+            if (!document.msFullscreenElement) {
+                window.location.href = "tv.html";
+            }
+        });
     </script>
 
 </body>
