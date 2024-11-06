@@ -12,10 +12,42 @@
         <div class="channel-logo">
             <img src="https://i.ibb.co/ftYS2bk/CANAL-logo.png" alt="TF1">
         </div>
-        <div class="channel-player">
-            <!-- Lecteur vidéo pour TF1 -->
-            <iframe src="https://player.livepush.io/emvWmM8mw4BSb" frameborder="0" allowfullscreen></iframe>
-        </div>
+       <!DOCTYPE html> 
+<html lang="fr">
+<body>
+    <video id="video" controls width="640" height="360" style="background-color: #000;" poster="https://photos.tf1.fr/480/0/vignette-paysage-chaine-tf1-eed856-44a5d3-0@3x.png">
+    </video>
+
+    <!-- Inclusion de la bibliothèque hls.js -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+    <script>
+        // Vérifie si Hls.js est supporté par le navigateur
+        if (Hls.isSupported()) {
+            var video = document.getElementById('video');
+            var hls = new Hls();
+            
+            // Charge la source m3u8
+            hls.loadSource('https://iptv.frembed.pro/live/A6B56AC724C0686C98984A5A92CA1DC1/106.m3u8');
+            hls.attachMedia(video);
+
+            // Lecture automatique quand le manifeste est chargé
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            // Fallback pour Safari qui supporte nativement HLS
+            video.src = 'https://iptv.frembed.pro/live/A6B56AC724C0686C98984A5A92CA1DC1/106.m3u8';
+            video.addEventListener('loadedmetadata', function() {
+                video.play();
+            });
+        } else {
+            alert("Votre navigateur ne supporte pas HLS.");
+        }
+    </script>
+</body>
+</html>
+
     </div>
 
     <a class="home-button" href="home.html">
