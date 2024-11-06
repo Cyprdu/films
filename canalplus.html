@@ -46,10 +46,33 @@
             background-repeat: no-repeat;
             background-position: center;
             border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: scale(1);  /* Initial scale */
         }
 
         .play-button:hover {
             background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);  /* Zoom effect on hover */
+        }
+
+        /* Animation du play bouton */
+        .play-button.clicked {
+            animation: playAnimation 0.5s ease-out forwards;
+        }
+
+        /* Keyframes pour l'animation du bouton */
+        @keyframes playAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
 
         /* Masquer la vidéo au début */
@@ -96,6 +119,9 @@
 
         // Lorsque le bouton Play est cliqué
         playButton.addEventListener('click', function() {
+            // Ajouter l'animation du bouton
+            playButton.classList.add('clicked');
+
             // Cacher la vignette et le bouton Play
             videoContainer.style.backgroundImage = 'none';
             playButton.style.display = 'none';
