@@ -1,292 +1,170 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chaîne TV</title>
- <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/ti/vecteur-libre/p1/7688855-tv-logo-gratuit-vectoriel.jpg"/>
-
-
+    <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/ti/vecteur-libre/p1/7688855-tv-logo-gratuit-vectoriel.jpg"/>
     <link rel="stylesheet" href="stylestv.css">
+
+    <style>
+        /* Centrer la vidéo et la vignette */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+
+        /* Conteneur de la vignette */
+        .video-container {
+            position: relative;
+            width: 640px;
+            height: 360px;
+            background-color: #000;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+        /* Le logo Play centré */
+        .play-button {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 80px;  /* Réduction de la taille du bouton */
+            height: 80px;  /* Réduction de la taille du bouton */
+            background-image: url('https://github.com/Cyprdu/films/blob/main/jouer.png?raw=true');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: scale(1);  /* Taille de départ */
+        }
+
+        .play-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);  /* Légère animation de zoom au survol */
+        }
+
+        /* Animation du play bouton */
+        .play-button.clicked {
+            animation: playAnimation 0.3s ease-out forwards;
+        }
+
+        /* Keyframes pour l'animation du bouton */
+        @keyframes playAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);  /* Un agrandissement plus léger */
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Masquer la vidéo au début */
+        #video {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-    <div class="channel-container">
-        <div class="channel-logo">
-            <img src="https://yt3.googleusercontent.com/jHrKtxwFdZdnr4cIYyAC1PZ8MXJtndKUyHOItGBrx-h_d4cA2iPFp8yksPRY71gch10FQoLwNrg=s900-c-k-c0x00ffffff-no-rj" alt="TF1">
-        </div>
-        <div class="channel-player">
-            <!-- Lecteur vidéo pour TF1 -->
-            <iframe src="https://player.livepush.io/emvhcBpqzX2SL" frameborder="0" allowfullscreen></iframe>
-        </div>
+
+    <div class="video-container">
+        <!-- Logo Play centré -->
+        <button class="play-button" id="playButton"></button>
+        <!-- Vidéo cachée par défaut -->
+        <video id="video" controls>
+            <source src="https://194270.global.ssl.fastly.net/63b43410861d94a9eee067fb/live_947330308dd911edb85c8181cb9b11a8/index.m3u8" type="application/x-mpegURL">
+            Votre navigateur ne supporte pas le format vidéo HLS.
+        </video>
     </div>
 
-    <a class="home-button" href="home.html">
-        <img src="https://cdn-icons-png.flaticon.com/512/5974/5974636.png" alt="Home">
-    </a>
-</br>
+    <!-- Inclusion de la bibliothèque hls.js -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-  
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil des Chaînes TV</title>
- <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/ti/vecteur-libre/p1/7688855-tv-logo-gratuit-vectoriel.jpg"/>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Bienvenue sur notre sélection de chaînes TV</h1>
-        <input type="text" id="search-bar" placeholder="Rechercher une chaîne...">
-        <div class="channels">
-</a>
-            <a href="euro.html" class="channel">
-                <div class="logo-container">
-                    <img src="img\euro.gif" alt="téva">
-                </div>
-                <span>EURO 2024</span>
+    <script>
+        // Récupérer le bouton et la vidéo
+        var playButton = document.getElementById('playButton');
+        var video = document.getElementById('video');
+        var videoContainer = document.querySelector('.video-container');
 
-            <a href="tf1.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/BBpR1Wx/tf1.png" alt="TF1">
-                </div>
-                <span>TF1</span>
+        // Fonction pour mettre la vidéo en plein écran
+        function goFullScreen() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) { // Firefox
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) { // Chrome, Safari et Opera
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE/Edge
+                video.msRequestFullscreen();
+            }
+        }
 
-            </a>
-            <a href="france2.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/France_2_2018.svg/640px-France_2_2018.svg.png" alt="France 2">
-                </div>
-                <span>France 2</span>
-            </a>
-            <a href="france3.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/France_3_2018.svg" alt="France 3">
-                </div>
-                <span>France 3</span>
-            </a>
-            <a href="canalplus.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/ftYS2bk/CANAL-logo.png" alt="Canal+">
-                </div>
-                <span>Canal+</span>
-            </a>
-            <a href="france5.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/France_5_2018.svg/800px-France_5_2018.svg.png" alt="France 5">
-                </div>
-                <span>France 5</span>
-            </a>
-            <a href="m6.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/9/91/Groupe_M6_1_logo.svg/1024px-Groupe_M6_1_logo.svg.png" alt="M6">
-                </div>
-                <span>M6</span>
-            </a>
-            <a href="arte.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/BPpZPBn/arte.png" alt="Arte">
-                </div>
-                <span>Arte</span>
-            </a>
-            <a href="c8.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/cQbcrGZ/c8.png" alt="C8">
-                </div>
-                <span>C8</span>
-            </a>
-            <a href="w9.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/LNRd253/w9.png" alt="W9">
-                </div>
-                <span>W9</span>
-            </a>
-            <a href="tmc.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/hKVyKj4/tmc.png" alt="TMC">
-                </div>
-                <span>TMC</span>
-            </a>
-            <a href="tfx.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/4VS27Jw/tfx.png" alt="TFX">
-                </div>
-                <span>TFX</span>
-            </a>
-            <a href="nrj12.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/6spXX2y/nrj12.png" alt="NRJ 12">
-                </div>
-                <span>NRJ 12</span>
-            </a>
-            <a href="lcp.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/4/4b/Logo_Public_S%C3%A9nat_%282019%29.svg/800px-Logo_Public_S%C3%A9nat_%282019%29.svg.png" alt="LCP">
-                </div>
-                <span>LCP</span>
-            </a>
-            <a href="france4.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/France_4_2018.svg/1200px-France_4_2018.svg.png" alt="France 4">
-                </div>
-                <span>France 4</span>
-            </a>
-            <a href="bfmtv.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/kckRLh5/bfm.png" alt="BFM TV">
-                </div>
-                <span>BFM TV</span>
-            </a>
-            <a href="cnews.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/qY6w8ds/cnews.png" alt="CNews">
-                </div>
-                <span>CNews</span>
-            </a>
-            <a href="cstar.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/Sm9PtLR/cstar.png" alt="CSTAR">
-                </div>
-                <span>CSTAR</span>
-            </a>
-            <a href="gulli.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/LQXjFc3/gulli.png" alt="Gulli">
-                </div>
-                <span>Gulli</span>
-            </a>
-                        <a href="tf1seriesfilms.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://static.wixstatic.com/media/5406f2_f5f95969dff24abf9005b68169713f7b~mv2.png/v1/fill/w_861,h_243,al_c,q_85,enc_auto/5406f2_f5f95969dff24abf9005b68169713f7b~mv2.png" alt="TF1 Séries Films">
-                </div>
-                <span>TF1 Séries Films</span>
-            </a>
-            <a href="lequipe.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/KXhYwm0/lequipe.png" alt="L'Équipe">
-                </div>
-                <span>L'Équipe</span>
-            </a>
-            <a href="6ter.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/nzh88j8/6ter.png" alt="6ter">
-                </div>
-                <span>6ter</span>
-            </a>
- </a>
-            <a href="alociné.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Allocin%C3%A9_Logo_%282019%29.svg/640px-Allocin%C3%A9_Logo_%282019%29.svg.png" alt="6ter">
-                </div>
-                <span>AlloCiné</span>
-            </a>
-  <a href="talk.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Logo_RMC_2002.svg/1200px-Logo_RMC_2002.svg.png" alt="6ter">
-                </div>
-                <span>RMC TALK SPORT</span>
-            </a>
+        // Lorsque le bouton Play est cliqué
+        playButton.addEventListener('click', function() {
+            // Ajouter l'animation du bouton
+            playButton.classList.add('clicked');
 
-            <a href="rmctv.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/k4Bs0Cj/rmcti.jpg" alt="RMC TV">
-                </div>
-                <span>RMC TV</span>
-            </a>
-            <a href="rmcstory.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/fdYg3Lz/rmcstory.png" alt="RMC Story">
-                </div>
-                <span>RMC Story</span>
-            </a>
- </a>
-            <a href="rmcdecouverte.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/b/b3/RMC_D%C3%A9couverte_logo_2017.svg/640px-RMC_D%C3%A9couverte_logo_2017.svg.png" alt="RMC Découverte">
-                </div>
-                <span>RMC Découverte</span>
+            // Cacher la vignette et le bouton Play
+            videoContainer.style.backgroundImage = 'none';
+            playButton.style.display = 'none';
 
-            <a href="cherie25.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/R3KG4L9/cherie25.png" alt="Chérie 25">
-                </div>
-                <span>Chérie 25</span>
-            </a>
-            <a href="lci.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/Zfcrrr1/lci.png" alt="LCI">
-                </div>
-                <span>LCI</span>
-            </a>
-            <a href="franceinfo.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/Wv31CXD/fi21-v2.png" alt="Franceinfo">
-                </div>
-                <span>Franceinfo</span>
-<a href="parispremiere.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://m6pub.fr/content/uploads/2018/10/logo-pp-type-face-fond-blanc-envoi.jpg" alt="Paris Première">
-                </div>
-                <span>Paris Première</span>
+            // Afficher et lire la vidéo
+            video.style.display = 'block';
+            video.play();
 
-            </a>
-</a>
-            <a href="bfmb.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/fr/6/62/Logo_Business_2020.png" alt="téva">
-                </div>
-                <span>BFM Business</span>
+            // Passer la vidéo en plein écran après avoir cliqué sur Play
+            goFullScreen();
+        });
 
-    <a href="france3région.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://louislefoyerdecostil.fr/wp-content/uploads/2022/05/France-3-regionsOK.png" alt="téva">
-                </div>
-                <span>France 3 Régions</span>
-</a>
-            <a href="i24.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/LOGO_i24NEWS.png" alt="téva">
-                </div>
-                <span>i24</span>
+        // Vérifie si Hls.js est supporté par le navigateur
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource('https://194270.global.ssl.fastly.net/63b43410861d94a9eee067fb/live_947330308dd911edb85c8181cb9b11a8/index.m3u8');
+            hls.attachMedia(video);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = 'https://194270.global.ssl.fastly.net/63b43410861d94a9eee067fb/live_947330308dd911edb85c8181cb9b11a8/index.m3u8';
+        } else {
+            alert("Votre navigateur ne supporte pas HLS.");
+        }
 
+        // Fonction pour quitter le mode plein écran et rediriger
+        function checkFullScreenExit() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // L'utilisateur a quitté le mode plein écran, rediriger vers https://iptv01.netlify.app/tv
+                window.location.href = 'https://iptv01.netlify.app/tv';
+            }
+        }
 
-</a>
-            <a href="techandco.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/fr/8/83/Tech_%26_Co.svg" alt="téva">
-                </div>
-                <span>TECH&CO</span>
-</a>
-            <a href="téva.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://i.ibb.co/4RKk092/teva.png" alt="téva">
-                </div>
-                <span>téva</span>
+        // Écouteur d'événement pour détecter la sortie du mode plein écran
+        document.addEventListener('fullscreenchange', checkFullScreenExit);
+        document.addEventListener('webkitfullscreenchange', checkFullScreenExit);
+        document.addEventListener('mozfullscreenchange', checkFullScreenExit);
+        document.addEventListener('msfullscreenchange', checkFullScreenExit);
 
-</a>
-            <a href="l'équipe2.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://www.planetecsat.com/wp-content/uploads/2023/04/bande-LequipeLive2.png" alt="téva">
-                </div>
-                <span>L'équipe Live 2</span>
+        // Rediriger si la vidéo est terminée
+        video.addEventListener('ended', function() {
+            window.location.href = 'https://iptv01.netlify.app/tv';
+        });
+    </script>
 
-
-
-<a href="kto.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/fr/d/db/KTO_logo_2008.png" alt="téva">
-                </div>
-                <span>KTO</span>
-
-
-
-
-
-        </div>
-    </div>
-    <script src="script.js"></script>
 </body>
 </html>
