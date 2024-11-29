@@ -67,3 +67,22 @@ document.getElementById("registerForm")?.addEventListener("submit", async (e) =>
     }
 });
 
+
+
+
+
+// script.js
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form from reloading the page
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Simple check (you can add a real authentication here)
+    if (email === "user@example.com" && password === "password123") {
+        window.location.href = "https://iptv01.netlify.app"; // Redirect to the desired page
+    } else {
+        alert("Invalid credentials! Please try again.");
+    }
+});
+
+
