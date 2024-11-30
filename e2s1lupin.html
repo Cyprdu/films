@@ -73,8 +73,7 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            <source src="https://zeltroncloud66.pro/file2/qiPX5AFki+myGa6hThs6LpHkxIWHVQJQAX1CKUc0P1i3NlAInduyHKCzy7CXj4fSW+CQcWpFxNuXiwhblEhaVaYcExK1YKAswW4QDsNYZivrk9as5UZEWPhZq0vSN~bU34BV8LEHC~SN1tkhfDauLwJZXzn4qV625uJM0lRwnBw=/MTA4MA==/aW5kZXgubTN1OA==.m3u8
-" type="application/x-mpegURL">
+            <source src="https://zeltroncloud66.pro/file2/qiPX5AFki+myGa6hThs6LpHkxIWHVQJQAX1CKUc0P1i3NlAInduyHKCzy7CXj4fSW+CQcWpFxNuXiwhblEhaVaYcExK1YKAswW4QDsNYZivrk9as5UZEWPhZq0vSN~bU34BV8LEHC~SN1tkhfDauLwJZXzn4qV625uJM0lRwnBw=/MTA4MA==/aW5kZXgubTN1OA==.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -126,12 +125,10 @@
         // Vérifie si Hls.js est supporté
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://zeltroncloud66.pro/file2/qiPX5AFki+myGa6hThs6LpHkxIWHVQJQAX1CKUc0P1i3NlAInduyHKCzy7CXj4fSW+CQcWpFxNuXiwhblEhaVaYcExK1YKAswW4QDsNYZivrk9as5UZEWPhZq0vSN~bU34BV8LEHC~SN1tkhfDauLwJZXzn4qV625uJM0lRwnBw=/MTA4MA==/aW5kZXgubTN1OA==.m3u8
-');
+            hls.loadSource('https://zeltroncloud66.pro/file2/qiPX5AFki+myGa6hThs6LpHkxIWHVQJQAX1CKUc0P1i3NlAInduyHKCzy7CXj4fSW+CQcWpFxNuXiwhblEhaVaYcExK1YKAswW4QDsNYZivrk9as5UZEWPhZq0vSN~bU34BV8LEHC~SN1tkhfDauLwJZXzn4qV625uJM0lRwnBw=/MTA4MA==/aW5kZXgubTN1OA==.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://zeltroncloud66.pro/file2/qiPX5AFki+myGa6hThs6LpHkxIWHVQJQAX1CKUc0P1i3NlAInduyHKCzy7CXj4fSW+CQcWpFxNuXiwhblEhaVaYcExK1YKAswW4QDsNYZivrk9as5UZEWPhZq0vSN~bU34BV8LEHC~SN1tkhfDauLwJZXzn4qV625uJM0lRwnBw=/MTA4MA==/aW5kZXgubTN1OA==.m3u8
-';
+            video.src = 'https://zeltroncloud66.pro/file2/qiPX5AFki+myGa6hThs6LpHkxIWHVQJQAX1CKUc0P1i3NlAInduyHKCzy7CXj4fSW+CQcWpFxNuXiwhblEhaVaYcExK1YKAswW4QDsNYZivrk9as5UZEWPhZq0vSN~bU34BV8LEHC~SN1tkhfDauLwJZXzn4qV625uJM0lRwnBw=/MTA4MA==/aW5kZXgubTN1OA==.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
