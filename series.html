@@ -1,1 +1,290 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste de Séries</title>
+    <style>
+        /* Design général sombre */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Arrière-plan sombre */
+            color: #f4f4f4; /* Texte clair */
+            margin: 0;
+            padding: 0;
+        }
+
+        .search-bar {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .search-bar input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #222;
+            color: #f4f4f4;
+        }
+
+        .series-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .series-card {
+            width: 200px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .series-card img {
+            width: 100%;
+            height: auto; /* Garde les proportions */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.2);
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Sombre avec transparence */
+            z-index: 1000;
+        }
+
+        .popup {
+            background: #222; /* Fond sombre */
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            height: 90%;
+            overflow-y: auto;
+        }
+
+        .popup img {
+            width: 100%;
+            height: auto; /* Garde les proportions */
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .popup h2 {
+            margin-top: 10px;
+            font-size: 24px;
+        }
+
+        .popup .episodes {
+            margin-top: 20px;
+        }
+
+        .popup .episode {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 15px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            background-color: #333;
+        }
+
+        .popup .episode img {
+            width: 150px; /* Plus large */
+            height: 90px; /* Proportionnel */
+            object-fit: cover; /* Centre l'image sans la déformer */
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+        }
+
+        .popup .episode .episode-info {
+            flex-grow: 1;
+        }
+
+        .popup .episode .episode-info h4 {
+            margin: 0;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .popup .episode .episode-info p {
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        .play-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e50914; /* Rouge Netflix */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .play-button:hover {
+            background-color: #b00710; /* Rouge plus foncé */
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: -100px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .close-btn img {
+            width: 40px; /* Taille fixe de 24 pixels */
+            height: 40px; /* Taille fixe de 24 pixels */
+            object-fit: contain; /* Assure la mise à l'échelle sans déformation */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barre de recherche -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Rechercher une série..." oninput="filterSeries()">
+    </div>
+
+    <!-- Liste de séries -->
+    <div class="series-list" id="seriesList">
+        <!-- Les séries seront insérées ici par JavaScript -->
+    </div>
+
+    <!-- Popup pour afficher les détails d'une série -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup" id="popup">
+            <span class="close-btn" onclick="closePopup()">
+                <img src="https://cdn-icons-png.flaticon.com/512/4225/4225690.png" alt="close">
+            </span>
+            <img id="popupIllustration" src="" alt="Illustration Série">
+            <h2 id="popupTitle"></h2>
+            <p id="popupDescription"></p>
+            <div class="episodes" id="popupEpisodes">
+
+                <!-- Les épisodes seront insérés ici -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // Données des séries
+        const seriesData = [
+            {
+                title: "Le Flambeau",
+                description: "Un candidat de téléréalité se retrouve sur l'archipel de Chupacabra avec d'autres personnes et ils tentent de survivre pour remporter une somme d'argent dérisoire.",
+                affiche: "https://image.tmdb.org/t/p/w500/a89SLEtX9AsooDEHOXKoSvj9BRG.jpg", // Image d'affiche (en 2/3)
+                illustration: "https://image.tmdb.org/t/p/original/rKURdJUe4Nkw81tp191jZKfn50Q.jpg", // Image d'illustration (en 16/9)
+                episodes: [
+                    { 
+                        title: "Épisode 1", 
+                        image: "https://thumb.canalplus.pro/http/unsafe/462x260/filters:quality(80)/img-hapi.canalplus.pro:80/ServiceImage/ImageID/105644747", 
+                        link: "e1s1leflambeau.html",
+                        description: "Une nouvelle aventure commence pour Marc. Mais, cette fois-ci, les règles ont changé. Il est juste un concurrent parmi les autres, qui devra survivre sur l'île sauvage de Chupacabra. Marc a la désagréable surprise de retrouver quelques visages qu'il connait bien. Qui sera éliminé la premier ?..."
+                    },
+                    { 
+                        title: "Épisode 2", 
+                        image: "https://thumb.canalplus.pro/http/unsafe/462x260/filters:quality(80)/img-hapi.canalplus.pro:80/ServiceImage/ImageID/105519431", 
+                        link: "episode2.html",
+                        description: "L'aventure vient à peine de commencer et déjà, les deux équipes souffrent de la faim. Surtout Marc. Il trouve honteux que leur soi-disant cheffe Anne ne leur trouve pas à manger. Il est déterminé à lui montrer comment doit se comporter un bon chef."
+                    },
+                ]
+            }
+        ];
+
+        // Générer la liste des séries
+        const seriesList = document.getElementById('seriesList');
+
+        seriesData.forEach((serie, index) => {
+            const seriesCard = document.createElement('div');
+            seriesCard.classList.add('series-card');
+            seriesCard.innerHTML = `
+                <img src="${serie.affiche}" alt="${serie.title}">
+                <h3>${serie.title}</h3>
+            `;
+            seriesCard.onclick = () => openPopup(index);
+            seriesList.appendChild(seriesCard);
+        });
+
+        // Filtrer les séries
+        function filterSeries() {
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.series-card').forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                card.style.display = title.includes(searchValue) ? '' : 'none';
+            });
+        }
+
+        // Ouvrir la popup
+        function openPopup(index) {
+            const serie = seriesData[index];
+            document.getElementById('popupIllustration').src = serie.illustration;
+            document.getElementById('popupTitle').textContent = serie.title;
+            document.getElementById('popupDescription').textContent = serie.description;
+
+            const episodesContainer = document.getElementById('popupEpisodes');
+            episodesContainer.innerHTML = '';
+            serie.episodes.forEach(ep => {
+                const episodeDiv = document.createElement('div');
+                episodeDiv.classList.add('episode');
+                episodeDiv.innerHTML = `
+                    <img src="${ep.image}" alt="${ep.title}">
+                    <div class="episode-info">
+                        <h4>${ep.title}</h4>
+                        <p>${ep.description}</p>
+                        <a href="${ep.link}" class="play-button">Regarder</a>
+                    </div>
+                `;
+                episodesContainer.appendChild(episodeDiv);
+            });
+
+            document.getElementById('popupOverlay').style.display = 'block';
+        }
+
+        // Fermer la popup
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+        }
+    </script>
+    <style>
+        .fixed-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #e50914; /* Rouge Netflix */
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+            z-index: 1000; /* Toujours au-dessus */
+        }
+    
+        .fixed-button:hover {
+            background-color: #b00710; /* Rouge plus foncé */
+        }
+    </style>
+    <a href="https://iptv01.netlify.app" class="fixed-button">Home</a>
+
+</body>
+</html>
