@@ -73,8 +73,7 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            <source src="https://fenlixfire.live/file2/5MVuyB2aLyV4t~AV2vEbdqhNgx7WEORVfYdynO1QP28SF5QGoNKhS9T0KPuEjPOReO2rBusEGkrGMEAzdOhd+yQv8KfscGtRh3atOlMjQPU5TciWThLLlTMqP98xiTE2pMjPhf7apZ6Yr+V8lbzZ5ycsbAreMxuTefjjjAO4WQ0=/MTA4MA==/aW5kZXgubTN1OA==.m3u8
-" type="application/x-mpegURL">
+            <source src="https://fenlixfire.live/file2/5MVuyB2aLyV4t~AV2vEbdqhNgx7WEORVfYdynO1QP28SF5QGoNKhS9T0KPuEjPOReO2rBusEGkrGMEAzdOhd+yQv8KfscGtRh3atOlMjQPU5TciWThLLlTMqP98xiTE2pMjPhf7apZ6Yr+V8lbzZ5ycsbAreMxuTefjjjAO4WQ0=/MTA4MA==/aW5kZXgubTN1OA==.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -126,12 +125,10 @@
         // Vérifie si Hls.js est supporté
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://fenlixfire.live/file2/5MVuyB2aLyV4t~AV2vEbdqhNgx7WEORVfYdynO1QP28SF5QGoNKhS9T0KPuEjPOReO2rBusEGkrGMEAzdOhd+yQv8KfscGtRh3atOlMjQPU5TciWThLLlTMqP98xiTE2pMjPhf7apZ6Yr+V8lbzZ5ycsbAreMxuTefjjjAO4WQ0=/MTA4MA==/aW5kZXgubTN1OA==.m3u8
-');
+            hls.loadSource('https://fenlixfire.live/file2/5MVuyB2aLyV4t~AV2vEbdqhNgx7WEORVfYdynO1QP28SF5QGoNKhS9T0KPuEjPOReO2rBusEGkrGMEAzdOhd+yQv8KfscGtRh3atOlMjQPU5TciWThLLlTMqP98xiTE2pMjPhf7apZ6Yr+V8lbzZ5ycsbAreMxuTefjjjAO4WQ0=/MTA4MA==/aW5kZXgubTN1OA==.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://fenlixfire.live/file2/5MVuyB2aLyV4t~AV2vEbdqhNgx7WEORVfYdynO1QP28SF5QGoNKhS9T0KPuEjPOReO2rBusEGkrGMEAzdOhd+yQv8KfscGtRh3atOlMjQPU5TciWThLLlTMqP98xiTE2pMjPhf7apZ6Yr+V8lbzZ5ycsbAreMxuTefjjjAO4WQ0=/MTA4MA==/aW5kZXgubTN1OA==.m3u8
-';
+            video.src = 'https://fenlixfire.live/file2/5MVuyB2aLyV4t~AV2vEbdqhNgx7WEORVfYdynO1QP28SF5QGoNKhS9T0KPuEjPOReO2rBusEGkrGMEAzdOhd+yQv8KfscGtRh3atOlMjQPU5TciWThLLlTMqP98xiTE2pMjPhf7apZ6Yr+V8lbzZ5ycsbAreMxuTefjjjAO4WQ0=/MTA4MA==/aW5kZXgubTN1OA==.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
