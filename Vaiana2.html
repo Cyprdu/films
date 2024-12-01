@@ -70,7 +70,7 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            <source src="https://be7713.rcr82.waw05.cdn255.com/hls2/01/07447/zzsxnj8p1hxe_h/index-v1-a1.m3u8?t=kkKkhcm250B690CyH7kF40MrGLi0ZxrJn7V4_sh_c2g&s=1732992000&e=10800&f=37238696&srv=21&asn=15557&sp=4000&p=" type="application/x-mpegURL">
+            <source src="https://tralvoxmoon.xyz/file2/C6~pzJ0xDVm10~8pp3BdJa4efR2xSrcCZy4MRTNr665HRl~uYU+i503d+nqFNgY3H8XCN2RUMCFkeVyx1wVyVKqDjDCeK+ynpUyJ14MGayC99MZLcXTIaF49WQzSGtiTXjY7Y+BSxTSiJvy4n6EUfF+ahS1tP~twMmhuKrdkj1Y=/MTA4MA==/aW5kZXgubTN1OA==.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -122,10 +122,10 @@
         // Vérifie si Hls.js est supporté
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://be7713.rcr82.waw05.cdn255.com/hls2/01/07447/zzsxnj8p1hxe_h/index-v1-a1.m3u8?t=kkKkhcm250B690CyH7kF40MrGLi0ZxrJn7V4_sh_c2g&s=1732992000&e=10800&f=37238696&srv=21&asn=15557&sp=4000&p=');
+            hls.loadSource('https://tralvoxmoon.xyz/file2/C6~pzJ0xDVm10~8pp3BdJa4efR2xSrcCZy4MRTNr665HRl~uYU+i503d+nqFNgY3H8XCN2RUMCFkeVyx1wVyVKqDjDCeK+ynpUyJ14MGayC99MZLcXTIaF49WQzSGtiTXjY7Y+BSxTSiJvy4n6EUfF+ahS1tP~twMmhuKrdkj1Y=/MTA4MA==/aW5kZXgubTN1OA==.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://be7713.rcr82.waw05.cdn255.com/hls2/01/07447/zzsxnj8p1hxe_h/index-v1-a1.m3u8?t=kkKkhcm250B690CyH7kF40MrGLi0ZxrJn7V4_sh_c2g&s=1732992000&e=10800&f=37238696&srv=21&asn=15557&sp=4000&p=';
+            video.src = 'https://tralvoxmoon.xyz/file2/C6~pzJ0xDVm10~8pp3BdJa4efR2xSrcCZy4MRTNr665HRl~uYU+i503d+nqFNgY3H8XCN2RUMCFkeVyx1wVyVKqDjDCeK+ynpUyJ14MGayC99MZLcXTIaF49WQzSGtiTXjY7Y+BSxTSiJvy4n6EUfF+ahS1tP~twMmhuKrdkj1Y=/MTA4MA==/aW5kZXgubTN1OA==.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
