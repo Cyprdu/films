@@ -91,7 +91,7 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            <source src="https://livesenat.akamaized.net/hls/live/2036979/senat1/senat1_2000/chunklist-archive.m3u8?startTime=1732715907" type="application/x-mpegURL">
+            <source src="https://td3wb1bchdvsahp.ngolpdkyoctjcddxshli469r.org/sunshine/j5gYKxOUKijAdL-MVhlhWScqM02-S9e6x34RMy1oM12K9xGyweR4uaBee6uLSd1mNTZNb6HCdPjmi5ZUOVu2ELolypG3E-K-uNh2Fv-oFqtK5uTXHO47OoKHXKCrTUfQQ1eolD8KMYjAgLFS-rSkp2edt_pIemECFQvAicrKIgM/hls/index.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -138,10 +138,10 @@
         // Vérifie si Hls.js est supporté par le navigateur
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://livesenat.akamaized.net/hls/live/2036979/senat1/senat1_2000/chunklist-archive.m3u8?startTime=1732715907');
+            hls.loadSource('https://td3wb1bchdvsahp.ngolpdkyoctjcddxshli469r.org/sunshine/j5gYKxOUKijAdL-MVhlhWScqM02-S9e6x34RMy1oM12K9xGyweR4uaBee6uLSd1mNTZNb6HCdPjmi5ZUOVu2ELolypG3E-K-uNh2Fv-oFqtK5uTXHO47OoKHXKCrTUfQQ1eolD8KMYjAgLFS-rSkp2edt_pIemECFQvAicrKIgM/hls/index.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://livesenat.akamaized.net/hls/live/2036979/senat1/senat1_2000/chunklist-archive.m3u8?startTime=1732715907';
+            video.src = 'https://td3wb1bchdvsahp.ngolpdkyoctjcddxshli469r.org/sunshine/j5gYKxOUKijAdL-MVhlhWScqM02-S9e6x34RMy1oM12K9xGyweR4uaBee6uLSd1mNTZNb6HCdPjmi5ZUOVu2ELolypG3E-K-uNh2Fv-oFqtK5uTXHO47OoKHXKCrTUfQQ1eolD8KMYjAgLFS-rSkp2edt_pIemECFQvAicrKIgM/hls/index.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
