@@ -90,7 +90,7 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            <source src="https://mjkskdvpfpb1fbv.ngolpdkyoctjcddxshli469r.org/sunshine/SCa17Gxj6XK4UNTXT8wD1zx-ISI1iudX9TDe6fFrYx_VCT734VbUrAFA2fcN4jvUgmf1B45Rj9lrxg_qs-rg9KZ2eDhnAtHoJ-FatvKGSZWr8XJP4uI5MnheEg5BKcXa9CT0YKr-Z2GyUR0F_Dee103p8sEE3zGPrgUTASvL2Qk/hls/index.m3u8" type="application/x-mpegURL">
+            <source src="https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/tf1plus/tmc.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -137,10 +137,10 @@
         // Vérifie si Hls.js est supporté par le navigateur
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://mjkskdvpfpb1fbv.ngolpdkyoctjcddxshli469r.org/sunshine/SCa17Gxj6XK4UNTXT8wD1zx-ISI1iudX9TDe6fFrYx_VCT734VbUrAFA2fcN4jvUgmf1B45Rj9lrxg_qs-rg9KZ2eDhnAtHoJ-FatvKGSZWr8XJP4uI5MnheEg5BKcXa9CT0YKr-Z2GyUR0F_Dee103p8sEE3zGPrgUTASvL2Qk/hls/index.m3u8');
+            hls.loadSource('https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/tf1plus/tmc.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://mjkskdvpfpb1fbv.ngolpdkyoctjcddxshli469r.org/sunshine/SCa17Gxj6XK4UNTXT8wD1zx-ISI1iudX9TDe6fFrYx_VCT734VbUrAFA2fcN4jvUgmf1B45Rj9lrxg_qs-rg9KZ2eDhnAtHoJ-FatvKGSZWr8XJP4uI5MnheEg5BKcXa9CT0YKr-Z2GyUR0F_Dee103p8sEE3zGPrgUTASvL2Qk/hls/index.m3u8';
+            video.src = 'https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/tf1plus/tmc.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
