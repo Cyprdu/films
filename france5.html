@@ -90,7 +90,7 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            <source src="https://raw.githubusercontent.com/ipstreet312/freeiptv/master/ressources/ftv/py/fr5.m3u8" type="application/x-mpegURL">
+            <source src="https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/francetv/france5.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -137,10 +137,10 @@
         // Vérifie si Hls.js est supporté par le navigateur
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://raw.githubusercontent.com/ipstreet312/freeiptv/master/ressources/ftv/py/fr5.m3u8');
+            hls.loadSource('https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/francetv/france5.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://raw.githubusercontent.com/ipstreet312/freeiptv/master/ressources/ftv/py/fr5.m3u8';
+            video.src = 'https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/francetv/france5.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
