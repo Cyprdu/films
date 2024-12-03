@@ -91,7 +91,7 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            <source src="https://qmaalhy7acgxwhm.ngolpdkyoctjcddxshli469r.org/sunshine/KGxS6G3nmmre2vh-6FugO0nAGcDIH5EJATinqcFu18GRFrbJg1-At_dkcdRWcAfxitQFfPAEQQo1g1vwHiPu3Z4opeVM445VMI0OX1mqNtSD3djruD_2muH-kkN8yoMg-8O4AbL5kKmyH3zzjDE25DkjdpbqHyvOkBueaAU8cD0/hls/index.m3u8" type="application/x-mpegURL">
+            <source src="https://raw.githubusercontent.com/schumijo/iptv/main/playlists/mytf1/tf1sf.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -138,10 +138,10 @@
         // Vérifie si Hls.js est supporté par le navigateur
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://qmaalhy7acgxwhm.ngolpdkyoctjcddxshli469r.org/sunshine/KGxS6G3nmmre2vh-6FugO0nAGcDIH5EJATinqcFu18GRFrbJg1-At_dkcdRWcAfxitQFfPAEQQo1g1vwHiPu3Z4opeVM445VMI0OX1mqNtSD3djruD_2muH-kkN8yoMg-8O4AbL5kKmyH3zzjDE25DkjdpbqHyvOkBueaAU8cD0/hls/index.m3u8');
+            hls.loadSource('https://raw.githubusercontent.com/schumijo/iptv/main/playlists/mytf1/tf1sf.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://qmaalhy7acgxwhm.ngolpdkyoctjcddxshli469r.org/sunshine/KGxS6G3nmmre2vh-6FugO0nAGcDIH5EJATinqcFu18GRFrbJg1-At_dkcdRWcAfxitQFfPAEQQo1g1vwHiPu3Z4opeVM445VMI0OX1mqNtSD3djruD_2muH-kkN8yoMg-8O4AbL5kKmyH3zzjDE25DkjdpbqHyvOkBueaAU8cD0/hls/index.m3u8';
+            video.src = 'https://raw.githubusercontent.com/schumijo/iptv/main/playlists/mytf1/tf1sf.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
