@@ -90,7 +90,7 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            <source src="https://iezmzlrgtn5pgme.ngolpdkyoctjcddxshli469r.org/sunshine/pClCRQwMJp3G2emcIrwBeofyeZBECxvTlQl514jnENBfVpK07YX80br_jCNC1kM33jvspFcj13oJR3o6FIFJ1e6LmRrFOtKtwmdaHs62UDzPGqaKENnJIA--7wsr5-ix0Le8CBA3fToR_HGt4JX0RMTGBt2XWEy6KLHyVF7BWPo/hls/index.m3u8" type="application/x-mpegURL">
+            <source src="https://livetvde.net/m6/tracks-v1a1/mono.m3u8?token=ba9beb5aac5d2a6047d544ff2610712a345c656c-b41f09ec93add2fa41f93f35df5d1f75-1733259121-1733248321" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -137,10 +137,10 @@
         // Vérifie si Hls.js est supporté par le navigateur
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://iezmzlrgtn5pgme.ngolpdkyoctjcddxshli469r.org/sunshine/pClCRQwMJp3G2emcIrwBeofyeZBECxvTlQl514jnENBfVpK07YX80br_jCNC1kM33jvspFcj13oJR3o6FIFJ1e6LmRrFOtKtwmdaHs62UDzPGqaKENnJIA--7wsr5-ix0Le8CBA3fToR_HGt4JX0RMTGBt2XWEy6KLHyVF7BWPo/hls/index.m3u8');
+            hls.loadSource('https://livetvde.net/m6/tracks-v1a1/mono.m3u8?token=ba9beb5aac5d2a6047d544ff2610712a345c656c-b41f09ec93add2fa41f93f35df5d1f75-1733259121-1733248321');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://iezmzlrgtn5pgme.ngolpdkyoctjcddxshli469r.org/sunshine/pClCRQwMJp3G2emcIrwBeofyeZBECxvTlQl514jnENBfVpK07YX80br_jCNC1kM33jvspFcj13oJR3o6FIFJ1e6LmRrFOtKtwmdaHs62UDzPGqaKENnJIA--7wsr5-ix0Le8CBA3fToR_HGt4JX0RMTGBt2XWEy6KLHyVF7BWPo/hls/index.m3u8';
+            video.src = 'https://livetvde.net/m6/tracks-v1a1/mono.m3u8?token=ba9beb5aac5d2a6047d544ff2610712a345c656c-b41f09ec93add2fa41f93f35df5d1f75-1733259121-1733248321';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
