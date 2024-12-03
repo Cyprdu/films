@@ -90,7 +90,7 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            <source src="https://simulcast-p.ftven.fr/ZXhwPTE3MzMwOTg2OTZ+YWNsPSUyZip+aG1hYz05MTQxODNmNzQ0ODNjMDM4NDdhZGM0NWU0MjdmNTg1N2FhZWU2Mzk0Y2U2ZWQ2N2I1YzYxMWI1OGQzOTdiMjEz/simulcast/France_2/hls_fr2/France_2-avc1_5000000=10000.m3u8" type="application/x-mpegURL">
+            <source src="https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/francetv/france2.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -137,10 +137,10 @@
         // Vérifie si Hls.js est supporté par le navigateur
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://simulcast-p.ftven.fr/ZXhwPTE3MzMwOTg2OTZ+YWNsPSUyZip+aG1hYz05MTQxODNmNzQ0ODNjMDM4NDdhZGM0NWU0MjdmNTg1N2FhZWU2Mzk0Y2U2ZWQ2N2I1YzYxMWI1OGQzOTdiMjEz/simulcast/France_2/hls_fr2/France_2-avc1_5000000=10000.m3u8');
+            hls.loadSource('https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/francetv/france2.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://simulcast-p.ftven.fr/ZXhwPTE3MzMwOTg2OTZ+YWNsPSUyZip+aG1hYz05MTQxODNmNzQ0ODNjMDM4NDdhZGM0NWU0MjdmNTg1N2FhZWU2Mzk0Y2U2ZWQ2N2I1YzYxMWI1OGQzOTdiMjEz/simulcast/France_2/hls_fr2/France_2-avc1_5000000=10000.m3u8';
+            video.src = 'https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/francetv/france2.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
