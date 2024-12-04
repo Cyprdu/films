@@ -91,7 +91,7 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            <source src="https://iptv.frembed.lol/live/A6B56AC724C0686C98984A5A92CA1DC1/50.m3u8" type="application/x-mpegURL">
+            <source src="https://iezmzlrgtn5pgme.ngolpdkyoctjcddxshli469r.org/sunshine/XEgDY4PLb6PDXmf-BTQ3u1bt0XbCjfjWOhTiUdTlcsw7zex0PwqlZMQUL81t8960KKtbVqce-WSS2iFAJSe2nFWvFXxUO3HnAjfN40H0mJC1FcOrWR0foxXHy31AZIi_j_cpzQnuv3XyE9DtJvVJs9sZP7JjzN6djL16gRzDDwg/hls/index.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -138,10 +138,10 @@
         // Vérifie si Hls.js est supporté par le navigateur
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://iptv.frembed.lol/live/A6B56AC724C0686C98984A5A92CA1DC1/50.m3u8');
+            hls.loadSource('https://iezmzlrgtn5pgme.ngolpdkyoctjcddxshli469r.org/sunshine/XEgDY4PLb6PDXmf-BTQ3u1bt0XbCjfjWOhTiUdTlcsw7zex0PwqlZMQUL81t8960KKtbVqce-WSS2iFAJSe2nFWvFXxUO3HnAjfN40H0mJC1FcOrWR0foxXHy31AZIi_j_cpzQnuv3XyE9DtJvVJs9sZP7JjzN6djL16gRzDDwg/hls/index.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://iptv.frembed.lol/live/A6B56AC724C0686C98984A5A92CA1DC1/50.m3u8';
+            video.src = 'https://iezmzlrgtn5pgme.ngolpdkyoctjcddxshli469r.org/sunshine/XEgDY4PLb6PDXmf-BTQ3u1bt0XbCjfjWOhTiUdTlcsw7zex0PwqlZMQUL81t8960KKtbVqce-WSS2iFAJSe2nFWvFXxUO3HnAjfN40H0mJC1FcOrWR0foxXHy31AZIi_j_cpzQnuv3XyE9DtJvVJs9sZP7JjzN6djL16gRzDDwg/hls/index.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
