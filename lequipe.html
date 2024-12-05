@@ -141,7 +141,7 @@
             hls.loadSource('https://raw.githubusercontent.com/schumijo/iptv/main/playlists/lequipe/lequipe.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'hhttps://raw.githubusercontent.com/schumijo/iptv/main/playlists/lequipe/lequipe.m3u8';
+            video.src = 'https://raw.githubusercontent.com/schumijo/iptv/main/playlists/lequipe/lequipe.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
