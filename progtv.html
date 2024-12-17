@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmes TV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #050320;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        header {
+            background-color: #121026;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+        .channel {
+            background: #121026;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 15px;
+        }
+        .channel-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .channel-header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        .program {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        .program img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        .program-info h3 {
+            margin: 0 0 5px;
+            color: #f8b400;
+            font-size: 1.2rem;
+        }
+        .program-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+        .live-tag {
+            display: inline-block;
+            background-color: red;
+            color: white;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            border-radius: 4px;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #121026;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="tv-container">
+        <!-- Les programmes seront injectés ici -->
+    </div>
+
+
+    <script>
+        const API_URL = 'https://daga123-tv-api.onrender.com/getPrograms';
+        const container = document.getElementById('tv-container');
+        let programCache = null;
+
+        // Map pour convertir les abréviations en noms complets
+        const channelMap = {
+            'f2': 'france 2',
+            'f3': 'france 3',
+            'f5': 'france 5',
+            'f4': 'france 4',
+            'rmcd': 'rmc découverte',
+            'rmcs': 'rmc story',
+            'bt': 'bfm tv',
+            'tsf': 'tf1 series films',
+            'equipe': "la chaine l'equipe",
+            '6ter': '6ter',
+            'canalplusc': 'canal+ cinema',
+            'pm': 'paris première',
+            'gulli': 'gulli',
+            'tf1': 'tf1',
+            'canal+': 'canal+',
+            'm6': 'm6',
+            'arte': 'arte',
+            'c8': 'c8',
+            'w9': 'w9',
+            'tmc': 'tmc',
+            'tfx': 'tfx',
+            'nrj12': 'nrj12',
+            'lcp': 'lcp',
+            'cnews': 'cnews',
+            'cstar': 'cstar',
+            'cherie25': 'chérie 25',
+            'lci': 'lci',
+            'franceinfo:': 'franceinfo:',
+            'cpluss': 'canal+ sport',
+            'cplus': 'canal+',
+
+           
+
+
+            
+
+            
+            
+           
+        };
+
+        // Fonction pour formater l'heure UNIX
+        function formatTime(unixTime) {
+            const date = new Date(unixTime * 1000);
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            return `${hours}h${minutes}`;
+        }
+
+        // Récupère le nom de la chaîne depuis l'URL
+        function getChannelFromURL() {
+            const hash = window.location.hash.substring(1).toLowerCase(); // Retire le #
+            return channelMap[hash] || ''; // Retourne le nom complet ou vide
+        }
+
+        // Fonction pour récupérer les données et les afficher
+        async function fetchPrograms() {
+            const channelFilter = getChannelFromURL();
+
+            try {
+                if (programCache) {
+                    renderPrograms(programCache, channelFilter);
+                    return;
+                }
+
+                const response = await fetch(API_URL, { cache: "no-store" });
+                const data = await response.json();
+
+                programCache = data.data;
+
+                renderPrograms(programCache, channelFilter);
+            } catch (error) {
+                console.error('Erreur lors du chargement des programmes :', error);
+                container.innerHTML = '<p>Impossible de charger les programmes TV. Veuillez réessayer plus tard.</p>';
+            }
+        }
+
+        // Fonction pour afficher le programme actuel et suivant
+        function renderPrograms(channels, channelFilter) {
+            const now = Math.floor(Date.now() / 1000);
+            container.innerHTML = '';
+
+            channels.forEach(channel => {
+                if (channelFilter && channel.name.toLowerCase() !== channelFilter) return;
+
+                const currentProgram = channel.programs.find(program => program.start <= now && program.end > now);
+                const nextProgram = channel.programs.find(program => program.start > now);
+
+                if (currentProgram && nextProgram) {
+                    const channelElement = document.createElement('div');
+                    channelElement.className = 'channel';
+
+                    channelElement.innerHTML = `
+                        <div class="channel-header">
+                            <img src="${channel.icon}" alt="${channel.name}">
+                            <h2>${channel.name}</h2>
+                        </div>
+                        <div class="program">
+                            <img src="${currentProgram.icon}" alt="${currentProgram.name}">
+                            <div class="program-info">
+                                <h3>${currentProgram.name} <span class="live-tag">Programme en live</span></h3>
+                                <p>${formatTime(currentProgram.start)} - ${formatTime(currentProgram.end)}</p>
+                                <p><strong>Catégorie :</strong> ${currentProgram.cat}</p>
+                                <p>${currentProgram.desc}</p>
+                            </div>
+                        </div>
+                        <div class="program">
+                            <img src="${nextProgram.icon}" alt="${nextProgram.name}">
+                            <div class="program-info">
+                                <h3>${nextProgram.name} (Programme suivant)</h3>
+                                <p>${formatTime(nextProgram.start)} - ${formatTime(nextProgram.end)}</p>
+                                <p><strong>Catégorie :</strong> ${nextProgram.cat}</p>
+                                <p>${nextProgram.desc}</p>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(channelElement);
+                }
+            });
+        }
+
+        // Premier chargement
+        fetchPrograms();
+
+        // Actualisation toutes les 30 secondes
+        setInterval(fetchPrograms, 30000);
+    </script>
+</body>
+</html>
