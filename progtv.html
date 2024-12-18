@@ -35,18 +35,6 @@
             overflow: hidden;
             padding: 15px;
         }
-        .channel-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .channel-header img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
-        }
         .program {
             display: flex;
             align-items: flex-start;
@@ -87,11 +75,9 @@
             color: white;
             margin-top: 20px;
         }
-         .program:last-child {
+        .program:last-child {
                 border-bottom: none; /* Supprime la bordure sous le dernier programme */
-            }
-            
-        
+        }
     </style>
 </head>
 <body>
@@ -99,7 +85,6 @@
     <div class="container" id="tv-container">
         <!-- Les programmes seront injectés ici -->
     </div>
-
 
     <script>
         const API_URL = 'https://daga123-tv-api.onrender.com/getPrograms';
@@ -138,23 +123,21 @@
             'franceinfo:': 'franceinfo:',
             'cpluss': 'canal+ sport',
             'cplus': 'canal+',
-
-           
-
-
-            
-
-            
-            
-           
         };
 
-        // Fonction pour formater l'heure UNIX
+        // Fonction pour formater l'heure Unix en heure locale de Paris
         function formatTime(unixTime) {
-            const date = new Date(unixTime * 1000);
-            const hours = date.getHours().toString().padStart(2, '0');
-            const minutes = date.getMinutes().toString().padStart(2, '0');
-            return `${hours}h${minutes}`;
+            // Soustraire 3600 secondes (1 heure) pour ajuster à l'heure locale de Paris
+            const date = new Date((unixTime - 3600) * 1000); // Soustraction de 1h (3600 secondes)
+
+            // Options pour afficher l'heure locale en format "HH:MM"
+            const options = {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            };
+
+            return date.toLocaleTimeString('fr-FR', options);
         }
 
         // Récupère le nom de la chaîne depuis l'URL
@@ -187,14 +170,16 @@
 
         // Fonction pour afficher le programme actuel et suivant
         function renderPrograms(channels, channelFilter) {
-            const now = Math.floor(Date.now() / 1000);
+            const now = Math.floor(Date.now() / 1000); // Heure actuelle en UTC en secondes
+            const parisTimeNow = now + 3600; // Heure locale de Paris (en UTC -1h)
+
             container.innerHTML = '';
 
             channels.forEach(channel => {
                 if (channelFilter && channel.name.toLowerCase() !== channelFilter) return;
 
-                const currentProgram = channel.programs.find(program => program.start <= now && program.end > now);
-                const nextProgram = channel.programs.find(program => program.start > now);
+                const currentProgram = channel.programs.find(program => program.start <= parisTimeNow && program.end > parisTimeNow);
+                const nextProgram = channel.programs.find(program => program.start > parisTimeNow);
 
                 if (currentProgram && nextProgram) {
                     const channelElement = document.createElement('div');
@@ -206,7 +191,7 @@
                         <div class="program">
                             <img src="${currentProgram.icon}" alt="${currentProgram.name}">
                             <div class="program-info">
-                                <h3>${currentProgram.name} <span class="live-tag">Programme en live</span></h3>
+                                <h3>${currentProgram.name} <span class="live-tag">Programme en direct</span></h3>
                                 <p>${formatTime(currentProgram.start)} - ${formatTime(currentProgram.end)}</p>
                                 <p><strong>Catégorie :</strong> ${currentProgram.cat}</p>
                                 <p>${currentProgram.desc}</p>
