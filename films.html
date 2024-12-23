@@ -34,7 +34,6 @@
         #search-bar::placeholder {
             color: #888;
         }
-
         /* Return Button */
         .return-btn {
             position: absolute;
@@ -48,7 +47,6 @@
             width: 100%;
             height: 100%;
         }
-
         /* Grid for Movies */
         .channels {
             display: grid;
@@ -98,15 +96,6 @@
         <h1>Bienvenue sur notre sélection de Films</h1>
         <input type="text" id="search-bar" placeholder="Rechercher un film...">
         <div class="channels" id="channels">
-
-
-
-
-
-
-
-
-            </a>
             <a class="channel" href="jurénum2.html" data-title="Juré n°2">
                 <div class="logo-container">
                     <img src="https://image.tmdb.org/t/p/w300/ttQ4ooQ5mzFLhlAtDUqvBDBXyQ5.jpg" alt="Juré n°2">
@@ -155,7 +144,7 @@
                     <div class="logo-container">
                         <img src="https://www.themoviedb.org/t/p/original/i9ZSZCUMYRpm2AEE2ceNPQPAygn.jpg" alt="">
                     </div>
-                    <span>Spider-Man No Way Home (2022)</span>
+                    <span>Spider-Man : No Way Home - Version longue (2022)</span>
 
 
             <a href="SOSFantômesLaMenacedeGlace.html" class="channel">
@@ -464,23 +453,16 @@
         <img src="https://www.themoviedb.org/t/p/original/mddMreLheR9JE0BTyxDEc6QG5ie.jpg" alt="">
         </div>
         <span>Mission : Impossible - Fallout (2018)</span>
-
-
-
-            <!-- Ajoutez d'autres films ici -->
         </div>
     </div>
-
     <script>
-        const searchBar = document.getElementById('search-bar');
-        const channels = document.querySelectorAll('.channel');
-
-        searchBar.addEventListener('input', () => {
-            const query = searchBar.value.toLowerCase();
-
+        document.getElementById('search-bar').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const channels = document.querySelectorAll('.channel');
+            
             channels.forEach(channel => {
-                const title = channel.getAttribute('data-title').toLowerCase();
-                if (title.includes(query)) {
+                const channelName = channel.querySelector('span').textContent.toLowerCase();
+                if (channelName.includes(query)) {
                     channel.style.display = 'block';
                 } else {
                     channel.style.display = 'none';
