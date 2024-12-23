@@ -4,371 +4,489 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil des Films</title>
- <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/ti/vecteur-libre/p1/7688855-tv-logo-gratuit-vectoriel.jpg"/>
-    <link rel="stylesheet" href="film.css">
+    <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/ti/vecteur-libre/p1/7688855-tv-logo-gratuit-vectoriel.jpg"/>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #141414;
+            color: #ffffff;
+        }
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin: 40px 0 20px;
+        }
+        #search-bar {
+            width: 50%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+        }
+        #search-bar::placeholder {
+            color: #888;
+        }
+
+        /* Return Button */
+        .return-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: block;
+            width: 50px;
+            height: 50px;
+        }
+        .return-btn img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Grid for Movies */
+        .channels {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+        .channel {
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .channel:hover {
+            transform: translateY(-10px);
+        }
+        .logo-container {
+            position: relative;
+            width: 100%;
+            padding-top: 150%; /* Aspect ratio 1:1 */
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .logo-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        span {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+    </style>
 </head>
 <body>
+    <a class="return-btn" href="/home">
+        <img src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
+    </a>
     <div class="container">
         <h1>Bienvenue sur notre sélection de Films</h1>
-        <input type="text" id="search-bar" placeholder="Rechercher une chaîne...">
-        <div class="channels">
-</a>
- 
-</a>
-  <a href="home.html" class="channel">
-                <div class="logo-container">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1/1661.png" alt="RMC Story">
-                </div>
-                <span>Retour</span>
+        <input type="text" id="search-bar" placeholder="Rechercher un film...">
+        <div class="channels" id="channels">
+
+
+
+
+
+
+
+
             </a>
+            <a class="channel" href="jurénum2.html" data-title="Juré n°2">
+                <div class="logo-container">
+                    <img src="https://image.tmdb.org/t/p/w300/ttQ4ooQ5mzFLhlAtDUqvBDBXyQ5.jpg" alt="Juré n°2">
+                </div>
+                <span>Juré n°2 (2024)</span>
+            </a>
+            <a class="channel" href="/vaiana2" data-title="Vaiana 2">
+                <div class="logo-container">
+                    <img src="https://image.tmdb.org/t/p/w300/8OulAqoorQy4X3hI4jNOiFLJYEk.jpg" alt="Vaiana 2">
+                </div>
+                <span>Vaiana 2 (2024)</span>
+            </a>
+            <a class="channel" href="/gladiator2" data-title="Gladiator II">
+                <div class="logo-container">
+                    <img src="https://image.tmdb.org/t/p/w300/rTa9otCuUwcJKoI78SkleDUC0pH.jpg" alt="Gladiator II">
+                </div>
+                <span>Gladiator II (2024)</span>
+            </a>
+            <a class="channel" href="/missionimpossiblep1" data-title="Mission Impossible: Dead Reckoning">
+                <div class="logo-container">
+                    <img src="https://img-4.linternaute.com/9UBOsKdGH8a3YRPtSypH9d830GI=/1240x/61cfade903914bfba813daea7e291858/ccmcms-linternaute/215487.jpeg" alt="MI7">
+                </div>
+                <span>Mission Impossible: Dead Reckoning (2023)</span>
+            </a>
+            <a class='channel' href='/monte-cristo'>
+                <div class="logo-container">
+                    <img src="https://media.themoviedb.org/t/p/original/bHd2ry2KYR109dl87agYQ2nCsnR.jpg" alt="Le Comte de Monte-Cristo">
+                </div>
+                <span>Le Comte de <br>Monte-Cristo (2024)</span>
 
-                            <a href="jurénum2.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://image.tmdb.org/t/p/w300/ttQ4ooQ5mzFLhlAtDUqvBDBXyQ5.jpg" alt="Juré n°2">
-                 </div>
-                 <span>Juré n°2</span>
 
-                             <a href="Vaiana2.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://image.tmdb.org/t/p/w300/8OulAqoorQy4X3hI4jNOiFLJYEk.jpg" alt="Vaiana 2">
-                 </div>
-                 <span>Vaiana 2</span>
 
-                <a href="gladiator2.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://image.tmdb.org/t/p/w300/rTa9otCuUwcJKoI78SkleDUC0pH.jpg" alt="Gladiator II">
-                 </div>
-                 <span>Gladiator II</span>
-                    
-                            
-                <a href="missionimpossiblep1.html" class="channel">
+        <a href="napoléon.html" class="channel">
+            <div class="logo-container">
+                <img src="https://fr.web.img6.acsta.net/pictures/23/10/18/16/31/2876053.jpg" alt="téva">
+            </div>
+            <span>Napoléon (2023)</span>
+
+            <a class='channel' href='/spidermannowayhome'>
+                <div class="logo-container">
+                    <img src="https://m.media-amazon.com/images/I/71fDaTj6ROL._AC_UF1000,1000_QL80_.jpg" alt="téva">
+                </div>
+                <span>Spider-Man No Way Home (2021)</span>
+
+                <a class='channel' href='/498884771'>
                     <div class="logo-container">
-                        <img src="https://img-4.linternaute.com/9UBOsKdGH8a3YRPtSypH9d830GI=/1240x/61cfade903914bfba813daea7e291858/ccmcms-linternaute/215487.jpeg" alt="MI7">
+                        <img src="https://www.themoviedb.org/t/p/original/i9ZSZCUMYRpm2AEE2ceNPQPAygn.jpg" alt="">
                     </div>
-                    <span>Mission impossible :<br>Dead Reckoning</span>
-                    
-                            <a href="Monte-Cristo.html" class="channel">
-                            <div class="logo-container">
-                                <img src="https://media.themoviedb.org/t/p/original/bHd2ry2KYR109dl87agYQ2nCsnR.jpg" alt="Le Comte de Monte-Cristo">
-                            </div>
-                            <span>Le Comte de <br>Monte-Cristo</span>
+                    <span>Spider-Man No Way Home (2022)</span>
 
 
-
-                    <a href="napoléon.html" class="channel">
+            <a href="SOSFantômesLaMenacedeGlace.html" class="channel">
+                    <div class="logo-container">
+                        <img src="https://fr.web.img6.acsta.net/pictures/24/02/23/09/52/1147009.jpg" alt="téva">
+                    </div>
+                    <span>SOS Fantômes : La Menace de Glace (2024)</span>
+                <a class='channel' href='/viceversa2'>
                         <div class="logo-container">
-                            <img src="https://fr.web.img6.acsta.net/pictures/23/10/18/16/31/2876053.jpg" alt="téva">
+                            <img src="https://lumiere-a.akamaihd.net/v1/images/image_30ffd6e6.jpeg?region=0,0,540,810" alt="téva">
                         </div>
-                        <span>Napoléon</span>
-
-                        <a href="SpiderManNoWayHome.html" class="channel">
+                        <span>Vice Versa 2 (2024)</span>
+                    <a class='channel' href='/viceversa'>
                             <div class="logo-container">
-                                <img src="https://m.media-amazon.com/images/I/71fDaTj6ROL._AC_UF1000,1000_QL80_.jpg" alt="téva">
+                                <img src="https://fr.web.img5.acsta.net/pictures/15/04/16/13/58/571071.jpg" alt="téva">
                             </div>
-                            <span>Spider-Man </br> No Way Home</span>
+                            <span>Vice Versa (2015)</span>
+                        <a class='channel' href='/kungfupanda4'>
+                            <div class="logo-container">
+                                <img src="https://fr.web.img4.acsta.net/c_310_420/pictures/24/02/20/12/28/5505684.jpg" alt="téva">
+                            </div>
+                            <span>Kung Fu Panda 4 (2024)</span>
+                             <a class='channel' href='/lestrolls3'>
+                            <div class="logo-container">
+                                <img src="https://fr.web.img4.acsta.net/pictures/23/10/23/18/06/2138941.jpg" alt="téva">
+                            </div>
+                            <span>Les Trolls 3 (2023)</span>
+                                   <a class='channel' href='/trucenplus'>
+                            <div class="logo-container">
+                                <img src="https://media.themoviedb.org/t/p/original/uIlJ1wOlEt5K3NowJQDG4qscQAC.jpg" alt="téva">
+                            </div>
+                            <span>Un p'tit truc en plus (2024)</span>
 
-                        <a href="SOSFantômesLaMenacedeGlace.html" class="channel">
-                                <div class="logo-container">
-                                    <img src="https://fr.web.img6.acsta.net/pictures/24/02/23/09/52/1147009.jpg" alt="téva">
-                                </div>
-                                <span>SOS Fantômes : </br>La Menace de Glace</span>
-                            <a href="viceversa2.html" class="channel">
-                                    <div class="logo-container">
-                                        <img src="https://lumiere-a.akamaihd.net/v1/images/image_30ffd6e6.jpeg?region=0,0,540,810" alt="téva">
-                                    </div>
-                                    <span>Vice Versa 2</span>
-                                <a href="viceversa.html" class="channel">
-                                        <div class="logo-container">
-                                            <img src="https://fr.web.img5.acsta.net/pictures/15/04/16/13/58/571071.jpg" alt="téva">
-                                        </div>
-                                        <span>Vice Versa </span>
-                                    <a href="KungFuPanda4.html" class="channel">
-                                        <div class="logo-container">
-                                            <img src="https://fr.web.img4.acsta.net/c_310_420/pictures/24/02/20/12/28/5505684.jpg" alt="téva">
-                                        </div>
-                                        <span>Kung Fu <br>Panda 4 </span>
-                                         <a href="lestrolls3.html" class="channel">
-                                        <div class="logo-container">
-                                            <img src="https://fr.web.img4.acsta.net/pictures/23/10/23/18/06/2138941.jpg" alt="téva">
-                                        </div>
-                                        <span>Les Trolls 3</span>
-                                               <a href="trucenplus.html" class="channel">
-                                        <div class="logo-container">
-                                            <img src="https://media.themoviedb.org/t/p/original/uIlJ1wOlEt5K3NowJQDG4qscQAC.jpg" alt="téva">
-                                        </div>
-                                        <span>Un p'tit truc en plus</span>
+                             <a href="Le Larbin.html" class="channel">
+                            <div class="logo-container">
+                                <img src="https://media.themoviedb.org/t/p/original/yZkkuIGTnxkpGcXfld0T2gSQ3Gm.jpg" alt="téva">
+                            </div>
+                            <span>Le Larbin (2024)</span>
 
-                                         <a href="Le Larbin.html" class="channel">
-                                        <div class="logo-container">
-                                            <img src="https://media.themoviedb.org/t/p/original/yZkkuIGTnxkpGcXfld0T2gSQ3Gm.jpg" alt="téva">
-                                        </div>
-                                        <span>Le Larbin</span>
+                         
+                             <a href="https://mission-impossible8.netlify.app/accueil" class="channel">
+                            <div class="logo-container">
+                                <img src="https://image.tmdb.org/t/p/original/z53D72EAOxGRqdr7KXXWp9dJiDe.jpg" alt="téva">
+                            </div>
+                            <span>Mission: Impossible - The Final Reckoning (2025)</span>        
 
-                                     
-                                         <a href="https://mission-impossible8.netlify.app/accueil" class="channel">
-                                        <div class="logo-container">
-                                            <img src="https://image.tmdb.org/t/p/original/z53D72EAOxGRqdr7KXXWp9dJiDe.jpg" alt="téva">
-                                        </div>
-                                        <span>Mission: Impossible -<br> The Final Reckoning</span>        
+                             <a class='channel' href='/smile2'>
+                            <div class="logo-container">
+                                <img src="https://media.themoviedb.org/t/p/original/bZQweCDilXNvF8KuaEHcghM3Nwf.jpg" alt="téva">
+                            </div>
+                            <span>Smile 2 (2024)</span>   
+                          <a class='channel' href='/smile'>
+                            <div class="logo-container">
+                                <img src="https://www.themoviedb.org/t/p/original/3kbtoJw6ZN0UUQhSuiRbAatr2kV.jpg" alt="Smile">
+                            </div>
+                            <span>Smile (2022)</span>   
 
-                                         <a href="Smile2.html" class="channel">
-                                        <div class="logo-container">
-                                            <img src="https://media.themoviedb.org/t/p/original/bZQweCDilXNvF8KuaEHcghM3Nwf.jpg" alt="téva">
-                                        </div>
-                                        <span>Smile 2</span>   
-                                      <a href="Smile.html" class="channel">
-                                        <div class="logo-container">
-                                            <img src="https://www.themoviedb.org/t/p/original/3kbtoJw6ZN0UUQhSuiRbAatr2kV.jpg" alt="Smile">
-                                        </div>
-                                        <span>Smile</span>   
+                          <a class='channel' href='/gladiator1'>
+                            <div class="logo-container">
+                                <img src="https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg" alt="Gladiator">
+                            </div>
+                            <span>Gladiator (2000)</span>   
+                              
+                              <a class='channel' href='/missioncleo'>
+                            <div class="logo-container">
+                                <img src="https://www.cine-feuilles.ch/storage/app/uploads/public/5a3/d0f/8e9/5a3d0f8e9cd62031015186.jpg" alt="Astérix et Obélix : Mission Cléopâtre">
+                            </div>
+                            <span>Astérix et Obélix : Mission Cléopâtre (2002)</span>
 
-                                      <a href="gladiator1.html" class="channel">
-                                        <div class="logo-container">
-                                            <img src="https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg" alt="Gladiator">
-                                        </div>
-                                        <span>Gladiator</span>   
-                                          
-                                          <a href="missioncleo.html" class="channel">
-                                        <div class="logo-container">
-                                            <img src="https://www.cine-feuilles.ch/storage/app/uploads/public/5a3/d0f/8e9/5a3d0f8e9cd62031015186.jpg" alt="Astérix et Obélix : Mission Cléopâtre">
-                                        </div>
-                                        <span>Astérix et Obélix : <br>Mission Cléopâtre</span>
+                                  
+     <a class='channel' href='/gtmax'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/qrWTjqbf4gzT8BkWqB7VceWJXVU.jpg" alt="GTMAX">
+     </div>
+     <span>GTMAX (2024)</span> 
 
-                                              
-                 <a href="GTMAX.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/qrWTjqbf4gzT8BkWqB7VceWJXVU.jpg" alt="GTMAX">
-                 </div>
-                 <span>GTMAX</span> 
+     <a class='channel' href='/alienromulus'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/xmDypImhT0OOloQIj3JLslUrBw8.jpg" alt="Alien: Romulus ">
+     </div>
+     <span>Alien: Romulus (2024)</span>
 
-                 <a href="AlienRomulus.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/xmDypImhT0OOloQIj3JLslUrBw8.jpg" alt="Alien: Romulus ">
-                 </div>
-                 <span>Alien: Romulus </span>
+     <a class='channel' href='/joker2'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/cWJGZAozNQFKLCD8vv4ukw4nJP8.jpg" alt="Joker : Folie à deux">
+     </div>
+     <span>Joker : Folie à deux (2024)</span>
 
-                 <a href="Joker2.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/cWJGZAozNQFKLCD8vv4ukw4nJP8.jpg" alt="Joker : Folie à deux">
-                 </div>
-                 <span>Joker : Folie à deux</span>
+      <a class='channel' href='/deadpoolwolverine'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg" alt="Deadpool & Wolverine">
+     </div>
+     <span>Deadpool & Wolverine (2024)</span>
 
-                  <a href="DeadpoolWolverine.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg" alt="Deadpool & Wolverine">
-                 </div>
-                 <span>Deadpool & Wolverine</span>
-
-                <a href="Beetlejuice.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/kKgQzkUCnQmeTPkyIwHly2t6ZFI.jpg" alt="Beetlejuice">
-                 </div>
-                 <span>Beetlejuice</span>
+    <a class='channel' href='/beetlejuice'>
+     <div class="logo-container">
+     <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/kKgQzkUCnQmeTPkyIwHly2t6ZFI.jpg" alt="Beetlejuice">
+     </div>
+     <span>Beetlejuice (2024)</span>
 
 
-                    
-                <a href="mmem4.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://image.tmdb.org/t/p/w500/wWba3TaojhK7NdycRhoQpsG0FaH.jpg" alt="Moi, Moche et Méchant 4">
-                 </div>
-                 <span>Moi, Moche et <br>Méchant 4</span>
+        
+    <a class='channel' href='/mmem4'>
+     <div class="logo-container">
+     <img src="https://image.tmdb.org/t/p/w500/wWba3TaojhK7NdycRhoQpsG0FaH.jpg" alt="Moi, Moche et Méchant 4">
+     </div>
+     <span>Moi, Moche et Méchant 4 (2024)</span>
 
-                    
-                <a href="dearsanta.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/4ma620o9yLsPvziEmiJpzSBkDJJ.jpg" alt="Dear Santa">
-                 </div>
-                 <span>Dear Santa</span>
+        
+    <a class='channel' href='/dearsanta'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/4ma620o9yLsPvziEmiJpzSBkDJJ.jpg" alt="Dear Santa">
+     </div>
+     <span>Dear Santa (2024)</span>
 
-                 <a href="Megalopolis.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/h09LlFWnp3oeALKw2yJwThj2xua.jpg" alt="Megalopolis">
-                 </div>
-                 <span>Megalopolis</span>
-                    
+     <a class='channel' href='/megalopolis'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/h09LlFWnp3oeALKw2yJwThj2xua.jpg" alt="Megalopolis">
+     </div>
+     <span>Megalopolis (2024)</span>
+        
 
-                 <a href="sacerdoce.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gNn3CxMaNVeGtYmovij8V9DiJ6U.jpg" alt="téva">
-                 </div>
-                 <span>Sacerdoce</span>
+     <a class='channel' href='/sacerdoce'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gNn3CxMaNVeGtYmovij8V9DiJ6U.jpg" alt="téva">
+     </div>
+     <span>Sacerdoce (2023)</span>
 
-                  <a href="TheMarvels.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/7ZrX2hXJ7vdbZxtWGP6NMenWzom.jpg" alt="">
-                 </div>
-                 <span>The Marvels</span>
+      <a class='channel' href='/themarvels'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/7ZrX2hXJ7vdbZxtWGP6NMenWzom.jpg" alt="">
+     </div>
+     <span>The Marvels (2023)</span>
 
-                      
-                  <a href="AvengersEndgame.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/or06FN3Dka5tukK1e9sl16pB3iy.jpg" alt="">
-                 </div>
-                 <span>Avengers : <br>Endgame</span>
+          
+      <a class='channel' href='/avengersendgame'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/or06FN3Dka5tukK1e9sl16pB3iy.jpg" alt="">
+     </div>
+     <span>Avengers : Endgame (2019)</span>
 
-                      
-                  <a href="AvengersInfinityWar.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/hSfuKPtyEryeFzapZ8UgZd4aESu.jpg" alt="">
-                 </div>
-                 <span>Avengers : <br>Infinity War</span>
+          
+      <a class='channel' href='/avengersinfinitywar'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/hSfuKPtyEryeFzapZ8UgZd4aESu.jpg" alt="">
+     </div>
+     <span>Avengers : Infinity War (2018)</span>
 
-                  <a href="AvengersLÈredUltron.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/rbJGuPedx0aDhyFlKAIJG7I6hrg.jpg" alt="">
-                 </div>
-                 <span>Avengers : <br>L'Ère d'Ultron</span>
+      <a href="AvengersLÈredUltron.html" class="channel">
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/rbJGuPedx0aDhyFlKAIJG7I6hrg.jpg" alt="">
+     </div>
+     <span>Avengers : L'Ère d'Ultron (2015)</span>
 
-                  <a href="SpiderManFarFromHome.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/zrNKUa5SBUwue39coJArNdDgQJM.jpg" alt="">
-                 </div>
-                 <span>Spider-Man : </br>Far From Home </span>
+      <a class='channel' href='/spidermanfarfromhome'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/zrNKUa5SBUwue39coJArNdDgQJM.jpg" alt="">
+     </div>
+     <span>Spider-Man : Far From Home (2019)</span>
 
-                  <a href="402298642.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/77Z0g5fc1qWJ7SfHyeiHsMkYx5O.jpg" alt="">
-                 </div>
-                 <span>Spider-Man : <br>Homecoming</span>
+      <a class='channel' href='/402298642'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/77Z0g5fc1qWJ7SfHyeiHsMkYx5O.jpg" alt="">
+     </div>
+     <span>Spider-Man : Homecoming (2017)</span>
 
-                  <a href="587418935.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/9gCGC6p2kbv3ePQuBE6zkHDWJlZ.jpg" alt="">
-                 </div>
-                 <span>Transformers: <br>Le Commencement</span>
+      <a class='channel' href='/587418935'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/9gCGC6p2kbv3ePQuBE6zkHDWJlZ.jpg" alt="">
+     </div>
+     <span>Transformers: Le Commencement (2024)</span>
 
-                  <a href="576146184.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/ymMaqwKN3Ovy9nlIRmk5GsnxEkx.jpg" alt="">
-                 </div>
-                 <span>Sans un bruit :<br> Jour 1</span>
-
-
-                  <a href="403946486.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/xkohb3dtFG5S5aW61oGVqlqFhQK.jpg" alt="">
-                 </div>
-                 <span>Harry Potter fête <br>ses 20 ans</span>
+      <a class='channel' href='/576146184'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/ymMaqwKN3Ovy9nlIRmk5GsnxEkx.jpg" alt="">
+     </div>
+     <span>Sans un bruit : Jour 1 (2024)</span>
 
 
-                  <a href="384883927.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/rpFxYBmIOrUUHamhJ1A2AWRqAl1.jpg" alt="">
-                 </div>
-                 <span>Harry Potter à l'école <br>des sorciers</span>
-
-                  <a href="384846476.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/t4P2079IyK19njHDP2GwQrKdvzd.jpg" alt="">
-                 </div>
-                 <span>Harry Potter et la<br>Chambre des secrets</span>
+      <a class='channel' href='/403946486'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/xkohb3dtFG5S5aW61oGVqlqFhQK.jpg" alt="">
+     </div>
+     <span>Harry Potter fête ses 20 ans (2021)</span>
 
 
-                  <a href="384809025.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/gkX3GltfW4utYoi3mZMnsF8dWfl.jpg" alt="">
-                 </div>
-                 <span>Harry Potter et le<br>Prisonnier d'Azkaban</span>
+      <a class='channel' href='/384883927'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/rpFxYBmIOrUUHamhJ1A2AWRqAl1.jpg" alt="">
+     </div>
+     <span>Harry Potter à l'école des sorciers (2001)</span>
 
-                  <a href="384771574.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/hBak1pn5pbI4ycAbrgMMn1YI7P1.jpg" alt="">
-                 </div>
-                 <span>Harry Potter et la <br>Coupe de feu</span>
-
-                  <a href="384734123.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/9ZfpCVNx0y8jpColnnfdA1HI4Zb.jpg" alt="">
-                 </div>
-                 <span>Harry Potter et <br>l'Ordre du Phénix</span>
-
-                  <a href="384696672.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/aTO5XjSVfXdgXQ0tKVRkYyNj80E.jpg" alt="">
-                 </div>
-                 <span>Harry Potter et le <br>Prince de sang-mêlé</span>
-
-                  <a href="384659221.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/aTO5XjSVfXdgXQ0tKVRkYyNj80E.jpg" alt="">
-                 </div>
-                 <span>Harry Potter et les<br> Reliques de la mort :<br> 1ère partie</span>
-                      
-                  <a href="384621770.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/alQOPmKEPHkH4BLMEla1vTNYrUr.jpg" alt="">
-                 </div>
-                 <span>Harry Potter et <br>les Reliques de la mort :<br> 2ème partie</span>
-
-                  <a href="577681675.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/EytpPm6ylyKcEeVLEhKY3VL2Gi.jpg" alt="">
-                 </div>
-                 <span>Twisters</span>
-
-                  <a href="565247943.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/iXmhaXyTz5bd7PMFoqvsQDGq67Q.jpg" alt="">
-                 </div>
-                 <span>Dune : <br>Première partie</span>                      
-
-                  <a href="565285394.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/iRNbRAIGQQr5diGnjpwJFm0dgt4.jpg" alt="">
-                 </div>
-                 <span>Dune : <br>Deuxième Partie</span>
-
-                  <a href="407579233.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/uXs7wMtsfnBFuGVogAxJXZXshFU.jpg" alt="">
-                 </div>
-                 <span>Les Animaux <br>Fantastiques : <br>Les Secrets <br>de Dumbledore</span>
+      <a class='channel' href='/384846476'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/t4P2079IyK19njHDP2GwQrKdvzd.jpg" alt="">
+     </div>
+     <span>Harry Potter et la Chambre des secrets (2002)</span>
 
 
-                   <a href="389715106.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/q7UGnFFUeJbf7R6CT1mMRTDCXI1.jpg" alt="">
-                 </div>
-                 <span>Baby Boss 2 : <br>Une affaire de famille </span>
+      <a class='channel' href='/384809025'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/gkX3GltfW4utYoi3mZMnsF8dWfl.jpg" alt="">
+     </div>
+     <span>Harry Potter et le Prisonnier d'Azkaban (2004)</span>
 
-                   <a href="551728132.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/lHffrStQcznaMc5Gz1J1CrLmWSD.jpg" alt="">
-                 </div>
-                 <span>Hypnotic</span>
+      <a class='channel' href='/384771574'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/hBak1pn5pbI4ycAbrgMMn1YI7P1.jpg" alt="">
+     </div>
+     <span>Harry Potter et la Coupe de feu (2005)</span>
 
-                   <a href="591875604.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/qMvJ7jIzcIudZMBYB9jSFki3gCw.jpg" alt="">
-                 </div>
-                 <span>Rumeurs</span>
+      <a class='channel' href='/384734123'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/9ZfpCVNx0y8jpColnnfdA1HI4Zb.jpg" alt="">
+     </div>
+     <span>Harry Potter et l'Ordre du Phénix (2007)</span>
 
-                   <a href="540867342.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://www.themoviedb.org/t/p/original/1TMczPTGEtl2DrpWNEy7aLm7XxB.jpg" alt="">
-                 </div>
-                 <span>Indiana Jones et<br> le Cadran de la<br> destinée</span>
+      <a class='channel' href='/384696672'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/aTO5XjSVfXdgXQ0tKVRkYyNj80E.jpg" alt="">
+     </div>
+     <span>Harry Potter et le Prince de sang-mêlé (2009)</span>
+
+      <a class='channel' href='/384659221'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/aTO5XjSVfXdgXQ0tKVRkYyNj80E.jpg" alt="">
+     </div>
+     <span>Harry Potter et les Reliques de la mort : 1ère partie (2010)</span>
+          
+      <a class='channel' href='/384621770'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/alQOPmKEPHkH4BLMEla1vTNYrUr.jpg" alt="">
+     </div>
+     <span>Harry Potter et les Reliques de la mort : 2ème partie (2011)</span>
+
+      <a class='channel' href='/577681675'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/EytpPm6ylyKcEeVLEhKY3VL2Gi.jpg" alt="">
+     </div>
+     <span>Twisters (2024)</span>
+
+      <a class='channel' href='/565247943'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/iXmhaXyTz5bd7PMFoqvsQDGq67Q.jpg" alt="">
+     </div>
+     <span>Dune : Première partie (2021)</span>                      
+
+      <a class='channel' href='/565285394'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/iRNbRAIGQQr5diGnjpwJFm0dgt4.jpg" alt="">
+     </div>
+     <span>Dune : Deuxième Partie ((2024))</span>
+
+      <a class='channel' href='/407579233'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/uXs7wMtsfnBFuGVogAxJXZXshFU.jpg" alt="">
+     </div>
+     <span>Les Animaux Fantastiques : Les Secrets de Dumbledore (2022)</span>
 
 
-                   <a href="577906381.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/4YmGLPIXiQGY4MR2pgZGYgBRRau.jpg" alt="">
-                 </div>
-                 <span>To the Moon</span>
+       <a class='channel' href='/389715106'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/q7UGnFFUeJbf7R6CT1mMRTDCXI1.jpg" alt="">
+     </div>
+     <span>Baby Boss 2 : Une affaire de famille (2021)</span>
 
-                  <a href="591913055.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://media.themoviedb.org/t/p/original/uR3uhztTAxGGK7Co0yyxVy4Gc7H.jpg" alt="">
-                 </div>
-                 <span>That Christmas</span>
+       <a class='channel' href='/551728132'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/lHffrStQcznaMc5Gz1J1CrLmWSD.jpg" alt="">
+     </div>
+     <span>Hypnotic (2023)</span>
 
-                  <a href="Loups-garous.html" class="channel">
-                 <div class="logo-container">
-                 <img src="https://image.tmdb.org/t/p/original/zt6oRPayS9JuVhFde34tG9n3YEQ.jpg" alt="">
-                 </div>
-                 <span>Loups-garous</span>
+       <a class='channel' href='/591875604'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/qMvJ7jIzcIudZMBYB9jSFki3gCw.jpg" alt="">
+     </div>
+     <span>Rumeurs (2024)</span>
+
+       <a class='channel' href='/540867342'>
+     <div class="logo-container">
+     <img src="https://www.themoviedb.org/t/p/original/1TMczPTGEtl2DrpWNEy7aLm7XxB.jpg" alt="">
+     </div>
+     <span>Indiana Jones et le Cadran de la destinée (2023)</span>
+
+
+       <a class='channel' href='/577906381'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/4YmGLPIXiQGY4MR2pgZGYgBRRau.jpg" alt="">
+     </div>
+     <span>To the Moon (2024)</span>
+
+      <a class='channel' href='/591913055'>
+     <div class="logo-container">
+     <img src="https://media.themoviedb.org/t/p/original/uR3uhztTAxGGK7Co0yyxVy4Gc7H.jpg" alt="">
+     </div>
+     <span>That Christmas (2024)</span>
+
+      <a class='channel' href='/loups-garous'>
+     <div class="logo-container">
+     <img src="https://image.tmdb.org/t/p/original/zt6oRPayS9JuVhFde34tG9n3YEQ.jpg" alt="">
+     </div>
+     <span>Loups-garous (2024)</span>
+
+     <a class='channel' href='/517423016'>
+        <div class="logo-container">
+        <img src="https://www.themoviedb.org/t/p/original/mddMreLheR9JE0BTyxDEc6QG5ie.jpg" alt="">
+        </div>
+        <span>Mission : Impossible - Fallout (2018)</span>
+
+
+
+            <!-- Ajoutez d'autres films ici -->
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        const searchBar = document.getElementById('search-bar');
+        const channels = document.querySelectorAll('.channel');
+
+        searchBar.addEventListener('input', () => {
+            const query = searchBar.value.toLowerCase();
+
+            channels.forEach(channel => {
+                const title = channel.getAttribute('data-title').toLowerCase();
+                if (title.includes(query)) {
+                    channel.style.display = 'block';
+                } else {
+                    channel.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
