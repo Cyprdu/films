@@ -70,7 +70,7 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            <source src="https://be2719.rcr22.ams01.cdn255.com/hls2/01/07400/61kyipmzqtfo_h/index-v1-a1.m3u8?t=2dCv8uneP3bKpNH-zpU_DCrQr9pauWRY5gzqUiSNHlM&s=1732992229&e=10800&f=37001855&srv=41&asn=15557&sp=4000&p=" type="application/x-mpegURL">
+            <source src="https://matoc22147.cloudmatoc.com/files/aa/vLGIMJdK54knoH7pKjlbHagMjxw2X8psT6a.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -122,10 +122,10 @@
         // Vérifie si Hls.js est supporté
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://be2719.rcr22.ams01.cdn255.com/hls2/01/07400/61kyipmzqtfo_h/index-v1-a1.m3u8?t=2dCv8uneP3bKpNH-zpU_DCrQr9pauWRY5gzqUiSNHlM&s=1732992229&e=10800&f=37001855&srv=41&asn=15557&sp=4000&p=');
+            hls.loadSource('https://matoc22147.cloudmatoc.com/files/aa/vLGIMJdK54knoH7pKjlbHagMjxw2X8psT6a.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://be2719.rcr22.ams01.cdn255.com/hls2/01/07400/61kyipmzqtfo_h/index-v1-a1.m3u8?t=2dCv8uneP3bKpNH-zpU_DCrQr9pauWRY5gzqUiSNHlM&s=1732992229&e=10800&f=37001855&srv=41&asn=15557&sp=4000&p=';
+            video.src = 'https://matoc22147.cloudmatoc.com/files/aa/vLGIMJdK54knoH7pKjlbHagMjxw2X8psT6a.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
