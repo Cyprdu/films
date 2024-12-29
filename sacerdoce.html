@@ -142,9 +142,14 @@
 
         // Vérifier la fin de la vidéo et rediriger
         video.addEventListener('ended', function() {
-            window.location.href = 'https://iptv01.netlify.app/tv';
+            window.location.href = 'https://iptv01.netlify.app/films';
         });
 
+        // Fonction pour rediriger lorsque l'utilisateur quitte le mode plein écran
+        function checkFullScreenExit() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+                // L'utilisateur a quitté le mode plein écran, rediriger vers https://iptv01.netlify.app/tv dans le même onglet
+                window.location.href = 'https://iptv01.netlify.app/films';
             }
         }
 
@@ -157,30 +162,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
