@@ -1,46 +1,186 @@
 
- 
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Film</title> <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/ti/vecteur-libre/p1/7688855-tv-logo-gratuit-vectoriel.jpg"/>
+    <title>Chaîne TV</title>
+    <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/ti/vecteur-libre/p1/7688855-tv-logo-gratuit-vectoriel.jpg"/>
+    <link rel="stylesheet" href="stylestv.css">
+
     <style>
+        /* Centrer la vidéo et la vignette */
         body, html {
             margin: 0;
             padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+
+        /* Conteneur de la vignette */
+        .video-container {
+            position: relative;
+            width: 640px;
+            height: 360px;
+            background-color: #000;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+        /* Le logo Play centré */
+        .play-button {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 80px;  /* Réduction de la taille du bouton */
+            height: 80px;  /* Réduction de la taille du bouton */
+            background-image: url('https://github.com/Cyprdu/films/blob/main/jouer.png?raw=true');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: scale(1);  /* Taille de départ */
+        }
+
+        .play-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);  /* Légère animation de zoom au survol */
+        }
+
+        /* Animation du play bouton */
+        .play-button.clicked {
+            animation: playAnimation 0.3s ease-out forwards;
+        }
+
+        /* Keyframes pour l'animation du bouton */
+        @keyframes playAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);  /* Un agrandissement plus léger */
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Masquer la vidéo au début */
+        #video {
+            display: none;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-        }
-        .fullscreen-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .logo-container {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            z-index: 1000;
-        }
-        .logo-container img {
-            width: 50px;
-            height: 50px;
         }
     </style>
 </head>
 <body>
-    <div class="logo-container">
-        <a href="films.html">
-            <img src="https://cyprienveyret.my.canva.site/images/6fc0cdf7974eff123eae77bbeb2b35eb.png
-            " alt="Retour">
-        </a>
+
+    <div class="video-container">
+        <!-- Logo Play centré -->
+        <button class="play-button" id="playButton"></button>
+        <!-- Vidéo cachée par défaut -->
+        <iframe id="video" src="https://www.dailymotion.com/embed/video/k5PCxjnD1iBYoCASLss?autoplay=1" frameborder="0" allow="fullscreen" allowfullscreen></iframe>
     </div>
-    <iframe class="fullscreen-video" src="https://www.dailymotion.com/embed/video/k5PCxjnD1iBYoCASLss?autoplay=1" frameborder="0" allowfullscreen></iframe>
+
+    <script>
+        // Récupérer le bouton et la vidéo
+        var playButton = document.getElementById('playButton');
+        var video = document.getElementById('video');
+        var videoContainer = document.querySelector('.video-container');
+
+        // Fonction pour mettre la vidéo en plein écran
+        function goFullScreen() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) { // Firefox
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) { // Chrome, Safari et Opera
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE/Edge
+                video.msRequestFullscreen();
+            }
+        }
+
+        // Fonction pour activer le son automatiquement
+        function enableSound() {
+            video.muted = false;  // Désactive le mode muet
+            video.volume = 1.0;   // Définit le volume au maximum (1.0 est le volume maximum)
+        }
+
+        // Lorsque le bouton Play est cliqué
+        playButton.addEventListener('click', function() {
+            // Ajouter l'animation du bouton
+            playButton.classList.add('clicked');
+
+            // Cacher la vignette et le bouton Play
+            videoContainer.style.backgroundImage = 'none';
+            playButton.style.display = 'none';
+
+            // Afficher et lire la vidéo
+            video.style.display = 'block';
+            
+            // Passer la vidéo en plein écran après avoir cliqué sur Play
+            goFullScreen();
+            
+            // Activer le son automatiquement
+            enableSound();
+
+            // Démarrer la lecture
+            video.play();
+        });
+
+        // Vérifier la fin de la vidéo et rediriger
+        video.addEventListener('ended', function() {
+            window.location.href = 'https://iptv01.netlify.app/tv';
+        });
+
+            }
+        }
+
+        // Écouteur d'événement pour détecter la sortie du mode plein écran
+        document.addEventListener('fullscreenchange', checkFullScreenExit);
+        document.addEventListener('webkitfullscreenchange', checkFullScreenExit);
+        document.addEventListener('mozfullscreenchange', checkFullScreenExit);
+        document.addEventListener('msfullscreenchange', checkFullScreenExit);
+    </script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
