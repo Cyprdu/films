@@ -1,0 +1,7 @@
+#EXTM3U
+#EXT-X-VERSION:3
+
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="Français",DEFAULT=YES,AUTOSELECT=YES,LANGUAGE="fr",URI="https://iptv01.netlify.app/Harry.Potter.and.the.Philosopher's.Stone.2001.720p.HDDVD.DTS.x264-ESiR.vtt"
+
+#EXT-X-STREAM-INF:BANDWIDTH=800000,RESOLUTION=1280x720,CODECS="avc1.64001f,mp4a.40.2",SUBTITLES="subs"
+https://share22147.sharecloudy.com/files/aa/fLXCPf4EDtrpUp7i1qR0xaFKzOkLtvQJgOl.m3u8
