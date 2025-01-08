@@ -119,7 +119,7 @@ function getDomainFromUrl(url) {
 function applySavedTime(video, key) {
     const savedTime = localStorage.getItem('videoTime_' + key);
     if (savedTime) {
-        video.currentTime = parseFloat(savedTime);
+        video.currentTime = parseFloat(savedTime); // Appliquer la position sauvegardée
         console.log(`Reprise de la vidéo à ${savedTime} secondes.`);
     }
 }
@@ -180,6 +180,7 @@ if (Hls.isSupported()) {
 
     hls.on(Hls.Events.BUFFER_APPENDED, function () {
         console.log("Buffer ajouté, application de la position sauvegardée.");
+        const videoKey = getDomainFromUrl('https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8');
         applySavedTime(video, videoKey); // Appliquer la position sauvegardée lors du buffer
     });
 } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
@@ -194,7 +195,6 @@ if (Hls.isSupported()) {
 video.addEventListener('ended', function() {
     window.location.href = 'https://iptv01.netlify.app/tv';
 });
-
 
     </script>
 
