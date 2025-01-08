@@ -41,9 +41,11 @@
             background-repeat: no-repeat;
             border-radius: 50%;
             z-index: 2;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
         .play-button:hover {
             background-color: rgba(0, 0, 0, 0.8);
+            transform: translate(-50%, -50%) scale(1.1);
         }
         #video {
             opacity: 0;
