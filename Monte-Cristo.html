@@ -89,7 +89,7 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            <source src="https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8" type="application/x-mpegURL">
+            <source id="videoSource" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -159,7 +159,9 @@
 
         // Sauvegarder la position de lecture lors de la progression
         video.addEventListener('timeupdate', function() {
-            localStorage.setItem(videoName, video.currentTime); // Enregistrer la position actuelle dans le localStorage
+            if (!video.paused) {
+                localStorage.setItem(videoName, video.currentTime); // Enregistrer la position actuelle dans le localStorage uniquement si la vidéo est en lecture
+            }
         });
 
         // Rediriger si la vidéo est terminée
