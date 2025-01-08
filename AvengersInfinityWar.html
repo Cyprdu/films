@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chaîne TV</title>
     <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/ti/vecteur-libre/p1/7688855-tv-logo-gratuit-vectoriel.jpg"/>
-    <link rel="stylesheet" href="stylestv.css">
-
     <style>
-        /* Centrer la vidéo et la vignette */
         body, html {
             margin: 0;
             padding: 0;
@@ -19,110 +14,118 @@
             justify-content: center;
             align-items: center;
             background-color: #000;
-            position: relative; /* Position relative pour la page entière */
         }
-
-        /* Conteneur de la vignette */
         .video-container {
             position: relative;
             width: 640px;
             height: 360px;
             background-color: #000;
-            background-size: cover;
-            background-position: center;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 10px;
+            overflow: hidden;
         }
-
- 
-
-        /* Le logo Play centré */
         .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background-color: rgba(0, 0, 0, 0.6);
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
             width: 80px;
             height: 80px;
             background-image: url('https://github.com/Cyprdu/films/blob/main/jouer.png?raw=true');
             background-size: contain;
             background-repeat: no-repeat;
-            background-position: center;
             border-radius: 50%;
+            z-index: 2;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
-
-        /* Masquer la vidéo au début */
+        .play-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
         #video {
-            display: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
             width: 100%;
             height: 100%;
+        }
+        .video-visible #video {
+            opacity: 1;
+            pointer-events: auto;
         }
     </style>
 </head>
 <body>
-    
-
     <div class="video-container">
-        <!-- Flèche de retour -->
-        <div class="back-button" id="backButton"></div>
-        <!-- Logo Play centré -->
         <button class="play-button" id="playButton"></button>
-        <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
             <source src="https://matoc24313.cloudmatoc.com/files/aa/jD7GCqqL03HXvDJqVDPlLZFA5sqiBbPVPXB.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
 
-    <!-- Inclusion de la bibliothèque hls.js -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
     <script>
-        var playButton = document.getElementById('playButton');
-        var video = document.getElementById('video');
-        var videoContainer = document.querySelector('.video-container');
-        var backButton = document.getElementById('backButton');
+        // Variables globales
+        const playButton = document.getElementById('playButton');
+        const video = document.getElementById('video');
+        const videoContainer = document.querySelector('.video-container');
+        const redirectURL = "https://iptv01.netlify.app/films";
 
-        // Fonction pour mettre la vidéo en plein écran
+        // Fonction pour activer le plein écran
         function goFullScreen() {
-            if (video.requestFullscreen) {
-                video.requestFullscreen();
-            } else if (video.mozRequestFullScreen) { // Firefox
-                video.mozRequestFullScreen();
-            } else if (video.webkitRequestFullscreen) { // Chrome, Safari et Opera
-                video.webkitRequestFullscreen();
-            } else if (video.msRequestFullscreen) { // IE/Edge
-                video.msRequestFullscreen();
+            if (video.requestFullscreen) video.requestFullscreen();
+            else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+            else if (video.mozRequestFullScreen) video.mozRequestFullScreen();
+            else if (video.msRequestFullscreen) video.msRequestFullscreen();
+        }
+
+        // Gestion du bouton Play
+        playButton.addEventListener('click', () => {
+            playButton.style.display = 'none'; // Cacher le bouton
+            videoContainer.classList.add('video-visible'); // Afficher la vidéo
+            video.play(); // Lancer la vidéo
+            goFullScreen(); // Activer le plein écran
+        });
+
+        // Charger la position sauvegardée
+        const videoName = window.location.href.split("/")[3];
+        window.addEventListener('load', () => {
+            const savedTime = localStorage.getItem(videoName);
+            if (savedTime) video.currentTime = parseFloat(savedTime);
+        });
+
+        // Sauvegarder la position de lecture
+        video.addEventListener('timeupdate', () => {
+            if (!video.paused) {
+                localStorage.setItem(videoName, video.currentTime);
+            }
+        });
+
+        // Redirection à la sortie du plein écran
+        function handleFullscreenChange() {
+            if (!document.fullscreenElement && 
+                !document.webkitFullscreenElement && 
+                !document.mozFullScreenElement && 
+                !document.msFullscreenElement) {
+                window.location.href = redirectURL;
             }
         }
 
-        // Lorsque le bouton Play est cliqué
-        playButton.addEventListener('click', function() {
-            // Cacher la vignette et le bouton Play
-            videoContainer.style.backgroundImage = 'none';
-            playButton.style.display = 'none';
+        // Écouteurs pour détecter la sortie du plein écran
+        document.addEventListener("fullscreenchange", handleFullscreenChange);
+        document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+        document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+        document.addEventListener("MSFullscreenChange", handleFullscreenChange);
 
-            // Afficher la vidéo et lire
-            video.style.display = 'block';
-            video.play();
-
-            // Afficher le bouton retour
-            backButton.style.display = 'block';
-
-            // Passer la vidéo en plein écran
-            goFullScreen();
-        });
-
-        // Retour en arrière lorsque la flèche est cliquée
-        backButton.addEventListener('click', function() {
-            window.history.back();  // Retour à la page précédente dans l'historique du navigateur
-        });
-
-        // Vérifie si Hls.js est supporté
+        // Initialisation de HLS.js si supporté
         if (Hls.isSupported()) {
-            var hls = new Hls();
+            const hls = new Hls();
             hls.loadSource('https://matoc24313.cloudmatoc.com/files/aa/jD7GCqqL03HXvDJqVDPlLZFA5sqiBbPVPXB.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
@@ -130,12 +133,6 @@
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
-
-        // Redirection si la vidéo est terminée
-        video.addEventListener('ended', function() {
-            window.location.href = 'https://iptv01.netlify.app/tv';
-        });
     </script>
-
 </body>
 </html>
