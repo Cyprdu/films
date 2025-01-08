@@ -99,6 +99,23 @@
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
     <script>
+
+
+
+        // Sauvegarder la position de lecture dans localStorage
+video.addEventListener('timeupdate', function () {
+    localStorage.setItem('videoCurrentTime', video.currentTime);
+});
+
+// Restaurer la position de lecture si disponible
+window.addEventListener('load', function () {
+    var savedTime = localStorage.getItem('videoCurrentTime');
+    if (savedTime) {
+        video.currentTime = parseFloat(savedTime);
+    }
+});
+
+        
         // Récupérer le bouton et la vidéo
         var playButton = document.getElementById('playButton');
         var video = document.getElementById('video');
