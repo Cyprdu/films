@@ -82,23 +82,6 @@
             height: 100%;
         }
     </style>
-</head>
-<body>
-
-    <div class="video-container">
-        <!-- Logo Play centré -->
-        <button class="play-button" id="playButton"></button>
-        <!-- Vidéo cachée par défaut -->
-        <video id="video" controls>
-            <source src="https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8" type="application/x-mpegURL">
-            Votre navigateur ne supporte pas le format vidéo HLS.
-        </video>
-    </div>
-
-    <!-- Inclusion de la bibliothèque hls.js -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
-    <script>
 // Récupérer le bouton et la vidéo
 var playButton = document.getElementById('playButton');
 var video = document.getElementById('video');
@@ -169,24 +152,22 @@ playButton.addEventListener('click', function() {
 // Vérifie si Hls.js est supporté par le navigateur
 if (Hls.isSupported()) {
     var hls = new Hls();
-    const videoKey = getDomainFromUrl('https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8'); // Récupérer la clé unique
 
-    hls.loadSource('https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8');
+    // Charger la vidéo
+    const videoSrc = 'https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8'; // Remplacer par l'URL HLS de votre vidéo
+    hls.loadSource(videoSrc);
     hls.attachMedia(video);
 
     hls.on(Hls.Events.MANIFEST_PARSED, function () {
-        console.log("Manifest chargé, tentative d'application du temps sauvegardé.");
-    });
-
-    hls.on(Hls.Events.BUFFER_APPENDED, function () {
-        console.log("Buffer ajouté, application de la position sauvegardée.");
-        const videoKey = getDomainFromUrl('https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8');
-        applySavedTime(video, videoKey); // Appliquer la position sauvegardée lors du buffer
+        const videoKey = getDomainFromUrl(videoSrc);
+        applySavedTime(video, videoKey); // Appliquer la position sauvegardée lorsque le manifeste est chargé
     });
 } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    video.src = 'https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8';
+    // Cas pour les vidéos HLS dans les navigateurs qui supportent nativement HLS
+    const videoSrc = 'https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8'; // Remplacer par l'URL HLS
+    video.src = videoSrc;
     const videoKey = getDomainFromUrl(video.src);
-    applySavedTime(video, videoKey); // Appliquer la position sauvegardée pour les vidéos HLS
+    applySavedTime(video, videoKey); // Appliquer la position sauvegardée directement
 } else {
     alert("Votre navigateur ne supporte pas HLS.");
 }
@@ -195,6 +176,7 @@ if (Hls.isSupported()) {
 video.addEventListener('ended', function() {
     window.location.href = 'https://iptv01.netlify.app/tv';
 });
+
 
     </script>
 
