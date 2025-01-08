@@ -6,7 +6,6 @@
     <title>Chaîne TV</title>
     <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/ti/vecteur-libre/p1/7688855-tv-logo-gratuit-vectoriel.jpg"/>
     <link rel="stylesheet" href="stylestv.css">
-
     <style>
         /* Centrer la vidéo et la vignette */
         body, html {
@@ -39,8 +38,8 @@
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            width: 80px;  /* Réduction de la taille du bouton */
-            height: 80px;  /* Réduction de la taille du bouton */
+            width: 80px;
+            height: 80px;
             background-image: url('https://github.com/Cyprdu/films/blob/main/jouer.png?raw=true');
             background-size: contain;
             background-repeat: no-repeat;
@@ -49,12 +48,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            transform: scale(1);  /* Taille de départ */
+            transform: scale(1);
         }
 
         .play-button:hover {
             background-color: rgba(0, 0, 0, 0.8);
-            transform: scale(1.1);  /* Légère animation de zoom au survol */
+            transform: scale(1.1);
         }
 
         /* Animation du play bouton */
@@ -68,7 +67,7 @@
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.1);  /* Un agrandissement plus léger */
+                transform: scale(1.1);
             }
             100% {
                 transform: scale(1);
@@ -99,101 +98,72 @@
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
     <script>
-// Récupérer le bouton et la vidéo
-var playButton = document.getElementById('playButton');
-var video = document.getElementById('video');
-var videoContainer = document.querySelector('.video-container');
+        // Récupérer le bouton et la vidéo
+        var playButton = document.getElementById('playButton');
+        var video = document.getElementById('video');
+        var videoContainer = document.querySelector('.video-container');
 
-// Fonction pour extraire un identifiant unique de l'URL de la vidéo (domaine + chemin)
-function getDomainFromUrl(url) {
-    try {
-        const urlObj = new URL(url);
-        return urlObj.origin + urlObj.pathname; // Utiliser domaine et chemin comme clé unique
-    } catch (e) {
-        console.error("URL invalide :", url);
-        return url; // Si l'URL est invalide, renvoyer la chaîne brute
-    }
-}
+        // Extraire le nom du fichier vidéo pour utiliser dans le stockage local
+        var videoName = window.location.href.split("/")[3]; // Exemple: "monte-cristo"
 
-// Fonction pour appliquer la position sauvegardée de la vidéo
-function applySavedTime(video, key) {
-    const savedTime = localStorage.getItem('videoTime_' + key);
-    if (savedTime) {
-        video.currentTime = parseFloat(savedTime); // Appliquer la position sauvegardée
-        console.log(`Reprise de la vidéo à ${savedTime} secondes.`);
-    }
-}
+        // Fonction pour mettre la vidéo en plein écran
+        function goFullScreen() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) {
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) {
+                video.msRequestFullscreen();
+            }
+        }
 
-// Enregistrer la position de lecture toutes les 5 secondes
-video.addEventListener('timeupdate', function () {
-    const videoKey = getDomainFromUrl(video.src); // Identifier la vidéo par son URL
-    localStorage.setItem('videoTime_' + videoKey, video.currentTime); // Sauvegarder la position de lecture
-});
+        // Charger la position sauvegardée
+        window.addEventListener('load', function() {
+            var savedTime = localStorage.getItem(videoName); // Récupérer le temps de lecture du stockage local
+            if (savedTime) {
+                video.currentTime = parseFloat(savedTime); // Reprendre à l'endroit où l'utilisateur s'est arrêté
+            }
+        });
 
-// Reprendre la lecture à la dernière position sauvegardée au chargement de la page
-document.addEventListener('DOMContentLoaded', function () {
-    const videoKey = getDomainFromUrl(video.src); // Identifier la vidéo par son URL
-    applySavedTime(video, videoKey); // Appliquer la position sauvegardée
-});
+        // Lorsque le bouton Play est cliqué
+        playButton.addEventListener('click', function() {
+            // Ajouter l'animation du bouton
+            playButton.classList.add('clicked');
 
-// Fonction pour mettre la vidéo en plein écran
-function goFullScreen() {
-    if (video.requestFullscreen) {
-        video.requestFullscreen();
-    } else if (video.mozRequestFullScreen) { // Firefox
-        video.mozRequestFullScreen();
-    } else if (video.webkitRequestFullscreen) { // Chrome, Safari et Opera
-        video.webkitRequestFullscreen();
-    } else if (video.msRequestFullscreen) { // IE/Edge
-        video.msRequestFullscreen();
-    }
-}
+            // Cacher la vignette et le bouton Play
+            videoContainer.style.backgroundImage = 'none';
+            playButton.style.display = 'none';
 
-// Lorsque le bouton Play est cliqué
-playButton.addEventListener('click', function() {
-    // Ajouter l'animation du bouton
-    playButton.classList.add('clicked');
+            // Afficher et lire la vidéo
+            video.style.display = 'block';
+            video.play();
 
-    // Cacher la vignette et le bouton Play
-    videoContainer.style.backgroundImage = 'none';
-    playButton.style.display = 'none';
+            // Passer la vidéo en plein écran après avoir cliqué sur Play
+            goFullScreen();
+        });
 
-    // Afficher et lire la vidéo
-    video.style.display = 'block';
-    video.play();
+        // Vérifie si Hls.js est supporté par le navigateur
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource('https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8');
+            hls.attachMedia(video);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = 'https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8';
+        } else {
+            alert("Votre navigateur ne supporte pas HLS.");
+        }
 
-    // Passer la vidéo en plein écran après avoir cliqué sur Play
-    goFullScreen();
-});
+        // Sauvegarder la position de lecture lors de la progression
+        video.addEventListener('timeupdate', function() {
+            localStorage.setItem(videoName, video.currentTime); // Enregistrer la position actuelle dans le localStorage
+        });
 
-// Vérifie si Hls.js est supporté par le navigateur
-if (Hls.isSupported()) {
-    var hls = new Hls();
-
-    // Charger la vidéo
-    const videoSrc = 'https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8'; // Remplacer par l'URL HLS de votre vidéo
-    hls.loadSource(videoSrc);
-    hls.attachMedia(video);
-
-    hls.on(Hls.Events.MANIFEST_PARSED, function () {
-        const videoKey = getDomainFromUrl(videoSrc);
-        applySavedTime(video, videoKey); // Appliquer la position sauvegardée lorsque le manifeste est chargé
-    });
-} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    // Cas pour les vidéos HLS dans les navigateurs qui supportent nativement HLS
-    const videoSrc = 'https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8'; // Remplacer par l'URL HLS
-    video.src = videoSrc;
-    const videoKey = getDomainFromUrl(video.src);
-    applySavedTime(video, videoKey); // Appliquer la position sauvegardée directement
-} else {
-    alert("Votre navigateur ne supporte pas HLS.");
-}
-
-// Rediriger si la vidéo est terminée
-video.addEventListener('ended', function() {
-    window.location.href = 'https://iptv01.netlify.app/tv';
-});
-
+        // Rediriger si la vidéo est terminée
+        video.addEventListener('ended', function() {
+            window.location.href = 'https://iptv01.netlify.app/tv';
+        });
     </script>
 
 </body>
