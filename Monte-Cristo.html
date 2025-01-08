@@ -119,12 +119,15 @@
             }
         }
 
-        // Charger la position sauvegardée
+        // Charger la position sauvegardée avant d'afficher la vidéo
         window.addEventListener('load', function() {
             var savedTime = localStorage.getItem(videoName); // Récupérer le temps de lecture du stockage local
             if (savedTime) {
                 video.currentTime = parseFloat(savedTime); // Reprendre à l'endroit où l'utilisateur s'est arrêté
             }
+
+            // Afficher la vidéo une fois que la position est chargée
+            video.style.display = 'block';
         });
 
         // Lorsque le bouton Play est cliqué
@@ -136,8 +139,7 @@
             videoContainer.style.backgroundImage = 'none';
             playButton.style.display = 'none';
 
-            // Afficher et lire la vidéo
-            video.style.display = 'block';
+            // Lire la vidéo
             video.play();
 
             // Passer la vidéo en plein écran après avoir cliqué sur Play
