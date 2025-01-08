@@ -100,58 +100,11 @@
 
     <script>
         // Récupérer le bouton et la vidéo
-        var playButton = document.getElementById('playButton');
-        var video = document.getElementById('video');
-        var videoContainer = document.querySelector('.video-container');
+var playButton = document.getElementById('playButton');
+var video = document.getElementById('video');
+var videoContainer = document.querySelector('.video-container');
 
-        // Fonction pour mettre la vidéo en plein écran
-        function goFullScreen() {
-            if (video.requestFullscreen) {
-                video.requestFullscreen();
-            } else if (video.mozRequestFullScreen) { // Firefox
-                video.mozRequestFullScreen();
-            } else if (video.webkitRequestFullscreen) { // Chrome, Safari et Opera
-                video.webkitRequestFullscreen();
-            } else if (video.msRequestFullscreen) { // IE/Edge
-                video.msRequestFullscreen();
-            }
-        }
-
-        // Lorsque le bouton Play est cliqué
-        playButton.addEventListener('click', function() {
-            // Ajouter l'animation du bouton
-            playButton.classList.add('clicked');
-
-            // Cacher la vignette et le bouton Play
-            videoContainer.style.backgroundImage = 'none';
-            playButton.style.display = 'none';
-
-            // Afficher et lire la vidéo
-            video.style.display = 'block';
-            video.play();
-
-            // Passer la vidéo en plein écran après avoir cliqué sur Play
-            goFullScreen();
-        });
-
-        // Vérifie si Hls.js est supporté par le navigateur
-        if (Hls.isSupported()) {
-            var hls = new Hls();
-            hls.loadSource('https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8');
-            hls.attachMedia(video);
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8';
-        } else {
-            alert("Votre navigateur ne supporte pas HLS.");
-        }
-
-
-        // Rediriger si la vidéo est terminée
-        video.addEventListener('ended', function() {
-            window.location.href = 'https://iptv01.netlify.app/tv';
-        });
-
-        // Fonction pour extraire le domaine ou chemin d'accès de l'URL
+// Fonction pour extraire le domaine et le chemin d'accès de l'URL
 function getDomainFromUrl(url) {
     try {
         const urlObj = new URL(url);
@@ -159,6 +112,15 @@ function getDomainFromUrl(url) {
     } catch (e) {
         console.error("URL invalide :", url);
         return url; // Si l'URL est invalide, utiliser la chaîne brute
+    }
+}
+
+// Fonction pour appliquer la position sauvegardée
+function applySavedTime(video, key) {
+    const savedTime = localStorage.getItem('videoTime_' + key);
+    if (savedTime) {
+        video.currentTime = parseFloat(savedTime);
+        console.log(`Reprise de la vidéo à ${savedTime} secondes.`);
     }
 }
 
@@ -171,26 +133,67 @@ video.addEventListener('timeupdate', function () {
 // Reprendre la lecture à la dernière position sauvegardée
 document.addEventListener('DOMContentLoaded', function () {
     const videoKey = getDomainFromUrl(video.src);
-    const savedTime = localStorage.getItem('videoTime_' + videoKey);
-    if (savedTime) {
-        video.currentTime = parseFloat(savedTime);
-    }
+    applySavedTime(video, videoKey);
 });
 
-// Recharger la position sauvegardée si la source HLS est modifiée via hls.js
+// Fonction pour mettre la vidéo en plein écran
+function goFullScreen() {
+    if (video.requestFullscreen) {
+        video.requestFullscreen();
+    } else if (video.mozRequestFullScreen) { // Firefox
+        video.mozRequestFullScreen();
+    } else if (video.webkitRequestFullscreen) { // Chrome, Safari et Opera
+        video.webkitRequestFullscreen();
+    } else if (video.msRequestFullscreen) { // IE/Edge
+        video.msRequestFullscreen();
+    }
+}
+
+// Lorsque le bouton Play est cliqué
+playButton.addEventListener('click', function() {
+    // Ajouter l'animation du bouton
+    playButton.classList.add('clicked');
+
+    // Cacher la vignette et le bouton Play
+    videoContainer.style.backgroundImage = 'none';
+    playButton.style.display = 'none';
+
+    // Afficher et lire la vidéo
+    video.style.display = 'block';
+    video.play();
+
+    // Passer la vidéo en plein écran après avoir cliqué sur Play
+    goFullScreen();
+});
+
+// Vérifie si Hls.js est supporté par le navigateur
 if (Hls.isSupported()) {
     var hls = new Hls();
+    const videoKey = getDomainFromUrl('https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8');
+
     hls.loadSource('https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8');
     hls.attachMedia(video);
 
     hls.on(Hls.Events.MANIFEST_PARSED, function () {
-        const videoKey = getDomainFromUrl(hls.url);
-        const savedTime = localStorage.getItem('videoTime_' + videoKey);
-        if (savedTime) {
-            video.currentTime = parseFloat(savedTime);
-        }
+        console.log("Manifest chargé, tentative d'application du temps sauvegardé.");
     });
+
+    hls.on(Hls.Events.BUFFER_APPENDED, function () {
+        console.log("Buffer ajouté, application de la position sauvegardée.");
+        applySavedTime(video, videoKey);
+    });
+} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = 'https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8';
+    const videoKey = getDomainFromUrl(video.src);
+    applySavedTime(video, videoKey);
+} else {
+    alert("Votre navigateur ne supporte pas HLS.");
 }
+
+// Rediriger si la vidéo est terminée
+video.addEventListener('ended', function() {
+    window.location.href = 'https://iptv01.netlify.app/tv';
+});
 
     </script>
 
