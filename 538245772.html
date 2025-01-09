@@ -64,7 +64,7 @@
     <div class="video-container">
         <button class="play-button" id="playButton"></button>
         <video id="video" controls>
-            <source src="ttps://matoc24312.cloudmatoc.com/files/aa/2RxaIOIIBaQuRWt1qeanlcipT0SpvDRyvpI.m3u8" type="application/x-mpegURL">
+            <source src="https://matoc24312.cloudmatoc.com/files/aa/2RxaIOIIBaQuRWt1qeanlcipT0SpvDRyvpI.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -126,10 +126,10 @@
         // Initialisation de HLS.js si supporté
         if (Hls.isSupported()) {
             const hls = new Hls();
-            hls.loadSource('ttps://matoc24312.cloudmatoc.com/files/aa/2RxaIOIIBaQuRWt1qeanlcipT0SpvDRyvpI.m3u8');
+            hls.loadSource('https://matoc24312.cloudmatoc.com/files/aa/2RxaIOIIBaQuRWt1qeanlcipT0SpvDRyvpI.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'ttps://matoc24312.cloudmatoc.com/files/aa/2RxaIOIIBaQuRWt1qeanlcipT0SpvDRyvpI.m3u8';
+            video.src = 'https://matoc24312.cloudmatoc.com/files/aa/2RxaIOIIBaQuRWt1qeanlcipT0SpvDRyvpI.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
