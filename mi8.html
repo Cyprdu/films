@@ -65,7 +65,7 @@
     <div class="video-container">
         <button class="play-button" id="playButton"></button>
         <video id="video" controls>
-            <source src="https://vod3.cf.dmcdn.net/sec2(cXDYw2vfyeiyXVPmI8vzpkZKocU_UHmBgW2pbZDXzQVCjRC8ROpHQ_5w2yGlXXKbpWRar0VO9S1Tm9bX2iGjS6mCv1wz66P5N0WTpAf2CpCdzQD1C6wNIFPe1os9AVoLl8SVTDfRYvYpEOJ_ybHx-dQzCJK4YEDBGzvhN3ikZtfxxXFgZNswGtwx91cFw59I)/video/429/362/559263924_mp4_h264_aac_fhd_2.m3u8#cell=cf3" type="application/x-mpegURL">
+            <source src="https://imdb-video.media-imdb.com/vi2880358681/1434659607842-pgv4ql-1731339179407.mp4?Expires=1736634508&Signature=YiYRkDQH2Xfr9jfygikFX3AAHN~IuUYIny0P-9-vNQjR1TnZL0JNsZos9uyi9HHWu5idt0H5ybbThGjx1Bg5-SsffXh9M4Na1utqPhvevsKj~ye~n8FD3EztZ3ZY48EICSiwJR2-DP4sBCzd-Gft-qrnk~lTOZaSgBOgKdXQfoZ0wCtyrKtLITykws-k8u6RJXyBMBiIbHk18h5Vxepc00udlBfr-deOk9TbKEK~rgDupIpdfqWo0~NTxEK~HZdi37InRcS8KxcfHskUcH~1yHNabMF35GflRE9mTCaY2EMWYNsuduhxeC9HuC8xjYc0RbGlpWlZyeYW8QveSr-qAg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -127,10 +127,10 @@
         // Initialisation de HLS.js si supporté
         if (Hls.isSupported()) {
             const hls = new Hls();
-            hls.loadSource('https://vod3.cf.dmcdn.net/sec2(cXDYw2vfyeiyXVPmI8vzpkZKocU_UHmBgW2pbZDXzQVCjRC8ROpHQ_5w2yGlXXKbpWRar0VO9S1Tm9bX2iGjS6mCv1wz66P5N0WTpAf2CpCdzQD1C6wNIFPe1os9AVoLl8SVTDfRYvYpEOJ_ybHx-dQzCJK4YEDBGzvhN3ikZtfxxXFgZNswGtwx91cFw59I)/video/429/362/559263924_mp4_h264_aac_fhd_2.m3u8#cell=cf3');
+            hls.loadSource('https://imdb-video.media-imdb.com/vi2880358681/1434659607842-pgv4ql-1731339179407.mp4?Expires=1736634508&Signature=YiYRkDQH2Xfr9jfygikFX3AAHN~IuUYIny0P-9-vNQjR1TnZL0JNsZos9uyi9HHWu5idt0H5ybbThGjx1Bg5-SsffXh9M4Na1utqPhvevsKj~ye~n8FD3EztZ3ZY48EICSiwJR2-DP4sBCzd-Gft-qrnk~lTOZaSgBOgKdXQfoZ0wCtyrKtLITykws-k8u6RJXyBMBiIbHk18h5Vxepc00udlBfr-deOk9TbKEK~rgDupIpdfqWo0~NTxEK~HZdi37InRcS8KxcfHskUcH~1yHNabMF35GflRE9mTCaY2EMWYNsuduhxeC9HuC8xjYc0RbGlpWlZyeYW8QveSr-qAg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://vod3.cf.dmcdn.net/sec2(cXDYw2vfyeiyXVPmI8vzpkZKocU_UHmBgW2pbZDXzQVCjRC8ROpHQ_5w2yGlXXKbpWRar0VO9S1Tm9bX2iGjS6mCv1wz66P5N0WTpAf2CpCdzQD1C6wNIFPe1os9AVoLl8SVTDfRYvYpEOJ_ybHx-dQzCJK4YEDBGzvhN3ikZtfxxXFgZNswGtwx91cFw59I)/video/429/362/559263924_mp4_h264_aac_fhd_2.m3u8#cell=cf3';
+            video.src = 'https://imdb-video.media-imdb.com/vi2880358681/1434659607842-pgv4ql-1731339179407.mp4?Expires=1736634508&Signature=YiYRkDQH2Xfr9jfygikFX3AAHN~IuUYIny0P-9-vNQjR1TnZL0JNsZos9uyi9HHWu5idt0H5ybbThGjx1Bg5-SsffXh9M4Na1utqPhvevsKj~ye~n8FD3EztZ3ZY48EICSiwJR2-DP4sBCzd-Gft-qrnk~lTOZaSgBOgKdXQfoZ0wCtyrKtLITykws-k8u6RJXyBMBiIbHk18h5Vxepc00udlBfr-deOk9TbKEK~rgDupIpdfqWo0~NTxEK~HZdi37InRcS8KxcfHskUcH~1yHNabMF35GflRE9mTCaY2EMWYNsuduhxeC9HuC8xjYc0RbGlpWlZyeYW8QveSr-qAg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
