@@ -65,7 +65,7 @@
     <div class="video-container">
         <button class="play-button" id="playButton"></button>
         <video id="video" controls>
-            <source src="" type="application/x-mpegURL">
+            <source src="https://praxlonfire73.live/file2/K7i8Zpoc4RDJRT6OMN4fImJpz26Keeqq+rcRVdfwDdE6TF4geT7EO17jiFKmVsSdNl3~veh8u2Dlt+06O3UHNO3XwwaAZZS8ZzYAzlf7fklp~VA3xem0r4CL50YF~2A7V030IcaDZrDUxxbjHh0LSiW~MdTqc4hYQzPDaFjQi3k=/cGxheWxpc3QubTN1OA==.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -127,10 +127,10 @@
         // Initialisation de HLS.js si supporté
         if (Hls.isSupported()) {
             const hls = new Hls();
-            hls.loadSource('');
+            hls.loadSource('https://praxlonfire73.live/file2/K7i8Zpoc4RDJRT6OMN4fImJpz26Keeqq+rcRVdfwDdE6TF4geT7EO17jiFKmVsSdNl3~veh8u2Dlt+06O3UHNO3XwwaAZZS8ZzYAzlf7fklp~VA3xem0r4CL50YF~2A7V030IcaDZrDUxxbjHh0LSiW~MdTqc4hYQzPDaFjQi3k=/cGxheWxpc3QubTN1OA==.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = '';
+            video.src = 'https://praxlonfire73.live/file2/K7i8Zpoc4RDJRT6OMN4fImJpz26Keeqq+rcRVdfwDdE6TF4geT7EO17jiFKmVsSdNl3~veh8u2Dlt+06O3UHNO3XwwaAZZS8ZzYAzlf7fklp~VA3xem0r4CL50YF~2A7V030IcaDZrDUxxbjHh0LSiW~MdTqc4hYQzPDaFjQi3k=/cGxheWxpc3QubTN1OA==.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
