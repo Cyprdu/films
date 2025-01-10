@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -65,14 +64,12 @@
     <div class="video-container">
         <button class="play-button" id="playButton"></button>
         <video id="video" controls>
-            <source src="https://imdb-video.media-imdb.com/vi2880358681/1434659607842-pgv4ql-1731339179407.mp4?Expires=1736634508&Signature=YiYRkDQH2Xfr9jfygikFX3AAHN~IuUYIny0P-9-vNQjR1TnZL0JNsZos9uyi9HHWu5idt0H5ybbThGjx1Bg5-SsffXh9M4Na1utqPhvevsKj~ye~n8FD3EztZ3ZY48EICSiwJR2-DP4sBCzd-Gft-qrnk~lTOZaSgBOgKdXQfoZ0wCtyrKtLITykws-k8u6RJXyBMBiIbHk18h5Vxepc00udlBfr-deOk9TbKEK~rgDupIpdfqWo0~NTxEK~HZdi37InRcS8KxcfHskUcH~1yHNabMF35GflRE9mTCaY2EMWYNsuduhxeC9HuC8xjYc0RbGlpWlZyeYW8QveSr-qAg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" type="application/x-mpegURL">
-            Votre navigateur ne supporte pas le format vidéo HLS.
+            <source src="https://imdb-video.media-imdb.com/vi2880358681/1434659607842-pgv4ql-1731339179407.mp4?Expires=1736634508&Signature=YiYRkDQH2Xfr9jfygikFX3AAHN~IuUYIny0P-9-vNQjR1TnZL0JNsZos9uyi9HHWu5idt0H5ybbThGjx1Bg5-SsffXh9M4Na1utqPhvevsKj~ye~n8FD3EztZ3ZY48EICSiwJR2-DP4sBCzd-Gft-qrnk~lTOZaSgBOgKdXQfoZ0wCtyrKtLITykws-k8u6RJXyBMBiIbHk18h5Vxepc00udlBfr-deOk9TbKEK~rgDupIpdfqWo0~NTxEK~HZdi37InRcS8KxcfHskUcH~1yHNabMF35GflRE9mTCaY2EMWYNsuduhxeC9HuC8xjYc0RbGlpWlZyeYW8QveSr-qAg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA" type="video/mp4">
+            Votre navigateur ne supporte pas le format vidéo MP4.
         </video>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script>
-        // Variables globales
         const playButton = document.getElementById('playButton');
         const video = document.getElementById('video');
         const videoContainer = document.querySelector('.video-container');
@@ -123,17 +120,6 @@
         document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
         document.addEventListener("mozfullscreenchange", handleFullscreenChange);
         document.addEventListener("MSFullscreenChange", handleFullscreenChange);
-
-        // Initialisation de HLS.js si supporté
-        if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource('https://imdb-video.media-imdb.com/vi2880358681/1434659607842-pgv4ql-1731339179407.mp4?Expires=1736634508&Signature=YiYRkDQH2Xfr9jfygikFX3AAHN~IuUYIny0P-9-vNQjR1TnZL0JNsZos9uyi9HHWu5idt0H5ybbThGjx1Bg5-SsffXh9M4Na1utqPhvevsKj~ye~n8FD3EztZ3ZY48EICSiwJR2-DP4sBCzd-Gft-qrnk~lTOZaSgBOgKdXQfoZ0wCtyrKtLITykws-k8u6RJXyBMBiIbHk18h5Vxepc00udlBfr-deOk9TbKEK~rgDupIpdfqWo0~NTxEK~HZdi37InRcS8KxcfHskUcH~1yHNabMF35GflRE9mTCaY2EMWYNsuduhxeC9HuC8xjYc0RbGlpWlZyeYW8QveSr-qAg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA');
-            hls.attachMedia(video);
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://imdb-video.media-imdb.com/vi2880358681/1434659607842-pgv4ql-1731339179407.mp4?Expires=1736634508&Signature=YiYRkDQH2Xfr9jfygikFX3AAHN~IuUYIny0P-9-vNQjR1TnZL0JNsZos9uyi9HHWu5idt0H5ybbThGjx1Bg5-SsffXh9M4Na1utqPhvevsKj~ye~n8FD3EztZ3ZY48EICSiwJR2-DP4sBCzd-Gft-qrnk~lTOZaSgBOgKdXQfoZ0wCtyrKtLITykws-k8u6RJXyBMBiIbHk18h5Vxepc00udlBfr-deOk9TbKEK~rgDupIpdfqWo0~NTxEK~HZdi37InRcS8KxcfHskUcH~1yHNabMF35GflRE9mTCaY2EMWYNsuduhxeC9HuC8xjYc0RbGlpWlZyeYW8QveSr-qAg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA';
-        } else {
-            alert("Votre navigateur ne supporte pas HLS.");
-        }
     </script>
 </body>
 </html>
