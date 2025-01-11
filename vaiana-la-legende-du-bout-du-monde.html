@@ -65,7 +65,7 @@
     <div class="video-container">
         <button class="play-button" id="playButton"></button>
         <video id="video" controls>
-            <source src="https://matoc22147.cloudmatoc.com/files/aa/vLGIMJdK54knoH7pKjlbHagMjxw2X8psT6a.m3u8" type="application/x-mpegURL">
+            <source src="https://iptv01.netlify.app/vaia1.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -127,10 +127,10 @@
         // Initialisation de HLS.js si supporté
         if (Hls.isSupported()) {
             const hls = new Hls();
-            hls.loadSource('https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8');
+            hls.loadSource('https://iptv01.netlify.app/vaia1.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://matoc22148.cloudmatoc.com/files/aa/cWvcY9VU7dvdKQYuIcgIlyQ6YfqYCXzPT51.m3u8';
+            video.src = 'https://iptv01.netlify.app/vaia1.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
