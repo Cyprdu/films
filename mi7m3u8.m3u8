@@ -1,15 +1,10 @@
 #EXTM3U
 
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio",NAME="French",DEFAULT=YES,AUTOSELECT=YES,LANGUAGE="fr",URI="https://matoc22148.cloudmatoc.com/files/aa/fd2y0MuJ8mIBcRkMXM5OWXjFbuSukFnzSq7.m3u8"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio",NAME="English",DEFAULT=NO,AUTOSELECT=YES,LANGUAGE="en",URI="https://droxonwave.site/file2/G1tvXSnx+fJQ+7f4zJ9eD5s9M3Q+jFJwVT1yyFWmjEwpabsSIwUSl3rULWQ1HdnS+XbR8ARDFFP8NK9UKwiNQu6pT2qn5KbE4AhmupvTmBAtXqUPiLStFqfg7HxwnStR4yghy~jV8W3k4HO9IpPbfamBW7kXkpQMcDHMIWTr244=/cGxheWxpc3QubTN1OA==.m3u8"
-
-#EXTINF:-1,Video with French Audio
-#EXT-X-STREAM-INF:BANDWIDTH=1280000,AUDIO="audio",SUBTITLES="subs"
+#EXT-X-STREAM-INF:BANDWIDTH=1280000,NAME="French",LANGUAGE="fr",SUBTITLES="subs-fr"
 https://matoc22148.cloudmatoc.com/files/aa/fd2y0MuJ8mIBcRkMXM5OWXjFbuSukFnzSq7.m3u8
 
-#EXTINF:-1,Video with English Audio
-#EXT-X-STREAM-INF:BANDWIDTH=1280000,AUDIO="audio",SUBTITLES="subs"
+#EXT-X-STREAM-INF:BANDWIDTH=1280000,NAME="English",LANGUAGE="en",SUBTITLES="subs-en"
 https://droxonwave.site/file2/G1tvXSnx+fJQ+7f4zJ9eD5s9M3Q+jFJwVT1yyFWmjEwpabsSIwUSl3rULWQ1HdnS+XbR8ARDFFP8NK9UKwiNQu6pT2qn5KbE4AhmupvTmBAtXqUPiLStFqfg7HxwnStR4yghy~jV8W3k4HO9IpPbfamBW7kXkpQMcDHMIWTr244=/cGxheWxpc3QubTN1OA==.m3u8
 
-#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="French Subtitles",DEFAULT=YES,AUTOSELECT=YES,LANGUAGE="fr",URI="https://iptv01.netlify.app/missionimpo7st.srt"
-#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="English Subtitles",DEFAULT=NO,AUTOSELECT=YES,LANGUAGE="en",URI="https://iptv01.netlify.app/stmi7.srt"
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs-fr",NAME="French Subtitles",DEFAULT=YES,AUTOSELECT=YES,LANGUAGE="fr",URI="https://iptv01.netlify.app/missionimpo7st.srt"
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs-en",NAME="English Subtitles",DEFAULT=NO,AUTOSELECT=YES,LANGUAGE="en",URI="https://iptv01.netlify.app/stmi7.srt"
