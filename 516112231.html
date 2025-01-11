@@ -127,7 +127,7 @@
         // Initialisation de HLS.js si supporté
         if (Hls.isSupported()) {
             const hls = new Hls();
-            hls.loadSource('https://matoc22140.cloudmatoc.com/files/aa/FGLKg1rpZmjCeo8Yj9DcKZZZoVWPfHmUo8E.m3u8);
+            hls.loadSource('https://matoc22140.cloudmatoc.com/files/aa/FGLKg1rpZmjCeo8Yj9DcKZZZoVWPfHmUo8E.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
             video.src = 'https://matoc22140.cloudmatoc.com/files/aa/FGLKg1rpZmjCeo8Yj9DcKZZZoVWPfHmUo8E.m3u8';
