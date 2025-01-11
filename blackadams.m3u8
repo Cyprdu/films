@@ -1,0 +1,15 @@
+#EXTM3U
+#EXT-X-VERSION:3
+
+# Piste audio en Français (VF)
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio_vf",NAME="Français",DEFAULT=YES,AUTOSELECT=YES,URI="https://01.x7bq89m4.xyz/c5e8b0f2-9a1d-4c3a-8e2a-cd1f4f7b7b30/BLACKADAM/audio_2/audio.m3u8"
+
+# Piste audio en Anglais (VO)
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio_vo",NAME="English",DEFAULT=NO,AUTOSELECT=YES,URI="https://01.x7bq89m4.xyz/c5e8b0f2-9a1d-4c3a-8e2a-cd1f4f7b7b30/BLACKADAM/audio_1/audio.m3u8"
+
+# Sous-titres en Français
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs_vf",NAME="Français",DEFAULT=YES,AUTOSELECT=YES,FORCED=NO,URI="https://popstream.to/uploads/subtitle/10-2024/1730858376_BLACKADAM_track5_[fre].vtt"
+
+# Vidéo 1080p avec piste audio et sous-titres
+#EXT-X-STREAM-INF:BANDWIDTH=5000000,RESOLUTION=1920x1080,AUDIO="audio_vf",SUBTITLES="subs_vf"
+https://01.x7bq89m4.xyz/c5e8b0f2-9a1d-4c3a-8e2a-cd1f4f7b7b30/BLACKADAM/1080p/video.m3u8
