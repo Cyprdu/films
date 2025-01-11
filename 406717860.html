@@ -65,7 +65,7 @@
     <div class="video-container">
         <button class="play-button" id="playButton"></button>
         <video id="video" controls>
-            <source src="https://hls16-eu.zcdn.stream/2535fcd4f8ede4c7ee5862f6342aa9ce/2022-12-15/video.m3u8?auth=eea1a2f86ab7f8801a24521512906193&expires=1736607712&type=edge&asn=15557&node=np_6NvX3Apbz64ywUqKD9NILepnC-Pjv_XSGrHKTetI01a0_OuRJrTSDnhJVGyA3spe9y24X2gKeGj3iPhLxgA" type="application/x-mpegURL">
+            <source src="https://hls16-eu.zcdn.stream/2535fcd4f8ede4c7ee5862f6342aa9ce/2022-12-15/video.m3u8?auth=a983e69dd682da08889767816ff96e4d&expires=1736608203&type=edge&asn=15557&node=BUi2H4ydckLJ0VydW2eqTz5khPJH7Q5R70CJYnayZF73Kndemotul1E4lCwNsQ_Sg7PJ27WK8QXK8kPQsPIhSg" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -127,10 +127,10 @@
         // Initialisation de HLS.js si supporté
         if (Hls.isSupported()) {
             const hls = new Hls();
-            hls.loadSource('https://hls16-eu.zcdn.stream/2535fcd4f8ede4c7ee5862f6342aa9ce/2022-12-15/video.m3u8?auth=eea1a2f86ab7f8801a24521512906193&expires=1736607712&type=edge&asn=15557&node=np_6NvX3Apbz64ywUqKD9NILepnC-Pjv_XSGrHKTetI01a0_OuRJrTSDnhJVGyA3spe9y24X2gKeGj3iPhLxgA');
+            hls.loadSource('https://hls16-eu.zcdn.stream/2535fcd4f8ede4c7ee5862f6342aa9ce/2022-12-15/video.m3u8?auth=a983e69dd682da08889767816ff96e4d&expires=1736608203&type=edge&asn=15557&node=BUi2H4ydckLJ0VydW2eqTz5khPJH7Q5R70CJYnayZF73Kndemotul1E4lCwNsQ_Sg7PJ27WK8QXK8kPQsPIhSg');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://hls16-eu.zcdn.stream/2535fcd4f8ede4c7ee5862f6342aa9ce/2022-12-15/video.m3u8?auth=eea1a2f86ab7f8801a24521512906193&expires=1736607712&type=edge&asn=15557&node=np_6NvX3Apbz64ywUqKD9NILepnC-Pjv_XSGrHKTetI01a0_OuRJrTSDnhJVGyA3spe9y24X2gKeGj3iPhLxgA';
+            video.src = 'https://hls16-eu.zcdn.stream/2535fcd4f8ede4c7ee5862f6342aa9ce/2022-12-15/video.m3u8?auth=a983e69dd682da08889767816ff96e4d&expires=1736608203&type=edge&asn=15557&node=BUi2H4ydckLJ0VydW2eqTz5khPJH7Q5R70CJYnayZF73Kndemotul1E4lCwNsQ_Sg7PJ27WK8QXK8kPQsPIhSg';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
