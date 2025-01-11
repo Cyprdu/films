@@ -91,7 +91,7 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            <source src="https://mjkskdvpfpb1fbv.ngolpdkyoctjcddxshli469r.org/sunshine/ealK99A-AMDHbykWzIud4rjH1e6yTmfIuNk79cK9DmJZCkykk_UTaXNAwqkYodmTQOgVn-iW_uaT-bcygW78p_VdqOMMiHBdr4Al1if1RDCdtl_okpxdh2Pr-jDJQL-VMoR0s8zk6cfA76h7JGo8g_u37TVWoJiTXU7q6gjnXhI/hls/index.m3u8" type="application/x-mpegURL">
+            <source src="https://iezmzlrgtn5pgme.ngolpdkyoctjcddxshli469r.org/sunshine/n_dnHX6VImCrIzfHzkDOE-sdgACLZ7zl6Q0gpu0J93f7oBY3-hdnwpejxVn-H77q_oJO-jsEw84fEB7S96ZM9-i-Cu0c8VE-6FZyyKfTOYSUIjlAFaUN48Di_CLOnokVXttjPWdvh-Q3lFfXkbLFzYCQQpnyQKay5x-kd71hpxA/hls/index.m3u8" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -138,10 +138,10 @@
         // Vérifie si Hls.js est supporté par le navigateur
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://mjkskdvpfpb1fbv.ngolpdkyoctjcddxshli469r.org/sunshine/ealK99A-AMDHbykWzIud4rjH1e6yTmfIuNk79cK9DmJZCkykk_UTaXNAwqkYodmTQOgVn-iW_uaT-bcygW78p_VdqOMMiHBdr4Al1if1RDCdtl_okpxdh2Pr-jDJQL-VMoR0s8zk6cfA76h7JGo8g_u37TVWoJiTXU7q6gjnXhI/hls/index.m3u8');
+            hls.loadSource('https://iezmzlrgtn5pgme.ngolpdkyoctjcddxshli469r.org/sunshine/n_dnHX6VImCrIzfHzkDOE-sdgACLZ7zl6Q0gpu0J93f7oBY3-hdnwpejxVn-H77q_oJO-jsEw84fEB7S96ZM9-i-Cu0c8VE-6FZyyKfTOYSUIjlAFaUN48Di_CLOnokVXttjPWdvh-Q3lFfXkbLFzYCQQpnyQKay5x-kd71hpxA/hls/index.m3u8');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://mjkskdvpfpb1fbv.ngolpdkyoctjcddxshli469r.org/sunshine/ealK99A-AMDHbykWzIud4rjH1e6yTmfIuNk79cK9DmJZCkykk_UTaXNAwqkYodmTQOgVn-iW_uaT-bcygW78p_VdqOMMiHBdr4Al1if1RDCdtl_okpxdh2Pr-jDJQL-VMoR0s8zk6cfA76h7JGo8g_u37TVWoJiTXU7q6gjnXhI/hls/index.m3u8';
+            video.src = 'https://iezmzlrgtn5pgme.ngolpdkyoctjcddxshli469r.org/sunshine/n_dnHX6VImCrIzfHzkDOE-sdgACLZ7zl6Q0gpu0J93f7oBY3-hdnwpejxVn-H77q_oJO-jsEw84fEB7S96ZM9-i-Cu0c8VE-6FZyyKfTOYSUIjlAFaUN48Di_CLOnokVXttjPWdvh-Q3lFfXkbLFzYCQQpnyQKay5x-kd71hpxA/hls/index.m3u8';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
