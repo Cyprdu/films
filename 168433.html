@@ -65,7 +65,7 @@
     <div class="video-container">
         <button class="play-button" id="playButton"></button>
         <video id="video" controls>
-            <source src="" type="application/x-mpegURL">
+            <source src="https://hls37-eu.zcdn.stream/b051e081b82e7faed81cca485942f8e8/2024-01-29/video.m3u8?auth=6fc7fc711ed4ef43b273c0509bac8b5d&expires=1736608021&type=edge&asn=15557&node=G5Y4RAX52gDtPI3BW37zCXt-_ad19sp9eNeHzIyKUbxkgvwsvXkQ5MahXpW5aljxpuKVvIyWAKeRMRibcsh6Nw" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -127,10 +127,10 @@
         // Initialisation de HLS.js si supporté
         if (Hls.isSupported()) {
             const hls = new Hls();
-            hls.loadSource('');
+            hls.loadSource('https://hls37-eu.zcdn.stream/b051e081b82e7faed81cca485942f8e8/2024-01-29/video.m3u8?auth=6fc7fc711ed4ef43b273c0509bac8b5d&expires=1736608021&type=edge&asn=15557&node=G5Y4RAX52gDtPI3BW37zCXt-_ad19sp9eNeHzIyKUbxkgvwsvXkQ5MahXpW5aljxpuKVvIyWAKeRMRibcsh6Nw');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = '';
+            video.src = 'https://hls37-eu.zcdn.stream/b051e081b82e7faed81cca485942f8e8/2024-01-29/video.m3u8?auth=6fc7fc711ed4ef43b273c0509bac8b5d&expires=1736608021&type=edge&asn=15557&node=G5Y4RAX52gDtPI3BW37zCXt-_ad19sp9eNeHzIyKUbxkgvwsvXkQ5MahXpW5aljxpuKVvIyWAKeRMRibcsh6Nw';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
