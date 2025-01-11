@@ -64,7 +64,7 @@
     <div class="video-container">
         <button class="play-button" id="playButton"></button>
         <video id="video" controls>
-            <source src="https://fenlixfire.live/file2/C6~pzJ0xDVm10~8pp3BdJa4efR2xSrcCZy4MRTNr665HRl~uYU+i503d+nqFNgY3H8XCN2RUMCFkeVyx1wVyVKqDjDCeK+ynpUyJ14MGayC99MZLcXTIaF49WQzSGtiTXjY7Y+BSxTSiJvy4n6EUfF+ahS1tP~twMmhuKrdkj1Y=/MTA4MA==/aW5kZXgubTN1OA==.m3u8" type="application/x-mpegURL">
+            <source src="https://m5qqjwpatpzb.acek-cdn.com/hls2/01/02959/vvgj2xhwefac_n/master.m3u8?t=YCciu8jM_QPTY2ygiLdyHY6j_lg8zAbHlKdl87Ogmf0&s=1736594305&e=129600&f=14809819&srv=pmjx9cjae94d&i=0.4&sp=500&p1=pmjx9cjae94d&p2=pmjx9cjae94d&asn=15557" type="application/x-mpegURL">
             Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
@@ -126,10 +126,10 @@
         // Initialisation de HLS.js si supporté
         if (Hls.isSupported()) {
             const hls = new Hls();
-            hls.loadSource('https://fenlixfire.live/file2/C6~pzJ0xDVm10~8pp3BdJa4efR2xSrcCZy4MRTNr665HRl~uYU+i503d+nqFNgY3H8XCN2RUMCFkeVyx1wVyVKqDjDCeK+ynpUyJ14MGayC99MZLcXTIaF49WQzSGtiTXjY7Y+BSxTSiJvy4n6EUfF+ahS1tP~twMmhuKrdkj1Y=/MTA4MA==/aW5kZXgubTN1OA==.m3u8');
+            hls.loadSource('https://m5qqjwpatpzb.acek-cdn.com/hls2/01/02959/vvgj2xhwefac_n/master.m3u8?t=YCciu8jM_QPTY2ygiLdyHY6j_lg8zAbHlKdl87Ogmf0&s=1736594305&e=129600&f=14809819&srv=pmjx9cjae94d&i=0.4&sp=500&p1=pmjx9cjae94d&p2=pmjx9cjae94d&asn=15557');
             hls.attachMedia(video);
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://fenlixfire.live/file2/C6~pzJ0xDVm10~8pp3BdJa4efR2xSrcCZy4MRTNr665HRl~uYU+i503d+nqFNgY3H8XCN2RUMCFkeVyx1wVyVKqDjDCeK+ynpUyJ14MGayC99MZLcXTIaF49WQzSGtiTXjY7Y+BSxTSiJvy4n6EUfF+ahS1tP~twMmhuKrdkj1Y=/MTA4MA==/aW5kZXgubTN1OA==.m3u8';
+            video.src = 'https://m5qqjwpatpzb.acek-cdn.com/hls2/01/02959/vvgj2xhwefac_n/master.m3u8?t=YCciu8jM_QPTY2ygiLdyHY6j_lg8zAbHlKdl87Ogmf0&s=1736594305&e=129600&f=14809819&srv=pmjx9cjae94d&i=0.4&sp=500&p1=pmjx9cjae94d&p2=pmjx9cjae94d&asn=15557';
         } else {
             alert("Votre navigateur ne supporte pas HLS.");
         }
