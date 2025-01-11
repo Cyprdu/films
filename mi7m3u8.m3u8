@@ -9,5 +9,5 @@ https://matoc22148.cloudmatoc.com/files/aa/fd2y0MuJ8mIBcRkMXM5OWXjFbuSukFnzSq7.m
 #EXT-X-STREAM-INF:BANDWIDTH=1280000,NAME="English Video",AUDIO="audio",SUBTITLES="subs"
 https://droxonwave.site/file2/G1tvXSnx+fJQ+7f4zJ9eD5s9M3Q+jFJwVT1yyFWmjEwpabsSIwUSl3rULWQ1HdnS+XbR8ARDFFP8NK9UKwiNQu6pT2qn5KbE4AhmupvTmBAtXqUPiLStFqfg7HxwnStR4yghy~jV8W3k4HO9IpPbfamBW7kXkpQMcDHMIWTr244=/cGxheWxpc3QubTN1OA==.m3u8
 
-#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="French Subtitles",DEFAULT=YES,AUTOSELECT=YES,LANGUAGE="fr",URI="https://iptv01.netlify.app/missionimpo7st.srt"
-#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="English Subtitles",DEFAULT=NO,AUTOSELECT=YES,LANGUAGE="en",URI="https://iptv01.netlify.app/stmi7.srt"
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="French Subtitles",DEFAULT=YES,AUTOSELECT=YES,LANGUAGE="fr",URI="https://iptv01.netlify.app/missionimpo7st.vtt"
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="English Subtitles",DEFAULT=NO,AUTOSELECT=YES,LANGUAGE="en",URI="https://iptv01.netlify.app/stmi7.vtt"
