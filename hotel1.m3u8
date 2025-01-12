@@ -1,0 +1,9 @@
+#EXTM3U
+#EXT-X-VERSION:3
+
+# Piste audio en Français (VF)
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio_vf",NAME="Français",DEFAULT=YES,AUTOSELECT=YES,URI="https://01.x7bq89m4.xyz/a9d4f8b3-7b2c-4a1e-9a3c-e0f2d7c5b9a4/HOTELTRANSYLVANIE/01/audio_2/audio.m3u8"
+
+# Vidéo 1080p avec piste audio
+#EXT-X-STREAM-INF:BANDWIDTH=5000000,RESOLUTION=1920x1080,AUDIO="audio_vf"
+https://01.x7bq89m4.xyz/a9d4f8b3-7b2c-4a1e-9a3c-e0f2d7c5b9a4/HOTELTRANSYLVANIE/01/1080p/video.m3u8
