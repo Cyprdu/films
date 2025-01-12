@@ -117,6 +117,66 @@
                 font-size: 0.8rem;
             }
         }
+
+	    /* Largeur et hauteur de la scrollbar */
+::-webkit-scrollbar {
+  width: 10px; /* Largeur verticale */
+  height: 10px; /* Largeur horizontale */
+}
+
+/* Style de la piste de la scrollbar */
+::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Couleur de fond de la piste */
+  border-radius: 5px; /* Coins arrondis */
+}
+
+/* Style de la barre de défilement */
+::-webkit-scrollbar-thumb {
+  background: red; /* Couleur de la barre */
+  border-radius: 5px; /* Coins arrondis */
+}
+
+/* Changement de couleur au survol */
+::-webkit-scrollbar-thumb:hover {
+  background: darkred; /* Couleur plus foncée au survol */
+}
+
+/* Compatibilité Firefox */
+html {
+  scrollbar-width: thin; /* Largeur fine */
+  scrollbar-color: red #f0f0f0; /* Couleur de la barre et de la piste */
+}
+
+
+	    /* Largeur de la scrollbar */
+::-webkit-scrollbar {
+  width: 10px; /* Largeur de la barre verticale */
+  height: 10px; /* Largeur de la barre horizontale (si besoin) */
+}
+
+/* Style de la piste de la scrollbar (invisible) */
+::-webkit-scrollbar-track {
+  background: transparent; /* Rendre la piste invisible */
+}
+
+/* Style de la barre de défilement avec coins arrondis */
+::-webkit-scrollbar-thumb {
+  background: red; /* Couleur de la barre */
+  border-radius: 10px; /* Arrondir les coins (haut et bas) */
+}
+
+/* Changement de couleur au survol */
+::-webkit-scrollbar-thumb:hover {
+  background: darkred; /* Couleur plus foncée au survol */
+}
+
+/* Compatibilité Firefox */
+html {
+  scrollbar-width: thin; /* Largeur fine */
+  scrollbar-color: red transparent; /* Couleur de la barre et piste invisible */
+}
+
+	    
     </style>
     
 </head>
