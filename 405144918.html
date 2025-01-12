@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaîne TV</title>
+    <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/ti/vecteur-libre/p1/7688855-tv-logo-gratuit-vectoriel.jpg"/>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+        .video-container {
+            position: relative;
+            width: 640px;
+            height: 360px;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+            cursor: pointer;
+            width: 80px;
+            height: 80px;
+            background-image: url('https://github.com/Cyprdu/films/blob/main/jouer.png?raw=true');
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            z-index: 2;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .play-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        #video {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            width: 100%;
+            height: 100%;
+        }
+        .video-visible #video {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <button class="play-button" id="playButton"></button>
+        <video id="video" controls>
+            <source src="https://matoc22147.cloudmatoc.com/files/aa/lucZLruOPZsCrpB8Ww7bNdqkhpT8hv6C0iC.m3u8" type="application/x-mpegURL">
+            Votre navigateur ne supporte pas le format vidéo HLS.
+        </video>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        // Variables globales
+        const playButton = document.getElementById('playButton');
+        const video = document.getElementById('video');
+        const videoContainer = document.querySelector('.video-container');
+        const redirectURL = "https://iptv01.netlify.app/films";
+
+        // Fonction pour activer le plein écran
+        function goFullScreen() {
+            if (video.requestFullscreen) video.requestFullscreen();
+            else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+            else if (video.mozRequestFullScreen) video.mozRequestFullScreen();
+            else if (video.msRequestFullscreen) video.msRequestFullscreen();
+        }
+
+        // Gestion du bouton Play
+        playButton.addEventListener('click', () => {
+            playButton.style.display = 'none'; // Cacher le bouton
+            videoContainer.classList.add('video-visible'); // Afficher la vidéo
+            video.play(); // Lancer la vidéo
+            goFullScreen(); // Activer le plein écran
+        });
+
+        // Charger la position sauvegardée
+        const videoName = window.location.href.split("/")[3];
+        window.addEventListener('load', () => {
+            const savedTime = localStorage.getItem(videoName);
+            if (savedTime) video.currentTime = parseFloat(savedTime);
+        });
+
+        // Sauvegarder la position de lecture
+        video.addEventListener('timeupdate', () => {
+            if (!video.paused) {
+                localStorage.setItem(videoName, video.currentTime);
+            }
+        });
+
+        // Redirection à la sortie du plein écran
+        function handleFullscreenChange() {
+            if (!document.fullscreenElement && 
+                !document.webkitFullscreenElement && 
+                !document.mozFullScreenElement && 
+                !document.msFullscreenElement) {
+                window.location.href = redirectURL;
+            }
+        }
+
+        // Écouteurs pour détecter la sortie du plein écran
+        document.addEventListener("fullscreenchange", handleFullscreenChange);
+        document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+        document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+        document.addEventListener("MSFullscreenChange", handleFullscreenChange);
+
+        // Initialisation de HLS.js si supporté
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource('https://matoc22147.cloudmatoc.com/files/aa/lucZLruOPZsCrpB8Ww7bNdqkhpT8hv6C0iC.m3u8');
+            hls.attachMedia(video);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = 'https://matoc22147.cloudmatoc.com/files/aa/lucZLruOPZsCrpB8Ww7bNdqkhpT8hv6C0iC.m3u8';
+        } else {
+            alert("Votre navigateur ne supporte pas HLS.");
+        }
+    </script>
+</body>
+</html>
