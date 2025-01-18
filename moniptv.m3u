@@ -1,60 +1,43 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="TF1.fr" tvg-name="FR - TF1 UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Logo_TF1_2013.svg/1200px-Logo_TF1_2013.svg.png " group-title="|FR| FRANCE UHD",FR - TF1 UHD
-https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/tf1plus/tf1.m3u8
-#EXTINF:-1 tvg-id="FRANCE 2" tvg-name="FR - FRANCE 2 UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/France_2_2018.svg/1200px-France_2_2018.svg.png" group-title="|FR| FRANCE UHD",FR - FRANCE 2 UHD
-https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/francetv/france2.m3u8
-#EXTINF:-1 tvg-id="FRANCE 3" tvg-name="FR - FRANCE 3 UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/d/dd/France_3_2018.svg" group-title="|FR| FRANCE UHD",FR - FRANCE 3 UHD
-https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/francetv/france3.m3u8
-#EXTINF:-1 tvg-id="CANAL +" tvg-name="FR - CANAL + UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Logo_Canal%2B_1995.svg/2560px-Logo_Canal%2B_1995.svg.png" group-title="|FR| FRANCE UHD",FR - CANAL + UHD
-http://vavoo.to/play/3780364466/index.m3u8
-#EXTINF:-1 tvg-id="FRANCE 5" tvg-name="FR - FRANCE 5 UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/France_5_2018.svg/800px-France_5_2018.svg.png" group-title="|FR| FRANCE UHD",FR - FRANCE 5 UHD
-https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/francetv/france5.m3u8
-#EXTINF:-1 tvg-id="M6" tvg-name="FR - M6 UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/8/8e/Groupe_M6_Logo.png" group-title="|FR| FRANCE UHD",FR - M6 UHD
-http://vavoo.to/play/688242401/index.m3u8
-#EXTINF:-1 tvg-id="ARTE" tvg-name="FR - ARTE UHD" tvg-logo="https://www.arte.tv/sites/corporate/wp-content/themes/arte-entreprise/img/arte_logo.png" group-title="|FR| FRANCE UHD",FR - ARTE UHD
-https://artesimulcast.akamaized.net/hls/live/2031003/artelive_fr/master_v720.m3u8
-#EXTINF:-1 tvg-id="C8" tvg-name="FR - C8 UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Logo_C8_2016.svg/2560px-Logo_C8_2016.svg.png" group-title="|FR| FRANCE UHD",FR - C8 UHD
-https://vavoo.to/play/975685108/index.m3u8
-#EXTINF:-1 tvg-id="W9" tvg-name="FR - W9 UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/W9_2018.svg/1200px-W9_2018.svg.png" group-title="|FR| FRANCE UHD",FR - W9 UHD
-https://vavoo.to/play/128046615/index.m3u8
-#EXTINF:-1 tvg-id="TMC" tvg-name="FR - TMC UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/5/54/TMC_logo.svg/512px-TMC_logo.svg.png" group-title="|FR| FRANCE UHD",FR - TMC UHD
-https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/tf1plus/tmc.m3u8
-#EXTINF:-1 tvg-id="TFX" tvg-name="FR - TFX UHD" tvg-logo="https://i.imgur.com/d91GcVf.png" group-title="|FR| FRANCE UHD",FR - TFX UHD
-https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/tf1plus/tfx.m3u8
-#EXTINF:-1 tvg-id="NRJ 12" tvg-name="FR - NRJ 12 UHD" tvg-logo="https://i.imgur.com/Lv66Gcv.png" group-title="|FR| FRANCE UHD",FR - NRJ 12 UHD
-https://nrj12.nrjaudio.fm/hls/live/2038374/nrj_12/master.m3u8
-#EXTINF:-1 tvg-id="LCP" tvg-name="FR - LCP UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/f/fd/Logo_LCP-AN_%282019%29.svg/768px-Logo_LCP-AN_%282019%29.svg.png?20190919175859" group-title="|FR| FRANCE UHD",FR - LCP UHD
-https://livesenat.akamaized.net/hls/live/2036979/senat1/senat1_2000/chunklist-archive.m3u8?startTime=1733229797
-#EXTINF:-1 tvg-id="FRANCE 4" tvg-name="FR - FRANCE 4 UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/France_4_2018.svg/512px-France_4_2018.svg.png" group-title="|FR| FRANCE UHD",FR - FRANCE 4 UHD
-https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/francetv/france4.m3u8
-#EXTINF:-1 tvg-id="BFM TV UHD" tvg-name="FR - BFM TV UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/4/45/Logo_BFMTV_2019.svg" group-title="|FR| FRANCE UHD",FR - BFM TV UHD
-https://ncdn-live-bfm.pfd.sfr.net/shls/LIVE$BFM_TV/index.m3u8?end=END&start=LIVE
-#EXTINF:-1 tvg-id="CNEWS UHD" tvg-name="FR - CNEWS UHD" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrZD3jlnIR_qtZBeYPJRcUwL-rQesFnKvLbA&s" group-title="|FR| FRANCE UHD",FR - CNEWS UHD
-https://vavoo.to/play/131297333/index.m3u8
-#EXTINF:-1 tvg-id="CSTAR UHD" tvg-name="FR - CSTAR UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/8/82/Cstar-logo.jpg" group-title="|FR| FRANCE UHD",FR - CSTAR UHD
-https://vavoo.to/play/3166346130/index.m3u8
-#EXTINF:-1 tvg-id="GULLI UHD" tvg-name="FR - GULLI UHD" tvg-logo="https://i.ibb.co/LQXjFc3/gulli.png" group-title="|FR| FRANCE UHD",FR - GULLI UHD
-https://vavoo.to/play/2988514003/index.m3u8
-#EXTINF:-1 tvg-id="TF1 Séries Films UHD" tvg-name="FR - TF1 Séries Films UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/5/5f/TF1_S%C3%A9ries_Films_logo_2018.svg/1200px-TF1_S%C3%A9ries_Films_logo_2018.svg.png" group-title="|FR| FRANCE UHD",FR - TF1 Séries Films UHD
-https://raw.githubusercontent.com/schumijo/iptv/main/playlists/mytf1/tf1sf.m3u8
-#EXTINF:-1 tvg-id="L'Équipe UHD" tvg-name="FR - L'Équipe UHD" tvg-logo="https://www.totalbug.com/wp-content/uploads/2018/05/lequipe.png" group-title="|FR| FRANCE UHD", L'Équipe UHD
-https://raw.githubusercontent.com/schumijo/iptv/main/playlists/lequipe/lequipe.m3u8
-#EXTINF:-1 tvg-id="RMC Découverte UHD" tvg-name="FR - RMC Découverte UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_RMC_D%C3%A9couverte_2017.svg/1200px-Logo_RMC_D%C3%A9couverte_2017.svg.png" group-title="|FR| RMC Découverte UHD
-https://d2mt8for1pddy4.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-6uronj7gzvy4j/index.m3u8
-#EXTINF:-1 tvg-id="RMC STORY UHD" tvg-name="FR - RMC STORY UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/3/3e/RMC_Story_logo_2018.svg" group-title="|FR| FRANCE UHD", RMC STORY UHD
-https://d36bxc1bknkxrk.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-3ewcp19zjaxpt/index.m3u8
-#EXTINF:-1 tvg-id="Chérie 25 UHD" tvg-name="FR - Chérie 25 UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/fr/thumb/f/f0/Ch%C3%A9rie_25_logo_2015.svg/1200px-Ch%C3%A9rie_25_logo_2015.svg.png" group-title="|FR|FRANCE UHD", Chérie 25 UHD
-https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/nrj/cherie25.m3u8
-#EXTINF:-1 tvg-id="BEIN SPORT 1 UHD" tvg-name="FR - BEIN SPORT 1 UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Logo_beIN_SPORTS_1.png/1200px-Logo_beIN_SPORTS_1.png" group-title="|FR|FRANCE UHD", BEIN SPORT 1 UHD
-https://iptv.frembed.lol/live/A6B56AC724C0686C98984A5A92CA1DC1/44.m3u8
-#EXTINF:-1 tvg-id="BEIN SPORT 2 UHD" tvg-name="FR - BEIN SPORT 2 UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/7/78/Logo_beIN_SPORTS_2.png" group-title="|FR|FRANCE UHD", BEIN SPORT 2 UHD
-https://iptv.frembed.lol/live/A6B56AC724C0686C98984A5A92CA1DC1/49.m3u8
-#EXTINF:-1 tvg-id="BEIN SPORT 3 UHD" tvg-name="FR - BEIN SPORT 3 UHD" tvg-logo="https://www.thesportsdb.com/images/media/channel/logo/BeIn_Sports_HD_3_France.png" group-title="|FR|FRANCE UHD", BEIN SPORT 3 UHD
-https://iezmzlrgtn5pgme.ngolpdkyoctjcddxshli469r.org/sunshine/XEgDY4PLb6PDXmf-BTQ3u1bt0XbCjfjWOhTiUdTlcsw7zex0PwqlZMQUL81t8960KKtbVqce-WSS2iFAJSe2nFWvFXxUO3HnAjfN40H0mJC1FcOrWR0foxXHy31AZIi_j_cpzQnuv3XyE9DtJvVJs9sZP7JjzN6djL16gRzDDwg/hls/index.m3u8
-#EXTINF:-1 tvg-id="DAZN 1 UHD" tvg-name="FR - DAZN 1 UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/4/49/DAZN_1.svg" group-title="|FR|FRANCE UHD", DAZN 1 UHD
-https://huhu.to/play/2117784948/index.m3u8
-#EXTINF:-1 tvg-id="NRJ 12 UHD" tvg-name="FR - NRJ 12 UHD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/4/49/DAZN_1.svg" group-title="|FR|FRANCE UHD",NRJ 12 UHD
-https://huhu.to/play/4239659507/index.m3u8
-#EXTINF:-1 tvg-id="LE COMTE DE MONTE-CRISTO" tvg-name="Film" tvg-logo="https://image.tmdb.org/t/p/original/9OpXEvuKHOCQCssPE4c6d2evYac.jpg" group-title="Films",Film - Le Comte de Monte-Cristo
+
+#EXTINF:-1 tvg-id="" tvg-name="Le Comte de Monte-Cristo (2024)" tvg-logo="https://image.tmdb.org/t/p/original/9OpXEvuKHOCQCssPE4c6d2evYac.jpg" group-title="Films",Le Comte de Monte-Cristo (2024)
 https://01.x7bq89m4.xyz/c5e8b0f2-9a1d-4c3a-8e2a-cd1f4f7b7b30/LECOMTEDEMONTECRISTO/playlist.m3u8
 
+#EXTINF:-1 tvg-id="" tvg-name="Paddington au Pérou (2025)" tvg-logo="https://fr.web.img5.acsta.net/c_310_420/img/3d/88/3d888f3f864049f77bc99b83f246312d.jpg" group-title="Films",Paddington au Pérou (2025)
+https://praxlonfire73.live/file2/9hGpUpwfsKXIVA4DCRPeWLGxogSprvT~eVNKL9EiOnxwh21PSjbb3oiq7dZXp29k7+aSH2o2tNAaKXPBmxlCFJs8EtpcBlbT6ccmI7cIz~03vG6DePkDJfjL91V6gPuqiuSSf1EcxBy+FOuDuxM0ZA==/cGxheWxpc3QubTN1OA==.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Mufasa : Le Roi Lion (2024)" tvg-logo="https://image.tmdb.org/t/p/w600_and_h900_bestv2/jbOSUAWMGzGL1L4EaUF8K6zYFo7.jpg" group-title="Films",Mufasa : Le Roi Lion (2024)
+https://hls2-eu.zcdn.stream/4b6822bfb7dde248f210e7217002375a/2024-12-21/video.m3u8?auth=7cfdcafe0d4dc6170545eaedfa8ea150&expires=1736607617&type=edge&asn=15557&node=N_qs5Hnxzx1D_ugk8IXptSZjLvwztxspnFJSfto6tTg5F4Na4Ss6xCDYKSRmIf0re3QqHFiOIafj74A1mpbQUw
+
+#EXTINF:-1 tvg-id="" tvg-name="Gladiator II (2024)" tvg-logo="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/7R1EXkBAKunoG0UhZToFrnlStcp.jpg" group-title="Films",Gladiator II (2024)
+https://matoc22147.cloudmatoc.com/files/aa/vLGIMJdK54knoH7pKjlbHagMjxw2X8psT6a.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Napoléon (2023)" tvg-logo="https://image.tmdb.org/t/p/original/1aIjlQboX6vZjuR9MWmpYlzZHPP.jpg" group-title="Films",Napoléon (2023)
+https://matoc24312.cloudmatoc.com/files/aa/nGpLB80uh7gJnnvYXNxp4dzzCxZsYb5mRv8.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Spider-Man No Way Home (2021)" tvg-logo="https://www.themoviedb.org/t/p/original/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" group-title="Films",Spider-Man No Way Home (2021)
+https://share22147.sharecloudy.com/files/aa/Pb0FVHAkalNpdELWR3bIbSb1fDlXuwUkHUZ.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Vice Versa (2015)" tvg-logo="https://image.tmdb.org/t/p/original/KUhrtJN02RNt3Sxc4IMTa1d9Lt.jpg" group-title="Films",Vice Versa (2015)
+https://share22147.sharecloudy.com/files/aa/AWLApOC0geO08cfGksKc13cK2QXNeKVPHHq.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Vice Versa 2 (2024)" tvg-logo="https://image.tmdb.org/t/p/original/9Jic8z9NEeCEmSJFgFHZF1lWMFo.jpg" group-title="Films",Vice Versa 2 (2024)
+https://share22147.sharecloudy.com/files/aa/l22gQZJCxEOsf3F38ZSfl7peBzb013dn5gD.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Un p'tit truc en plus (2024)" tvg-logo="https://media.themoviedb.org/t/p/original/uIlJ1wOlEt5K3NowJQDG4qscQAC.jpg" group-title="Films",Un p'tit truc en plus (2024)
+https://matoc22140.cloudmatoc.com/files/aa/kYo4hQwhOQOF7UvF8LSDcJb6xP3wVBKfA8k.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Le Larbin (2024)" tvg-logo="https://media.themoviedb.org/t/p/original/yZkkuIGTnxkpGcXfld0T2gSQ3Gm.jpg" group-title="Films",Le Larbin (2024)
+https://matoc22148.cloudmatoc.com/files/aa/y8yA0LqqwFyraPabzM2hhTYQClCtwcv4l4F.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Smile (2022)" tvg-logo="https://www.themoviedb.org/t/p/original/aPqcQwu4VGEewPhagWNncDbJ9Xp.jpg" group-title="Films",Smile (2022)
+https://matoc22148.cloudmatoc.com/files/aa/hJ2qnorZnAyfDD28I37u5Vszqs2npC0Hm27.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Smile 2 (2024)" tvg-logo="https://media.themoviedb.org/t/p/original/bZQweCDilXNvF8KuaEHcghM3Nwf.jpg" group-title="Films",Smile 2 (2024)
+https://matoc22148.cloudmatoc.com/files/aa/McYiltFzqpxu1JyANKmAdVnTn8QKs5ceiax.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="Gladiator (2000)" tvg-logo="https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg" group-title="Films",Gladiator (2000)
+https://share22147.sharecloudy.com/files/aa/qmkQSBkwl2ZQUee89AKapqQjLyQdDIo35IU.m3u8
+
+#EXTINF:-1 tvg-id="" tvg-name="GTMAX (2024)" tvg-logo="https://media.themoviedb.org/t/p/original/qrWTjqbf4gzT8BkWqB7VceWJXVU.jpg" group-title="Films",GTMAX (2024)
+https://matoc22147.cloudmatoc.com/files/aa/shhvpZBQp2hRqBw8r2kNI77m9F1dRfJjx1P.m3u8
