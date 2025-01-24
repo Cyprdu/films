@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" type="static" mediaPresentationDuration="PT2H57M48S" minBufferTime="PT1.500S">
-  <Period>
-    <AdaptationSet mimeType="video/mp2t" codecs="avc1.64001F" width="1920" height="1080" frameRate="25">
+<?xml version="1.0" encoding="utf-8"?>
+<MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:mpeg:dash:schema:mpd:2011" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd" id="201" type="static" mediaPresentationDuration="PT2H57M48S" minBufferTime="PT1.500S">
+  <Period start="PT0.000S" id="1">
+    <!-- AdaptationSet for Video -->
+    <AdaptationSet id="1" mimeType="video/mp2t" codecs="avc1.64001F" width="1920" height="1080" frameRate="25" segmentAlignment="true">
       <Representation id="1" bandwidth="4000000" width="1920" height="1080" frameRate="25">
         <BaseURL>https://01.x7bq89m4.xyz/c5e8b0f2-9a1d-4c3a-8e2a-cd1f4f7b7b30/LECOMTEDEMONTECRISTO/playlist.m3u8</BaseURL>
       </Representation>
     </AdaptationSet>
-    <AdaptationSet mimeType="text/vtt" language="fr" segmentAlignment="true">
+
+    <!-- AdaptationSet for Subtitles -->
+    <AdaptationSet id="2" mimeType="text/vtt" language="fr" segmentAlignment="true">
       <Representation id="subtitles" bandwidth="256">
         <BaseURL>https://popstream.to/uploads/subtitle/11-2024/1732563603_LECOMTEDEMONTECRISTO_track5_[fre].vtt</BaseURL>
         <Role scheme="urn:tva:metadata:cs:ContentRegulationType" value="forced" />
