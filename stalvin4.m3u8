@@ -1,0 +1,10 @@
+#EXTM3U
+#EXT-X-TARGETDURATION:5520
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+
+# Sous-titres complets
+#EXTINF:5520.000,
+https://popstream.to/uploads/subtitle/07-2024/1722597751_04_track5_[fre].vtt
+
+#EXT-X-ENDLIST
