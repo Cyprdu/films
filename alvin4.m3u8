@@ -16,5 +16,5 @@ https://01.x7bq89m4.xyz/a9d4f8b3-7b2c-4a1e-9a3c-e0f2d7c5b9a4/ALVINETLESCHIPMUNKS
 #EXT-X-I-FRAME-STREAM-INF:AVERAGE-BANDWIDTH=606551,BANDWIDTH=2478094,VIDEO-RANGE=SDR,CODECS="avc1.4D4028",RESOLUTION=1994x1080,URI="https://01.x7bq89m4.xyz/a9d4f8b3-7b2c-4a1e-9a3c-e0f2d7c5b9a4/ALVINETLESCHIPMUNKS/04/1080p/iframes.m3u8"
 
 # Subtitles (WebVTT)
-#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs-group",NAME="Français",AUTOSELECT=NO,DEFAULT=YES,LANGUAGE="fr",URI="https://github.com/Cyprdu/films/raw/refs/heads/main/stalvin4.m3u8"
-#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs-group",NAME="Français Forcé",AUTOSELECT=YES,DEFAULT=YES,LANGUAGE="fr",URI="https://github.com/Cyprdu/films/raw/refs/heads/main/stalvin4frforc%C3%A9.m3u8"
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs-group",NAME="Français",AUTOSELECT=NO,DEFAULT=YES,LANGUAGE="fr",URI="https://iptv01.netlify.app/stalvin4.m3u8"
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs-group",NAME="Français Forcé",AUTOSELECT=YES,DEFAULT=YES,LANGUAGE="fr",URI="https://iptv01.netlify.app/stalvin4frforc%C3%A9.m3u8"
