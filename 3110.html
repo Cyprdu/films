@@ -1,0 +1,52 @@
+<!DOCTYPE html> 
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidéo en Plein Écran</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        #container {
+            width: 760px;
+            height: 427.5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid black;  /* Bordures noires plus fines */
+            background-color: black;   /* Fond noir autour de l'iframe */
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 760 / 427.5;
+            object-fit: contain;  /* Maintient le ratio sans déformer */
+            border: none;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.documentElement.requestFullscreen().catch(err => {
+                console.log("Erreur lors du passage en plein écran :", err);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="container">
+        <iframe src="https://popstream.to/embed/3110" allowfullscreen></iframe>
+    </div>
+</body>
+</html>
