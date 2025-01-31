@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirection</title>
+    <script type="text/javascript">
+        function redirectBasedOnDevice() {
+            // Vérifie si l'utilisateur utilise un PC ou un appareil mobile
+            if (window.innerWidth > 768) { // Largeur d'écran typique pour un PC
+                window.location.href = "https://iptv01.netlify.app/acceuil"; // URL pour PC
+            } else {
+                window.location.href = "https://iptv01.netlify.app/home"; // URL pour mobile
+            }
+        }
+        window.onload = redirectBasedOnDevice;
+    </script>
+</head>
+<body>
+    <p>Redirection en cours...</p>
+</body>
+</html>
