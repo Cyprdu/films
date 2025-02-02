@@ -35,7 +35,7 @@ function buildBannerSection(movie) {
         <div class="action-buttons-cont">
 <button class="action-button" onclick="window.location.href='/missionimpossiblep1';">Lecture</button>
 <button class="action-button" onclick="window.location.href='https://www.missionimpossible-lefilm.fr/synopsis/';">Plus d'informations...</button>
-        </div>   </br></br></br></br>
+        </div>   </br></br></br></br></br></br></br>
     `;
     div.className = "banner-content container";
     bannerCont.append(div);
