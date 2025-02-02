@@ -8,7 +8,7 @@ const categories = [
 
 const moviesData = {
     1: [
-        { id: 101, title: "Mission : Impossible - Dead Reckoning", backdrop: "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bdYbHxECXsN169pVrTz2TobFqXb.jpg", release_date: "12/07/2023", overview: "Votre mission si toutefois vous l'acceptez..." },
+        { id: 101, title: "Mission : Impossible 7", backdrop: "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bdYbHxECXsN169pVrTz2TobFqXb.jpg", release_date: "12/07/2023", overview: "Votre mission si toutefois vous l'acceptez..." },
     ]
 };
 
