@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur en plein écran</title>
+    <script src="playerjs.js" type="text/javascript"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: black; /* Remplir le reste de l'écran avec un fond noir */
+        }
+
+        #player-container {
+            position: fixed;
+            top: 50%; /* Centrer verticalement */
+            left: 50%; /* Centrer horizontalement */
+            transform: translate(-50%, -50%); /* Ajuster pour centrer précisément */
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Assurez-vous que la vidéo s'adapte sans déborder */
+        }
+    </style>
+</head>
+<body>
+    <div id="player-container">
+        <div id="player"></div>
+    </div>
+
+    <script>
+        // Ajuster la taille du lecteur pour qu'il ne dépasse pas la barre des tâches
+        function resizePlayer() {
+            var screenWidth = window.innerWidth;
+            var screenHeight = window.innerHeight;
+
+            var playerContainer = document.getElementById('player-container');
+            var player = document.getElementById('player');
+
+            // Calculer les dimensions en respectant le ratio 16/9 de la vidéo
+            var playerWidth = screenWidth;
+            var playerHeight = screenWidth * (9 / 16);
+
+            if (playerHeight > screenHeight) {
+                playerHeight = screenHeight;
+                playerWidth = screenHeight * (16 / 9);
+            }
+
+            playerContainer.style.width = playerWidth + 'px';
+            playerContainer.style.height = playerHeight + 'px';
+            player.style.width = playerWidth + 'px';
+            player.style.height = playerHeight + 'px';
+        }
+
+        window.addEventListener('resize', resizePlayer);
+        window.addEventListener('load', resizePlayer);
+
+        var player = new Playerjs({
+            id: "player",
+            file: "https://5kzkjwj7lv67.x7bq89m4.xyz/c5e8b0f2-9a1d-4c3a-8e2a-cd1f4f7b7b30/LECOMTEDEMONTECRISTO/playlist.m3u8",
+            poster: "https://image.tmdb.org/t/p/original/sm2ujw86w75iqG1KKcavug8RzNH.jpg",
+            autoplay: 0,
+            subtitle: "[Français Forcé]https://sous-titres.netlify.app/subtitles/cristo.vtt",
+            default_subtitle: "Fr"
+        });
+    </script>
+</body>
+</html>
