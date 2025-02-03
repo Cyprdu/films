@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,14 +12,14 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: black; /* Remplir le reste de l'écran avec un fond noir */
+            background-color: black;
         }
 
         #player-container {
             position: fixed;
-            top: 50%; /* Centrer verticalement */
-            left: 50%; /* Centrer horizontalement */
-            transform: translate(-50%, -50%); /* Ajuster pour centrer précisément */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
             z-index: 1000;
@@ -32,7 +31,7 @@
         #player {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Assurez-vous que la vidéo s'adapte sans déborder */
+            object-fit: contain;
         }
     </style>
 </head>
@@ -42,7 +41,6 @@
     </div>
 
     <script>
-        // Ajuster la taille du lecteur pour qu'il ne dépasse pas la barre des tâches
         function resizePlayer() {
             var screenWidth = window.innerWidth;
             var screenHeight = window.innerHeight;
@@ -50,7 +48,6 @@
             var playerContainer = document.getElementById('player-container');
             var player = document.getElementById('player');
 
-            // Calculer les dimensions en respectant le ratio 16/9 de la vidéo
             var playerWidth = screenWidth;
             var playerHeight = screenWidth * (9 / 16);
 
@@ -73,7 +70,7 @@
             file: "https://droxonwave.site/file2/pzolN3p+q0aL5QT1KIOC1mjJJE3Y8u4bjNTf3CnMkzeG9qRgcIhnQUQ5Ix+ffIsmGxyp8lLMoCBqZLAXDUr5gZkb3C3iq8gkr3zBcbzrgG7eAhWbhmhigjAJG6K3VQ9QY+gbxN32b~VhmVBlqou58C~rAcnu3YXpRowiNwcrzS8=/cGxheWxpc3QubTN1OA==.m3u8",
             poster: "https://image.tmdb.org/t/p/original/sm2ujw86w75iqG1KKcavug8RzNH.jpg",
             autoplay: 0,
-            subtitle: "[Français Forcé]https://sous-titres.netlify.app/subtitles/cristo.vtt",
+            subtitle: "[Français Forcé]https://sous-titres.netlify.app/subtitles/cristo.vtt,[Français Complet]https://sous-titres.netlify.app/subtitles/STFULLMonte-Cristo.vtt",
             default_subtitle: "Français Forcé"
         });
     </script>
