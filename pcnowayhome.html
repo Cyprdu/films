@@ -1,0 +1,65 @@
+
+<!DOCTYPE html> 
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur en plein écran</title>
+    <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
+    <script src="playerjs.js" type="text/javascript"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        #player-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 0px);
+            bottom: 0;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+
+        #back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()">
+        <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
+    </a>
+    
+    <div id="player-container">
+        <div id="player"></div>
+    </div>
+
+    <script>
+        var player = new Playerjs({
+            id: "player",
+            file: "https://tornexwave29.live/file2/97~pt4N3HPIAy+NYX+2ORQQ2qIJgcYyC4KhLj+Fj38Ua2Gi9QKi20Um6JwpcXIrIGlsFE3kxjIpb8zFHaP0l0ugG+yLmVtW3LJPlEJHr6XIydagkPGCGFSKLQqdmJBuGLAW1lvO1hprcKSP~vrTXzTEIHeg1BX4LlsPoEmpB+sw=/cGxheWxpc3QubTN1OA==.m3u8",
+            poster: "https://image.tmdb.org/t/p/original/aYBSKWOf8g2oD1ZGfeMQvMRLe9E.jpg",
+            autoplay: 0,
+            subtitle: "[Français Forcé]https://sous-titres.netlify.app/subtitles/SPIDERMAN-NO-WAY-HOME-FR-FORCED.vtt,[Français]https://sous-titres.netlify.app/subtitles/Spider-Man.No.Way.Home-FR.vtt",
+            default_subtitle: "Français Forcé"
+        });
+    </script>
+</body>
+</html>
