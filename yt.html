@@ -1,0 +1,65 @@
+
+<!DOCTYPE html> 
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur en plein écran</title>
+    <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
+    <script src="playerjs.js" type="text/javascript"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        #player-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 0px);
+            bottom: 0;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+
+        #back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()">
+        <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
+    </a>
+    
+    <div id="player-container">
+        <div id="player"></div>
+    </div>
+
+    <script>
+        var player = new Playerjs({
+            id: "player",
+            file: "https://youtu.be/X51nOKkMQyU",
+            poster: "https://image.tmdb.org/t/p/original/umSVRfRs7TRq1hNmZ0epTY72ma3.jpg",
+            autoplay: 0,
+            subtitle: "[Français Forcé]https://sous-titres.netlify.app/subtitles/cristo.vtt,[Français]https://sous-titres.netlify.app/subtitles/STFULLMonte-Cristo.vtt,[English]https://sous-titres.netlify.app/subtitles/thecomte.vtt,[Português]https://sous-titres.netlify.app/subtitles/potugais-monte-cristo.vtt,[Arabic]https://sous-titres.netlify.app/subtitles/arabic.vtt,[Vietnamese]https://sous-titres.netlify.app/subtitles/vietnamese-monte-cristo.vtt,[Czech]https://sous-titres.netlify.app/subtitles/czech-monte-cristo.vtt,[Estonian]https://sous-titres.netlify.app/subtitles/estonian-monte-cristo.vtt,[Turkish]https://sous-titres.netlify.app/subtitles/turkish.vtt",
+            default_subtitle: "Français Forcé"
+        });
+    </script>
+</body>
+</html>
