@@ -26,8 +26,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: calc(100% - 0px);
-            bottom: 0;
+            height: 100%;
         }
 
         #player {
@@ -47,13 +46,13 @@
 
         #movie-title {
             position: absolute;
-            top: 13px; /* Descendu un peu moins que précédemment */
-            left: 70px; /* Espace à droite de la flèche */
+            top: 13px;
+            left: 70px;
             font-size: 24px;
             color: white;
-            font-family: 'NetflixSans', sans-serif; /* Utilisation de la police Netflix Sans */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre légère */
-            display: none; /* Commence caché */
+            font-family: 'NetflixSans', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            display: none;
             z-index: 1000;
             transition: opacity 0.3s ease;
         }
@@ -81,22 +80,22 @@
         });
 
         var movieTitle = document.getElementById('movie-title');
-        var inactivityTimeout;
 
-        // Afficher le titre quand la souris entre dans la zone
-        document.addEventListener('mousemove', function() {
-            clearTimeout(inactivityTimeout); // Réinitialise le timeout d'inactivité
-            movieTitle.style.display = 'block'; // Affiche le titre
-            movieTitle.style.opacity = '1'; // Rendre le titre visible
-
-            // Cache le titre après 10 secondes d'inactivité
-            inactivityTimeout = setTimeout(function() {
-                movieTitle.style.opacity = '0'; // Rendre le titre invisible
+        // Vérifier si le titre a déjà été affiché lors d'une visite précédente
+        if (!sessionStorage.getItem("titleDisplayed")) {
+            movieTitle.style.display = 'block';
+            movieTitle.style.opacity = '1';
+            
+            setTimeout(function() {
+                movieTitle.style.opacity = '0';
                 setTimeout(function() {
-                    movieTitle.style.display = 'none'; // Cache le titre une fois invisible
-                }, 300); // Attendre que l'animation d'opacité se termine
-            }, 10000); // Délai de 10 secondes
-        });
+                    movieTitle.style.display = 'none';
+                }, 300);
+            }, 10000);
+
+            // Marquer le titre comme déjà affiché
+            sessionStorage.setItem("titleDisplayed", "true");
+        }
     </script>
 </body>
 </html>
