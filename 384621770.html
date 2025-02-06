@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html> 
 <html lang="fr">
 <head>
@@ -9,6 +7,11 @@
     <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
     <script src="playerjs.js" type="text/javascript"></script>
     <style>
+        @font-face {
+            font-family: 'NetflixSans';
+            src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
+        }
+
         html, body {
             margin: 0;
             padding: 0;
@@ -41,12 +44,27 @@
             cursor: pointer;
             z-index: 1000;
         }
+
+        #movie-title {
+            position: absolute;
+            top: 13px; /* Descendu un peu moins que précédemment */
+            left: 70px; /* Espace à droite de la flèche */
+            font-size: 24px;
+            color: white;
+            font-family: 'NetflixSans', sans-serif; /* Utilisation de la police Netflix Sans */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre légère */
+            display: none; /* Commence caché */
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
     </style>
 </head>
 <body>
     <a href="javascript:history.back()">
         <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
     </a>
+    
+    <div id="movie-title">Harry Potter et les Reliques de la mort - 1ère partie (2010)</div>
     
     <div id="player-container">
         <div id="player"></div>
@@ -60,6 +78,24 @@
             autoplay: 0,
             subtitle: "",
             default_subtitle: ""
+        });
+
+        var movieTitle = document.getElementById('movie-title');
+        var inactivityTimeout;
+
+        // Afficher le titre quand la souris entre dans la zone
+        document.addEventListener('mousemove', function() {
+            clearTimeout(inactivityTimeout); // Réinitialise le timeout d'inactivité
+            movieTitle.style.display = 'block'; // Affiche le titre
+            movieTitle.style.opacity = '1'; // Rendre le titre visible
+
+            // Cache le titre après 10 secondes d'inactivité
+            inactivityTimeout = setTimeout(function() {
+                movieTitle.style.opacity = '0'; // Rendre le titre invisible
+                setTimeout(function() {
+                    movieTitle.style.display = 'none'; // Cache le titre une fois invisible
+                }, 300); // Attendre que l'animation d'opacité se termine
+            }, 10000); // Délai de 10 secondes
         });
     </script>
 </body>
