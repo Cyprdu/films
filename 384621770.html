@@ -80,22 +80,17 @@
         });
 
         var movieTitle = document.getElementById('movie-title');
-
-        // Vérifier si le titre a déjà été affiché lors d'une visite précédente
-        if (!sessionStorage.getItem("titleDisplayed")) {
-            movieTitle.style.display = 'block';
-            movieTitle.style.opacity = '1';
-            
+        
+        // Afficher le titre pendant 10 secondes à chaque visite
+        movieTitle.style.display = 'block';
+        movieTitle.style.opacity = '1';
+        
+        setTimeout(function() {
+            movieTitle.style.opacity = '0';
             setTimeout(function() {
-                movieTitle.style.opacity = '0';
-                setTimeout(function() {
-                    movieTitle.style.display = 'none';
-                }, 300);
-            }, 10000);
-
-            // Marquer le titre comme déjà affiché
-            sessionStorage.setItem("titleDisplayed", "true");
-        }
+                movieTitle.style.display = 'none';
+            }, 300);
+        }, 10000);
     </script>
 </body>
 </html>
