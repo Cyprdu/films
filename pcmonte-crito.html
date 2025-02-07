@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecteur en plein écran</title>
+    <title>Lecteur en plein écran</title> <!-- Titre par défaut avant mise à jour -->
     <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
     <script src="playerjs.js" type="text/javascript"></script>
     <style>
@@ -58,8 +58,6 @@
             z-index: 1000;
             transition: opacity 0.3s ease;
         }
-
-
     </style>
 </head>
 <body>
@@ -87,6 +85,9 @@
 
         var movieTitle = document.getElementById('movie-title');
         
+        // Mettre à jour dynamiquement le titre de l'onglet avec le titre du film
+        document.title = movieTitle.textContent; // Assure-toi que le texte est récupéré depuis l'élément HTML
+
         // Afficher le titre pendant 10 secondes à chaque visite
         movieTitle.style.display = 'block';
         movieTitle.style.opacity = '1';
