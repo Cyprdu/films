@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecteur en plein écran</title> <!-- Titre par défaut avant mise à jour -->
+    <title>Lecteur en plein écran</title>
     <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
     <script src="playerjs.js" type="text/javascript"></script>
 
@@ -39,8 +39,6 @@
             position: absolute;
             top: 10px;
             left: 10px;
-            width: 40px;
-            height: 40px;
             cursor: pointer;
             z-index: 1000;
         }
@@ -62,7 +60,8 @@
 <body>
     <a href="javascript:history.back()">
         <div id="back-button">
-            <img src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
+            <!-- Définition directe de la taille de l'image -->
+            <img src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour" width="50" height="50">
         </div>
     </a>
     
