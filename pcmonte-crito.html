@@ -1,4 +1,3 @@
-
 <!DOCTYPE html> 
 <html lang="fr">
 <head>
@@ -36,16 +35,15 @@
         }
 
         #back-button {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); /* Ajoute l'ombre ici */
-}
-
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+            /* Pas d'ombre ici, l'ombre est sur l'image */
+        }
 
         #movie-title {
             position: absolute;
@@ -59,11 +57,12 @@
             z-index: 1000;
             transition: opacity 0.3s ease;
         }
+
         #back-button img {
-    width: 100%;
-    height: 100%;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); /* Ajoute l'ombre ici */
-}
+            width: 100%;
+            height: 100%;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); /* L'ombre est ici */
+        }
 
     </style>
 </head>
