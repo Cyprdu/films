@@ -81,6 +81,9 @@
 
         var movieTitle = document.getElementById('movie-title');
         
+        // Mettre à jour dynamiquement le titre de l'onglet avec le titre du film
+        document.title = movieTitle.textContent; // Assure-toi que le texte est récupéré depuis l'élément HTML
+        
         // Afficher le titre pendant 10 secondes à chaque visite
         movieTitle.style.display = 'block';
         movieTitle.style.opacity = '1';
