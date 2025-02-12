@@ -60,7 +60,6 @@
 <body>
     <a href="javascript:history.back()">
         <div id="back-button">
-            <!-- Définition directe de la taille de l'image -->
             <img src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour" width="50" height="50">
         </div>
     </a>
@@ -78,15 +77,15 @@
             poster: "https://image.tmdb.org/t/p/original/umSVRfRs7TRq1hNmZ0epTY72ma3.jpg",
             autoplay: 0,
             subtitle: "[Français Forcé]https://sous-titres.netlify.app/subtitles/cristo.vtt,[Français]https://sous-titres.netlify.app/subtitles/STFULLMonte-Cristo.vtt,[Français Malentendants]https://sous-titres.netlify.app/subtitles/SOURD.vtt,[English]https://sous-titres.netlify.app/subtitles/thecomte.vtt,[Português]https://sous-titres.netlify.app/subtitles/potugais-monte-cristo.vtt,[Arabic]https://sous-titres.netlify.app/subtitles/arabic.vtt,[Vietnamese]https://sous-titres.netlify.app/subtitles/vietnamese-monte-cristo.vtt,[Czech]https://sous-titres.netlify.app/subtitles/czech-monte-cristo.vtt,[Estonian]https://sous-titres.netlify.app/subtitles/estonian-monte-cristo.vtt,[Turkish]https://sous-titres.netlify.app/subtitles/turkish.vtt",
-            default_subtitle: "[Français Forcé]"
+            default_subtitle: "[Français Forcé]",
+            file: "{Audio Description}https://ia904507.us.archive.org/30/items/le-comte-de-monte-cristo-2024-audio-description/Le%20Comte%20de%20Monte-Cristo%20%282024%29%20-%20Audio%20Description.mp3?cnt=0;{Original}https://matoc32148.cloudmatoc.com/files/aa/yCAUEbQEoOX8y5tVc60q9X31M23Mx5D5HeZ.m3u8",
+            default_audio: "Original"
         });
 
         var movieTitle = document.getElementById('movie-title');
         
-        // Mettre à jour dynamiquement le titre de l'onglet avec le titre du film
-        document.title = movieTitle.textContent; // Assure-toi que le texte est récupéré depuis l'élément HTML
+        document.title = movieTitle.textContent;
 
-        // Afficher le titre pendant 10 secondes à chaque visite
         movieTitle.style.display = 'block';
         movieTitle.style.opacity = '1';
         
