@@ -55,6 +55,13 @@
             z-index: 1000;
             transition: opacity 0.3s ease;
         }
+
+        #audio-description {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -68,6 +75,10 @@
     
     <div id="player-container">
         <div id="player"></div>
+        <audio id="audio-description" controls autoplay>
+            <source src="https://ia904507.us.archive.org/30/items/le-comte-de-monte-cristo-2024-audio-description/Le%20Comte%20de%20Monte-Cristo%20%282024%29%20-%20Audio%20Description.mp3?cnt=0" type="audio/mp3">
+            Votre navigateur ne supporte pas l'audio.
+        </audio>
     </div>
 
     <script>
@@ -77,9 +88,7 @@
             poster: "https://image.tmdb.org/t/p/original/umSVRfRs7TRq1hNmZ0epTY72ma3.jpg",
             autoplay: 0,
             subtitle: "[Français Forcé]https://sous-titres.netlify.app/subtitles/cristo.vtt,[Français]https://sous-titres.netlify.app/subtitles/STFULLMonte-Cristo.vtt,[Français Malentendants]https://sous-titres.netlify.app/subtitles/SOURD.vtt,[English]https://sous-titres.netlify.app/subtitles/thecomte.vtt,[Português]https://sous-titres.netlify.app/subtitles/potugais-monte-cristo.vtt,[Arabic]https://sous-titres.netlify.app/subtitles/arabic.vtt,[Vietnamese]https://sous-titres.netlify.app/subtitles/vietnamese-monte-cristo.vtt,[Czech]https://sous-titres.netlify.app/subtitles/czech-monte-cristo.vtt,[Estonian]https://sous-titres.netlify.app/subtitles/estonian-monte-cristo.vtt,[Turkish]https://sous-titres.netlify.app/subtitles/turkish.vtt",
-            default_subtitle: "[Français Forcé]",
-            file: "{Audio Description}https://ia904507.us.archive.org/30/items/le-comte-de-monte-cristo-2024-audio-description/Le%20Comte%20de%20Monte-Cristo%20%282024%29%20-%20Audio%20Description.mp3?cnt=0;{Original}https://matoc32148.cloudmatoc.com/files/aa/yCAUEbQEoOX8y5tVc60q9X31M23Mx5D5HeZ.m3u8",
-            default_audio: "Original"
+            default_subtitle: "[Français Forcé]"
         });
 
         var movieTitle = document.getElementById('movie-title');
