@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecteur en plein écran</title>
+    <title></title>
     <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
     <script src="playerjs.js" type="text/javascript"></script>
-
-<style>
+    <style>
         @font-face {
             font-family: 'NetflixSans';
             src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
@@ -40,6 +39,8 @@
             position: absolute;
             top: 10px;
             left: 10px;
+            width: 40px;
+            height: 40px;
             cursor: pointer;
             z-index: 1000;
         }
@@ -60,13 +61,10 @@
 </head>
 <body>
     <a href="javascript:history.back()">
-        <div id="back-button">
-            <!-- Définition directe de la taille de l'image -->
-            <img src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour" width="50" height="50">
-        </div>
+        <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
     </a>
     
-    <div id="movie-title">Paddington 2</div>
+    <div id="movie-title">Paddington 2 (2017)</div>
     
     <div id="player-container">
         <div id="player"></div>
@@ -78,13 +76,15 @@
             file: "https://hw4xy7n66buw.k2c3l8mf.xyz/a9d4f8b3-7b2c-4a1e-9a3c-e0f2d7c5b9a4/PADDINGTON/02/playlist.m3u8",
             poster: "https://image.tmdb.org/t/p/original/1dj1fpXQDwv5ezm9csJe2afKxEe.jpg",
             autoplay: 0,
+            subtitle: "",
+            default_subtitle: ""
         });
 
         var movieTitle = document.getElementById('movie-title');
         
         // Mettre à jour dynamiquement le titre de l'onglet avec le titre du film
         document.title = movieTitle.textContent; // Assure-toi que le texte est récupéré depuis l'élément HTML
-
+        
         // Afficher le titre pendant 10 secondes à chaque visite
         movieTitle.style.display = 'block';
         movieTitle.style.opacity = '1';
