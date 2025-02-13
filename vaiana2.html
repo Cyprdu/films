@@ -8,6 +8,11 @@
     <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
     <script src="playerjs.js" type="text/javascript"></script>
     <style>
+        @font-face {
+            font-family: 'NetflixSans';
+            src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
+        }
+
         html, body {
             margin: 0;
             padding: 0;
@@ -22,8 +27,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: calc(100% - 0px);
-            bottom: 0;
+            height: 100%;
         }
 
         #player {
@@ -40,6 +44,19 @@
             cursor: pointer;
             z-index: 1000;
         }
+
+        #movie-title {
+            position: absolute;
+            top: 15px;
+            left: 70px;
+            font-size: 24px;
+            color: white;
+            font-family: 'NetflixSans', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -47,19 +64,43 @@
         <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
     </a>
     
+    <div id="movie-title">Vaiana 2 (2024)</div>
+    
     <div id="player-container">
         <div id="player"></div>
     </div>
 
     <script>
+        <script>
         var player = new Playerjs({
             id: "player",
-            file: "https://matoc22147.cloudmatoc.com/files/aa/g3634M2VjA7snX3v2UgFPBPbE9rvLqr1tx5.m3u8",
+            file: "https://hw4xy7n66buw.k2c3l8mf.xyz/c5e8b0f2-9a1d-4c3a-8e2a-cd1f4f7b7b30/VAIANA2/playlist.m3u8",
             poster: "https://image.tmdb.org/t/p/original/z6H78tQNcryTO4sgDjg8Knc6H9W.jpg",
             autoplay: 0,
             subtitle: "[Français]https://sous-titres.netlify.app/subtitles/vaiana2.vtt,[English]https://sous-titres.netlify.app/subtitles/moana2.vtt",
             default_subtitle: ""
+            rename_audio: {"French": "Français"},
+            default_audio: "Français",
+
         });
+
+    
+
+        var movieTitle = document.getElementById('movie-title');
+        
+        // Mettre à jour dynamiquement le titre de l'onglet avec le titre du film
+        document.title = movieTitle.textContent; // Assure-toi que le texte est récupéré depuis l'élément HTML
+        
+        // Afficher le titre pendant 10 secondes à chaque visite
+        movieTitle.style.display = 'block';
+        movieTitle.style.opacity = '1';
+        
+        setTimeout(function() {
+            movieTitle.style.opacity = '0';
+            setTimeout(function() {
+                movieTitle.style.display = 'none';
+            }, 300);
+        }, 10000);
     </script>
 </body>
 </html>
