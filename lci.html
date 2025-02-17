@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -90,12 +91,13 @@
         <button class="play-button" id="playButton"></button>
         <!-- Vidéo cachée par défaut -->
         <video id="video" controls>
-            Votre navigateur ne supporte pas le format vidéo.
+            <source src="https://iptv1.french-live.lol:443/live/70013B23F3440093B75C4C8CF5C5C84D/209.m3u8" type="application/x-mpegURL">
+            Votre navigateur ne supporte pas le format vidéo HLS.
         </video>
     </div>
 
-    <!-- Inclusion de la bibliothèque dash.js -->
-    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+    <!-- Inclusion de la bibliothèque hls.js -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
     <script>
         // Récupérer le bouton et la vidéo
@@ -133,34 +135,50 @@
             goFullScreen();
         });
 
-        // Charger la vidéo MPD avec dash.js
-        var url = 'https://live-lci-das.cdn-0.diff.tf1.fr/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaXAiOiI4OS4xNTYuMjAyLjUyIiwiY21jZCI6IiIsImV4cCI6MTczNzc2MjM2MywiZ2lkIjoiMDZmY2FmNDg0OGJjNDEzNWExYTcyMTAxYTk3ZjZiYWEiLCJpYXQiOjE3Mzc3NDc5NjMsImlzcyI6ImRlbGl2ZXJ5IiwibWF4YiI6MCwic3RlbSI6Ii9vdXQvdjEvNzU3MDg4ZjdmZGYwNDFmZmEyMTQ5NGY3NWQyN2M2Y2UiLCJzdWIiOiIwNmZjYWY0ODQ4YmM0MTM1YTFhNzIxMDFhOTdmNmJhYSJ9.Wt949bU0GOM7Pz_YzfycrN6Df5l9RH-Bzddhqn9-Hrg/out/v1/757088f7fdf041ffa21494f75d27c6ce/index.mpd';
-
-        if (dashjs.SupportsMediaSource()) {
-            var player = dashjs.MediaPlayer().create();
-            player.initialize(video, url, true);
+        // Vérifie si Hls.js est supporté par le navigateur
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource('https://iptv1.french-live.lol:443/live/70013B23F3440093B75C4C8CF5C5C84D/209.m3u8');
+            hls.attachMedia(video);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = 'https://iptv1.french-live.lol:443/live/70013B23F3440093B75C4C8CF5C5C84D/209.m3u8';
         } else {
-            alert("Votre navigateur ne supporte pas le format DASH.");
+            alert("Votre navigateur ne supporte pas HLS.");
         }
 
-        // Fonction pour quitter le mode plein écran et rediriger
-        function checkFullScreenExit() {
-            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
-                // L'utilisateur a quitté le mode plein écran, rediriger vers https://iptv01.netlify.app/tv
-                window.location.href = 'https://iptv01.netlify.app/tv';
+        // Ajouter un événement pour la sortie du plein écran
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                // Lorsque l'utilisateur sort du plein écran
+                console.log("Sortie du plein écran");
+
+                // Rediriger vers la page d'accueil
+                window.location.href = "tv.html";  // Remplacez "index.html" par votre page d'accueil
             }
-        }
-
-        // Écouteur d'événement pour détecter la sortie du mode plein écran
-        document.addEventListener('fullscreenchange', checkFullScreenExit);
-        document.addEventListener('webkitfullscreenchange', checkFullScreenExit);
-        document.addEventListener('mozfullscreenchange', checkFullScreenExit);
-        document.addEventListener('msfullscreenchange', checkFullScreenExit);
-
-        // Rediriger si la vidéo est terminée
-        video.addEventListener('ended', function() {
-            window.location.href = 'https://iptv01.netlify.app/tv';
         });
+
+        // Gérer les autres préfixes de navigateur pour la sortie du plein écran
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!document.webkitFullscreenElement) {
+                console.log("Sortie du plein écran (webkit)");
+                window.location.href = "tv.html"; // Rediriger vers la page d'accueil
+            }
+        });
+
+        document.addEventListener('mozfullscreenchange', function() {
+            if (!document.mozFullScreenElement) {
+                console.log("Sortie du plein écran (moz)");
+                window.location.href = "tv.html"; // Rediriger vers la page d'accueil
+            }
+        });
+
+        document.addEventListener('msfullscreenchange', function() {
+            if (!document.msFullscreenElement) {
+                console.log("Sortie du plein écran (ms)");
+                window.location.href = "tv.html"; // Rediriger vers la page d'accueil
+            }
+        });
+
     </script>
 
 </body>
