@@ -79,7 +79,17 @@
                     if (currentProgram) {
                         document.getElementById("movie-title").textContent = `TF1 - ${currentProgram.name}`;
                         document.title = `TF1 - ${currentProgram.name}`;
-                        document.getElementById("player").innerHTML = `<img src="${currentProgram.icon}" style="width:100%; height:100%; object-fit:cover;">`;
+                        
+                        var player = new Playerjs({
+                            id: "player",
+                            file: "https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/tf1plus/tf1.m3u8",
+                            poster: currentProgram.icon,
+                            autoplay: 0,
+                            subtitle: "",
+                            default_subtitle: "Désactiver",
+                            rename_audio: {"fra": "Français","mul":"Multilingue" ,"sme" :"Sourds et Malentendants"},
+                            default_audio: "Français"
+                        });
                     }
                 })
                 .catch(error => console.error("Erreur lors de la récupération des données :", error));
