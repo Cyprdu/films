@@ -80,25 +80,28 @@
                 { "title": "Épisode 8", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E08.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BMjk5YjdkMDYtYTBiOC00NzE0LTgxOTktOGIwZTI5NmY2MDhlXkEyXkFqcGc@._V1_QL75_UY563_CR33,0,1000,563_.jpg", "skip": "90" },
                 { "title": "Épisode 9", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E09.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BNmE4NjMwZTktMmRjMy00MGY5LTgxYWUtNzQzMTBhYzc5ZTg1XkEyXkFqcGc@._V1_QL75_UX1000_CR0,0,1000,563_.jpg", "skip": "100" },
                 { "title": "Épisode 10", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E010.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BNjRmMGJiMTYtMjhhMy00MDk2LTlhMmEtZTk2MTMxZDcwMzE1XkEyXkFqcGc@._V1_QL75_UX1000_CR0,0,1000,563_.jpg", "skip": "105" }
-            ]},
-
-            { "title": "Partie 3", "folder": [
-                { "title": "Épisode 1", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E01.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BN2JjNzZlZmQtNmNmOC00NDQ5LTkwOGUtZDExNDJhYTU5MTFmXkEyXkFqcGc@._V1_QL75_UX1000_CR0,52,1000,563_.jpg", "skip": "95" },
-                { "title": "Épisode 2", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E02.mp4", "poster": "https://www.programme.tv/imgre/fit/http.3A.2F.2Fprmd.2Etmsimg.2Ecom.2Fassets.2Fp25826522_e_h2_aa.2Ejpg/1260x710/quality/80/lupin.jpg", "skip": "90" },
-                { "title": "Épisode 3", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E03.mp4", "poster": "https://www.programme.tv/imgre/fit/http.3A.2F.2Fprmd.2Etmsimg.2Ecom.2Fassets.2Fp25826602_e_h2_aa.2Ejpg/630x355/quality/80/lupin.jpg", "skip": "100" },
-                { "title": "Épisode 4", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E04.mp4", "poster": "https://www.programme.tv/imgre/fit/http.3A.2F.2Fprmd.2Etmsimg.2Ecom.2Fassets.2Fp25826622_e_h2_aa.2Ejpg/630x355/quality/80/lupin.jpg", "skip": "90" },
-                { "title": "Épisode 5", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E05.mp4", "poster": "https://www.programme.tv/imgre/fit/http.3A.2F.2Fprmd.2Etmsimg.2Ecom.2Fassets.2Fp25826660_e_h2_aa.2Ejpg/630x355/quality/80/lupin.jpg", "skip": "85" },
-                { "title": "Épisode 6", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E06.mp4", "poster": "https://www.programme.tv/imgre/fit/http.3A.2F.2Fprmd.2Etmsimg.2Ecom.2Fassets.2Fp25826701_e_h2_aa.2Ejpg/630x355/quality/80/lupin.jpg", "skip": "95" },
-                { "title": "Épisode 7", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E07.mp4", "poster": "https://www.programme.tv/imgre/fit/http.3A.2F.2Fprmd.2Etmsimg.2Ecom.2Fassets.2Fp25826717_e_h2_aa.2Ejpg/630x355/quality/80/lupin.jpg", "skip": "100" }
             ]}
         ];
 
+        // Vérifier si l'utilisateur a déjà vu un épisode
+        var lastEpisode = localStorage.getItem('lastEpisode');
+        
+        // Si aucun épisode n'est sauvegardé (première visite), commencer par le premier épisode
+        if (!lastEpisode) {
+            lastEpisode = 0;  // L'indice de l'épisode 1
+        }
+
+        // Définir le fichier du lecteur en fonction de l'épisode sauvegardé
         var player = new Playerjs({
             id: "player",
-            file: playlist,
-            autoplay: 1
+            file: playlist[0].folder[lastEpisode].file,
+            autoplay: 1,
+            onfinish: function() {
+                // Sauvegarder l'épisode courant une fois qu'il est fini
+                localStorage.setItem('lastEpisode', lastEpisode + 1); // L'épisode suivant
+            }
         });
-    
+
         var movieTitle = document.getElementById('movie-title');
         document.title = movieTitle.textContent;
         movieTitle.style.display = 'block';
