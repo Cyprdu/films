@@ -1,0 +1,135 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur en plein écran</title>
+    <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
+    <script src="playerjsseries.js" type="text/javascript"></script>
+    <style>
+        @font-face {
+            font-family: 'NetflixSans';
+            src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+        #player-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+        #back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        #movie-title {
+            position: absolute;
+            top: 15px;
+            left: 70px;
+            font-size: 24px;
+            color: white;
+            font-family: 'NetflixSans', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()">
+        <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
+    </a>
+    
+    <div id="movie-title">Lupin</div>
+    
+    <div id="player-container">
+        <div id="player"></div>
+    </div>
+
+    <script>
+        var playlist = [
+            { "title": "Saison 1", "folder": [
+                { "title": "Squid Game : Saison 1 - Épisode 1 : Un, deux, trois, soleil", "file": "https://cineshow.xyz/series/Squid-Game/S01/Squid-Game-S01-E01.mp4", "poster": "https://image.tmdb.org/t/p/original/vMFJS9LIUUAmQ1thq4vJ7iHKwRz.jpg", "skip": "90", "id": "S01E01" },
+                { "title": "Squid Game : Saison 1 - Épisode 2 : Enfer", "file": "https://cineshow.xyz/series/Squid-Game/S01/Squid-Game-S01-E02.mp4", "poster": "https://image.tmdb.org/t/p/original/uacNwki3PqXEFk9Pal9Ng5NwwAI.jpg", "skip": "85", "id": "S01E02" },
+                { "title": "Squid Game : Saison 1 - Épisode 3 : L'homme au parapluie", "file": "https://cineshow.xyz/series/Squid-Game/S01/Squid-Game-S01-E03.mp4", "poster": "https://image.tmdb.org/t/p/original/xNtgrNEsMXvmRQQtcFuJdbXOjmP.jpg", "skip": "100", "id": "S01E03" },
+                { "title": "Squid Game : Saison 1 - Épisode 4 : L'équipe avant tout", "file": "https://cineshow.xyz/series/Squid-Game/S01/Squid-Game-S01-E04.mp4", "poster": "https://image.tmdb.org/t/p/original/9cUGOdLN4gmnf3b9ILArnJsJI8Q.jpg", "skip": "95", "id": "S01E04" },
+                { "title": "Squid Game : Saison 1 - Épisode 5 : Un monde juste", "file": "https://cineshow.xyz/series/Squid-Game/S01/Squid-Game-S01-E05.mp4", "poster": "https://image.tmdb.org/t/p/original/2pE9f6drlF7y9rwUw6dh1w6jF5M.jpg", "skip": "90", "id": "S01E05" },
+                { "title": "Squid Game : Saison 1 - Épisode 6 : Gganbu", "file": "https://cineshow.xyz/series/Squid-Game/S01/Squid-Game-S01-E06.mp4", "poster": "https://image.tmdb.org/t/p/original/cohCCQzTe2ncdQczJDUsO0vzxPR.jpg", "skip": "100", "id": "S01E06" },
+                { "title": "Squid Game: Saison 1 - Épisode 7 : VIP", "file": "https://cineshow.xyz/series/Squid-Game/S01/Squid-Game-S01-E07.mp4", "poster": "https://image.tmdb.org/t/p/original/4pVfv4HaM5QpFJTHm19p2UI0StN.jpg", "skip": "95", "id": "S01E07" },
+                { "title": "Squid Game : Saison 1 - Épisode 8 : Leader", "file": "https://cineshow.xyz/series/Squid-Game/S01/Squid-Game-S01-E08.mp4", "poster": "https://image.tmdb.org/t/p/original/lOgFVmykN9qlpAoiBSIV2lu7XCS.jpg", "skip": "90", "id": "S01E08" },
+                { "title": "Squid Game : Saison 1 - Épisode 9 : Jour de chance", "file": "https://cineshow.xyz/series/Squid-Game/S01/Squid-Game-S01-E09.mp4", "poster": "https://image.tmdb.org/t/p/original/sKeQbHeEUQLyoSdopa0QXm604cz.jpg", "skip": "100", "id": "S01E09" },
+                
+            ]},
+          
+            { "title": "Saison 2", "folder": [
+                { "title": "Squid Game : Saison 2 - Épisode 1 : Du pain et des jeux de hasard", "file": "https://cineshow.xyz/series/Squid-Game/S02/Squid-Game-S02-E01.mp4", "poster": "https://image.tmdb.org/t/p/original/fmo7pOmLThRpUEKuMXnnpy6g6DU.jpg", "skip": "95", "id": "S02E01" },
+                { "title": "Squid Game : Saison 2 - Épisode 2 : La fête d'Halloween", "file": "https://cineshow.xyz/series/Squid-Game/S02/Squid-Game-S02-E02.mp4", "poster": "https://image.tmdb.org/t/p/original/qtAhq9RZnVRqooQfLW7JZOEzrbS.jpg", "skip": "90", "id": "S02E02" },
+                { "title": "Squid Game : Saison 2 - Épisode 3 : 001", "file": "https://cineshow.xyz/series/Squid-Game/S02/Squid-Game-S02-E03.mp4", "poster": "https://media.themoviedb.org/t/p/w454_and_h254_bestv2/yL7phVQmwbBr0IVrDnqsNiPrpwQ.jpg", "skip": "100", "id": "S02E03" },
+                { "title": "Squid Game : Saison 2 - Épisode 4 : Six jambes", "file": "https://cineshow.xyz/series/Squid-Game/S02/Squid-Game-S02-E04.mp4", "poster": "https://image.tmdb.org/t/p/original/gbtaPIZeFwViB25zigpU42UALEE.jpg", "skip": "90", "id": "S02E04" },
+                { "title": "Squid Game : Saison 2 - Épisode 5 : Un jeu de plus", "file": "https://cineshow.xyz/series/Squid-Game/S02/Squid-Game-S02-E05.mp4", "poster": "https://media.themoviedb.org/t/p/w454_and_h254_bestv2/575R0zTaCUtmLjLSsBp3hLl1DQn.jpg", "skip": "85", "id": "S02E05" },
+                { "title": "Squid Game : Saison 2 - Épisode 6 : O ﻿ X", "file": "https://cineshow.xyz/series/Squid-Game/S02/Squid-Game-S02-E06.mp4", "poster": "https://media.themoviedb.org/t/p/w454_and_h254_bestv2/jlzRf80aoGnKrEcREmsFA5WvzAM.jpg", "skip": "95", "id": "S02E06" },
+                { "title": "Squid Game : Saison 2 - Épisode 7 : Amis ou ennemis", "file": "https://cineshow.xyz/series/Squid-Game/S02/Squid-Game-S02-E07.mp4", "poster": "https://media.themoviedb.org/t/p/w454_and_h254_bestv2/tO8hO3jWp4JveXmBbPikd4IQbss.jpg", "skip": "100", "id": "S02E07" },
+                
+
+            ]},
+
+
+
+            
+        ];
+
+        // Vérifier si l'épisode précédent est stocké dans localStorage
+        var currentEpisode = localStorage.getItem('currentEpisode');
+
+        if (!currentEpisode) {
+            // Si aucun épisode n'est stocké, démarrer par le premier épisode
+            currentEpisode = "S01E01";
+        }
+
+        var player = new Playerjs({
+            id: "player",
+            file: playlist,
+            plstart: currentEpisode,  // Démarrer avec l'épisode spécifié
+            autoplay: 1
+        });
+
+        // Mémoriser l'épisode actuel une fois qu'il commence à jouer
+        player.on('ended', function() {
+            var currentFile = player.api('file');
+            localStorage.setItem('currentEpisode', currentFile.id);  // Sauvegarder l'épisode actuel
+        });
+    
+        var movieTitle = document.getElementById('movie-title');
+        document.title = movieTitle.textContent;
+        movieTitle.style.display = 'block';
+        movieTitle.style.opacity = '1';
+    
+        setTimeout(function() {
+            movieTitle.style.opacity = '0';
+            setTimeout(function() {
+                movieTitle.style.display = 'none';
+            }, 300);
+        }, 10000);
+    </script>
+</body>
+</html>
