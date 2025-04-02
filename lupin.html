@@ -65,7 +65,6 @@
     </div>
 
     <script>
-        // Liste des épisodes par saison
         var playlist = [
             { "title": "Partie 1", "folder": [
                 { "title": "Épisode 1", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E01.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BMGFkOWExZGYtNDI3MC00NGVkLThhOTAtNmQ3YmQyY2M0NzljXkEyXkFqcGc@._V1_QL75_UX1000_CR0,0,1000,563_.jpg", "skip": "90" },
@@ -94,35 +93,17 @@
             ]}
         ];
 
-
-        // Vérifier si l'utilisateur a déjà regardé un épisode
-        var lastEpisode = localStorage.getItem('lastEpisode');
-
-        // Si aucun épisode n'est enregistré (première visite), commencer par le premier épisode
-        if (!lastEpisode) {
-            lastEpisode = 0;  // L'indice de l'épisode 1
-        }
-
-        // Sélectionner le fichier vidéo de l'épisode actuel
         var player = new Playerjs({
             id: "player",
-            file: playlist[0].folder[lastEpisode].file,
-            autoplay: 1,
-            onfinish: function() {
-                // Après la fin de l'épisode, enregistrer l'épisode suivant
-                var nextEpisode = lastEpisode + 1;
-                if (nextEpisode < playlist[0].folder.length) {
-                    localStorage.setItem('lastEpisode', nextEpisode); // Sauvegarder l'épisode suivant
-                }
-            }
+            file: playlist,
+            autoplay: 1
         });
-
-        // Affichage du titre de la série
+    
         var movieTitle = document.getElementById('movie-title');
         document.title = movieTitle.textContent;
         movieTitle.style.display = 'block';
         movieTitle.style.opacity = '1';
-
+    
         setTimeout(function() {
             movieTitle.style.opacity = '0';
             setTimeout(function() {
