@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur en plein écran</title>
+    <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
+    <script src="playerjsseries.js" type="text/javascript"></script>
+    <style>
+        @font-face {
+            font-family: 'NetflixSans';
+            src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+        #player-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+        #back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        #movie-title {
+            position: absolute;
+            top: 15px;
+            left: 70px;
+            font-size: 24px;
+            color: white;
+            font-family: 'NetflixSans', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()">
+        <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
+    </a>
+    
+    <div id="movie-title">Lupin</div>
+    
+    <div id="player-container">
+        <div id="player"></div>
+    </div>
+
+    <script>
+        var playlist = [
+            { "title": "Partie 1", "folder": [
+                { "title": "Épisode 1", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E01.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BMGFkOWExZGYtNDI3MC00NGVkLThhOTAtNmQ3YmQyY2M0NzljXkEyXkFqcGc@._V1_QL75_UX1000_CR0,0,1000,563_.jpg", "skip": "90" },
+                { "title": "Épisode 2", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E02.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BODdkNTQyMmUtOGY1Yi00MWE0LWFkMjktMmE5M2Q5NjdkODQ1XkEyXkFqcGc@._V1_QL75_UX1000_CR0,0,1000,563_.jpg", "skip": "85" },
+                { "title": "Épisode 3", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E03.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BNzBhYTc2ZmItODQzZC00NzBlLTk3NzYtMzMwZDliYjYxYWE5XkEyXkFqcGc@._V1_QL75_UX1000_CR0,0,1000,563_.jpg", "skip": "100" },
+                { "title": "Épisode 4", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E04.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BODliYjUwNmItMjI0MS00MTZhLTljMWItMTQwZGVjZjU0NzU5XkEyXkFqcGc@._V1_QL75_UX1000_CR0,0,1000,563_.jpg", "skip": "95" },
+                { "title": "Épisode 5", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E05.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BZmE0NDMwMDAtNzc3NS00YWE4LTg4ZjgtYTgxYjNhNWJhM2QwXkEyXkFqcGc@._V1_QL75_UX1000_CR0,0,1000,563_.jpg", "skip": "90" }
+            ]},
+
+            { "title": "Partie 2", "folder": [
+                { "title": "Épisode 6", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E06.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BNWQ0NGM2YmYtODI4MC00MTgwLWExODQtNmNhMTVjNzM4MmRlXkEyXkFqcGc@._V1_QL75_UX1000_CR0,0,1000,563_.jpg", "skip": "100" },
+                { "title": "Épisode 7", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E07.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BYjQ2YTNkNWEtZWQxNC00Zjk2LTgxYmUtYWEyZDViMDc4MmVmXkEyXkFqcGc@._V1_QL75_UX1000_CR0,0,1000,563_.jpg", "skip": "95" },
+                { "title": "Épisode 8", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E08.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BMjk5YjdkMDYtYTBiOC00NzE0LTgxOTktOGIwZTI5NmY2MDhlXkEyXkFqcGc@._V1_QL75_UY563_CR33,0,1000,563_.jpg", "skip": "90" },
+                { "title": "Épisode 9", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E09.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BNmE4NjMwZTktMmRjMy00MGY5LTgxYWUtNzQzMTBhYzc5ZTg1XkEyXkFqcGc@._V1_QL75_UX1000_CR0,0,1000,563_.jpg", "skip": "100" },
+                { "title": "Épisode 10", "file": "https://cineshow.xyz/series/Lupin/S01/Lupin-S01-E010.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BNjRmMGJiMTYtMjhhMy00MDk2LTlhMmEtZTk2MTMxZDcwMzE1XkEyXkFqcGc@._V1_QL75_UX1000_CR0,0,1000,563_.jpg", "skip": "105" }
+            ]},
+
+            { "title": "Partie 3", "folder": [
+                { "title": "Épisode 1", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E01.mp4", "poster": "https://m.media-amazon.com/images/M/MV5BN2JjNzZlZmQtNmNmOC00NDQ5LTkwOGUtZDExNDJhYTU5MTFmXkEyXkFqcGc@._V1_QL75_UX1000_CR0,52,1000,563_.jpg", "skip": "95" },
+                { "title": "Épisode 2", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E02.mp4", "poster": "https://www.programme.tv/imgre/fit/http.3A.2F.2Fprmd.2Etmsimg.2Ecom.2Fassets.2Fp25826522_e_h2_aa.2Ejpg/1260x710/quality/80/lupin.jpg", "skip": "90" },
+                { "title": "Épisode 3", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E03.mp4", "poster": "https://www.programme.tv/imgre/fit/http.3A.2F.2Fprmd.2Etmsimg.2Ecom.2Fassets.2Fp25826602_e_h2_aa.2Ejpg/630x355/quality/80/lupin.jpg", "skip": "100" },
+                { "title": "Épisode 4", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E04.mp4", "poster": "https://www.programme.tv/imgre/fit/http.3A.2F.2Fprmd.2Etmsimg.2Ecom.2Fassets.2Fp25826622_e_h2_aa.2Ejpg/630x355/quality/80/lupin.jpg", "skip": "90" },
+                { "title": "Épisode 5", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E05.mp4", "poster": "https://www.programme.tv/imgre/fit/http.3A.2F.2Fprmd.2Etmsimg.2Ecom.2Fassets.2Fp25826660_e_h2_aa.2Ejpg/630x355/quality/80/lupin.jpg", "skip": "85" },
+                { "title": "Épisode 6", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E06.mp4", "poster": "https://www.programme.tv/imgre/fit/http.3A.2F.2Fprmd.2Etmsimg.2Ecom.2Fassets.2Fp25826701_e_h2_aa.2Ejpg/630x355/quality/80/lupin.jpg", "skip": "95" },
+                { "title": "Épisode 7", "file": "https://cineshow.xyz/series/Lupin/S02/Lupin-S02-E07.mp4", "poster": "https://www.programme.tv/imgre/fit/http.3A.2F.2Fprmd.2Etmsimg.2Ecom.2Fassets.2Fp25826717_e_h2_aa.2Ejpg/630x355/quality/80/lupin.jpg", "skip": "100" }
+            ]}
+        ];
+
+        var player = new Playerjs({
+            id: "player",
+            file: playlist,
+            autoplay: 1
+        });
+    
+        var movieTitle = document.getElementById('movie-title');
+        document.title = movieTitle.textContent;
+        movieTitle.style.display = 'block';
+        movieTitle.style.opacity = '1';
+    
+        setTimeout(function() {
+            movieTitle.style.opacity = '0';
+            setTimeout(function() {
+                movieTitle.style.display = 'none';
+            }, 300);
+        }, 10000);
+    </script>
+</body>
+</html>
