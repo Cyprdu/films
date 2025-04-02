@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur en plein écran</title>
+    <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
+    <script src="playerjsseries.js" type="text/javascript"></script>
+    <style>
+        @font-face {
+            font-family: 'NetflixSans';
+            src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+        #player-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+        #back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        #movie-title {
+            position: absolute;
+            top: 15px;
+            left: 70px;
+            font-size: 24px;
+            color: white;
+            font-family: 'NetflixSans', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()">
+        <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
+    </a>
+    
+    <div id="movie-title">Dune: Prophecy</div>
+    
+    <div id="player-container">
+        <div id="player"></div>
+    </div>
+
+    <script>
+        var playlist = [
+            { "title": "Saison 1", "folder": [
+                { "title": "Épisode 1", "file": "https://dl34.topstrime.online/hls2/05/00865/1lqfrlcdt9wp_x/index-v1-a1.m3u8?t=MziwUnwYMnb24-sFeH3tcWY8cJfkjRuj_XpaMV_gAmI&s=1743604269&e=43200&f=4328326&i=0.0&sp=0&fr=1lqfrlcdt9wp&cb_m5bo97atq0r=1743604270959", "poster": "https://image.tmdb.org/t/p/original/lBoHzOgft2QfpjkVVvZCqeM4ttT.jpg", "skip": "90", "id": "S01E01" },
+                { "title": "Épisode 2", "file": "https://dl30.topstrime.online/hls2/08/00905/n10kn61caxuf_x/index-a1.m3u8?t=hiiBTNJ6WND6ksbjj6LXs41Em99hM8hMM2YhxjBHYhI&s=1743604386&e=43200&f=4525188&i=0.0&sp=0&fr=n10kn61caxuf&cb_eeyivqxelca=1743604388525", "poster": "https://image.tmdb.org/t/p/original/lBoHzOgft2QfpjkVVvZCqeM4ttT.jpg", "skip": "85", "id": "S01E02" },
+                { "title": "Épisode 3", "file": "https://dl34.topstrime.online/hls2/08/00912/,4k1rmhfwlktz_x,lang/fre/4k1rmhfwlktz_fre,.urlset/master.m3u8?t=PoZEg94ZjebE4RqvFkPHZZM1LHiJVPGqAuiCVZsOz8A&s=1743604480&e=43200&f=4562266&i=0.0&sp=0&fr=4k1rmhfwlktz&cb_71g6lnlnmrw=1743604481192", "poster": "https://image.tmdb.org/t/p/original/lBoHzOgft2QfpjkVVvZCqeM4ttT.jpg", "skip": "100", "id": "S01E03" },
+                { "title": "Épisode 4", "file": "https://dl34.topstrime.online/hls2/45/00978/,brdcr8jplk3n_x,lang/eng/brdcr8jplk3n_eng,lang/fre/brdcr8jplk3n_fre,.urlset/master.m3u8?t=CsLJRZpCadRpI7GWV7rx6YI7G-DhEOjRIm8Mxf5LLls&s=1743604496&e=43200&f=4891601&i=0.0&sp=0&fr=brdcr8jplk3n&cb_vc7fbkonhqj=1743604498388", "poster": "https://image.tmdb.org/t/p/original/lBoHzOgft2QfpjkVVvZCqeM4ttT.jpg", "skip": "95", "id": "S01E04" },
+                { "title": "Épisode 5", "file": "https://dl30.topstrime.online/hls2/06/00933/lang/eng/0y33hbwhc2e3_eng/index.m3u8?t=JfYNrgQWdnS0lT8jhBCHhGB50v3OExut5KbRnIymOqE&s=1743604521&e=43200&f=4665602&i=0.0&sp=0&fr=0y33hbwhc2e3&cb_6azczz15djh=1743604522848", "poster": "https://image.tmdb.org/t/p/original/lBoHzOgft2QfpjkVVvZCqeM4ttT.jpg", "skip": "90", "id": "S01E05" }
+                { "title": "Épisode 6", "file": "https://dl30.topstrime.online/hls2/09/00978/b0nb0rgbvtsf_x/index-a1.m3u8?t=TPDNaSk8XuVgEFoew4OGMLQ-tE5t53BJuM7AfYA-QKA&s=1743604578&e=43200&f=4891616&i=0.0&sp=0&fr=b0nb0rgbvtsf&cb_bpm7nhd25u9=1743604579334", "poster": "https://image.tmdb.org/t/p/original/lBoHzOgft2QfpjkVVvZCqeM4ttT.jpg", "skip": "100", "id": "S01E06" },
+                
+        ];
+
+        // Vérifier si l'épisode précédent est stocké dans localStorage
+        var currentEpisode = localStorage.getItem('currentEpisode');
+
+        if (!currentEpisode) {
+            // Si aucun épisode n'est stocké, démarrer par le premier épisode
+            currentEpisode = "S01E01";
+        }
+
+        var player = new Playerjs({
+            id: "player",
+            file: playlist,
+            plstart: currentEpisode,  // Démarrer avec l'épisode spécifié
+            autoplay: 1
+        });
+
+        // Mémoriser l'épisode actuel une fois qu'il commence à jouer
+        player.on('ended', function() {
+            var currentFile = player.api('file');
+            localStorage.setItem('currentEpisode', currentFile.id);  // Sauvegarder l'épisode actuel
+        });
+    
+        var movieTitle = document.getElementById('movie-title');
+        document.title = movieTitle.textContent;
+        movieTitle.style.display = 'block';
+        movieTitle.style.opacity = '1';
+    
+        setTimeout(function() {
+            movieTitle.style.opacity = '0';
+            setTimeout(function() {
+                movieTitle.style.display = 'none';
+            }, 300);
+        }, 10000);
+    </script>
+</body>
+</html>
