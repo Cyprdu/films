@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur en plein écran</title>
+    <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
+    <script src="playerjsseries.js" type="text/javascript"></script>
+    <style>
+        @font-face {
+            font-family: 'NetflixSans';
+            src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+        #player-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+        #back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        #movie-title {
+            position: absolute;
+            top: 15px;
+            left: 70px;
+            font-size: 24px;
+            color: white;
+            font-family: 'NetflixSans', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()">
+        <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
+    </a>
+    
+    <div id="movie-title">Le Flambeau, les aventuriers de Chupacabra</div>
+    
+    <div id="player-container">
+        <div id="player"></div>
+    </div>
+
+    <script>
+        var playlist = [
+            { "title": "Partie 1", "folder": [
+                { "title": "Le Flambeau, les aventuriers de Chupacabra : Épisode 1", "file": "https://cineshow.xyz/series/Le-Flambeau/S01/Le-Flambeau-S01-E01.mp4", "poster": "https://image.tmdb.org/t/p/original/aMr5BJRRY1A0PqAYRW7Ot2ccdea.jpg", "skip": "90", "id": "S01E01" },
+                { "title": "Le Flambeau, les aventuriers de Chupacabra : Épisode 2", "file": "https://cineshow.xyz/series/Le-Flambeau/S01/Le-Flambeau-S01-E02.mp4", "poster": "https://image.tmdb.org/t/p/original/da7tqx94aBPFHXpK9rm2in1Siev.jpg", "skip": "85", "id": "S01E02" },
+                { "title": "Le Flambeau, les aventuriers de Chupacabra : Épisode 3", "file": "https://cineshow.xyz/series/Le-Flambeau/S01/Le-Flambeau-S01-E03.mp4", "poster": "https://image.tmdb.org/t/p/original/y18Rmw0X7MfDUe6ZLYFbUAaQYQU.jpg", "skip": "100", "id": "S01E03" },
+                { "title": "Le Flambeau, les aventuriers de Chupacabra : Épisode 4", "file": "https://cineshow.xyz/series/Le-Flambeau/S01/Le-Flambeau-S01-E04.mp4", "poster": "https://image.tmdb.org/t/p/original/pD8lF2jYhJKWNTlxnXGxXivRVU6.jpg", "skip": "95", "id": "S01E04" },
+                { "title": "Le Flambeau, les aventuriers de Chupacabra : Épisode 5", "file": "https://cineshow.xyz/series/Le-Flambeau/S01/Le-Flambeau-S01-E05.mp4", "poster": "https://image.tmdb.org/t/p/original/1orTMqjJIJwhfCGotwqIT6LSzuR.jpg", "skip": "90", "id": "S01E05" }
+                { "title": "Le Flambeau, les aventuriers de Chupacabra : Épisode 6", "file": "https://cineshow.xyz/series/Le-Flambeau/S01/Le-Flambeau-S01-E06.mp4", "poster": "https://image.tmdb.org/t/p/original/23CdxlXsfWggEXEt4cOfbP4Q0LH.jpg", "skip": "100", "id": "S01E06" },
+                { "title": "Le Flambeau, les aventuriers de Chupacabra : Épisode 7", "file": "https://cineshow.xyz/series/Le-Flambeau/S01/Le-Flambeau-S01-E07.mp4", "poster": "https://image.tmdb.org/t/p/original/dopnAUEwOkGNuK4iu0V3HDpWc1t.jpg", "skip": "95", "id": "S01E07" },
+                { "title": "Le Flambeau, les aventuriers de Chupacabra : Épisode 8", "file": "https://cineshow.xyz/series/Le-Flambeau/S01/Le-Flambeau-S01-E08.mp4", "poster": "https://image.tmdb.org/t/p/original/n0r7RR8aEbBBEZrg5vHpJF52EYO.jpg", "skip": "90", "id": "S01E08" },
+                { "title": "Le Flambeau, les aventuriers de Chupacabra : Épisode 9", "file": "https://cineshow.xyz/series/Le-Flambeau/S01/Le-Flambeau-S01-E09.mp4", "poster": "https://image.tmdb.org/t/p/original/1eEBRmOORDEClXz7bqadev6fIJ2.jpg", "skip": "100", "id": "S01E09" },
+            ]}
+        ];
+
+        // Vérifier si l'épisode précédent est stocké dans localStorage
+        var currentEpisode = localStorage.getItem('currentEpisode');
+
+        if (!currentEpisode) {
+            // Si aucun épisode n'est stocké, démarrer par le premier épisode
+            currentEpisode = "S01E01";
+        }
+
+        var player = new Playerjs({
+            id: "player",
+            file: playlist,
+            plstart: currentEpisode,  // Démarrer avec l'épisode spécifié
+            autoplay: 1
+        });
+
+        // Mémoriser l'épisode actuel une fois qu'il commence à jouer
+        player.on('ended', function() {
+            var currentFile = player.api('file');
+            localStorage.setItem('currentEpisode', currentFile.id);  // Sauvegarder l'épisode actuel
+        });
+    
+        var movieTitle = document.getElementById('movie-title');
+        document.title = movieTitle.textContent;
+        movieTitle.style.display = 'block';
+        movieTitle.style.opacity = '1';
+    
+        setTimeout(function() {
+            movieTitle.style.opacity = '0';
+            setTimeout(function() {
+                movieTitle.style.display = 'none';
+            }, 300);
+        }, 10000);
+    </script>
+</body>
+</html>
