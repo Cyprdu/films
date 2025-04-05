@@ -1,42 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lecteur Chromecast</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecteur Chromecast (Lite)</title>
 
-  <!-- Icône Netflix -->
-  <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png" />
+  <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
 
-  <!-- Google Cast Sender SDK -->
-  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+  <!-- Cast SDK uniquement (sans CastFramework) -->
+  <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
 
-  <!-- PlayerJS (lecture locale) -->
+  <!-- PlayerJS -->
   <script src="playerjs.js" type="text/javascript"></script>
 
-  <!-- Styles -->
   <style>
-    @font-face {
-      font-family: 'NetflixSans';
-      src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
-    }
-
     html, body {
       margin: 0;
       padding: 0;
+      background: black;
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: black;
-      font-family: 'NetflixSans', sans-serif;
+      font-family: Arial, sans-serif;
     }
 
     #player-container {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
+      position: relative;
     }
 
     #player {
@@ -49,7 +40,6 @@
       top: 10px;
       left: 10px;
       width: 40px;
-      height: 40px;
       z-index: 1000;
       cursor: pointer;
     }
@@ -59,7 +49,6 @@
       top: 10px;
       right: 10px;
       width: 40px;
-      height: 40px;
       z-index: 1000;
       cursor: pointer;
     }
@@ -72,37 +61,29 @@
       font-size: 24px;
       z-index: 1000;
       text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
-      opacity: 0;
-      transition: opacity 0.3s ease;
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Bouton retour -->
   <a href="javascript:history.back()">
-    <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour" />
+    <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
   </a>
 
-  <!-- Bouton Cast personnalisé -->
-  <img id="cast-button" src="https://github.com/Cyprdu/films/blob/main/casting.png?raw=true" alt="Cast" />
+  <img id="cast-button" src="https://github.com/Cyprdu/films/blob/main/casting.png?raw=true" alt="Cast">
 
-  <!-- Titre du film -->
   <div id="movie-title">Harry Potter à l'école des sorciers (2001)</div>
 
-  <!-- Conteneur du player -->
   <div id="player-container">
     <div id="player"></div>
   </div>
 
-  <!-- Script principal -->
   <script>
     const videoURL = "https://cineshow.xyz/movies/Harry-Potter-a-l'ecole-des-sorciers.mp4";
-    const posterURL = "https://image.tmdb.org/t/p/original/lWZcuIQVc8d1hmXj3vPgYc5Fm5b.jpg";
+    const posterURL = "https://image.tmdb.org/t/p/original/hziiv14OpD73u9gAak4XDDfBKa2.jpg";
     const title = "Harry Potter à l'école des sorciers";
 
-    // Initialiser le player local avec PlayerJS
+    // Init local player
     const player = new Playerjs({
       id: "player",
       file: videoURL,
@@ -111,48 +92,54 @@
       title: title
     });
 
-    // Affichage du titre temporairement
-    const titleEl = document.getElementById('movie-title');
-    setTimeout(() => { titleEl.style.opacity = 1; }, 200);
-    setTimeout(() => { titleEl.style.opacity = 0; }, 6000);
-
-    // Initialisation de Cast Framework
+    // Cast API init
     window['__onGCastApiAvailable'] = function(isAvailable) {
       if (isAvailable) {
-        cast.framework.CastContext.getInstance().setOptions({
-          receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
-          autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
-        });
+        const sessionRequest = new chrome.cast.SessionRequest(chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID);
+        const apiConfig = new chrome.cast.ApiConfig(sessionRequest,
+          sessionListener,
+          receiverListener
+        );
+        chrome.cast.initialize(apiConfig, onInitSuccess, onError);
       }
     };
 
-    // Fonction pour caster la vidéo
-    function launchCast() {
-      const context = cast.framework.CastContext.getInstance();
-
-      context.requestSession()
-        .then(() => {
-          const session = context.getCurrentSession();
-          if (!session) return;
-
-          const mediaInfo = new chrome.cast.media.MediaInfo(videoURL, 'video/mp4');
-          mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
-          mediaInfo.metadata.title = title;
-          mediaInfo.metadata.images = [{ url: posterURL }];
-
-          const request = new chrome.cast.media.LoadRequest(mediaInfo);
-
-          session.loadMedia(request)
-            .then(() => console.log("Vidéo castée avec succès"))
-            .catch(err => console.error("Erreur lors du cast :", err));
-        })
-        .catch(err => {
-          console.error("Erreur d'initialisation Cast :", err);
-        });
+    function sessionListener(session) {
+      console.log("Session active :", session.sessionId);
     }
 
-    // Lier le clic sur le bouton cast
-    document.getElementById('cast-button').addEventListener('click', launchCast);
+    function receiverListener(e) {
+      if (e === chrome.cast.ReceiverAvailability.AVAILABLE) {
+        console.log("Chromecast disponible");
+      }
+    }
+
+    function onInitSuccess() {
+      console.log("Cast API initialisée");
+    }
+
+    function onError(err) {
+      console.error("Erreur Cast:", err);
+    }
+
+    function onRequestSessionSuccess(session) {
+      const mediaInfo = new chrome.cast.media.MediaInfo(videoURL, 'video/mp4');
+      mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
+      mediaInfo.metadata.title = title;
+      mediaInfo.metadata.images = [{ url: posterURL }];
+
+      const request = new chrome.cast.media.LoadRequest(mediaInfo);
+      session.loadMedia(request,
+        () => console.log("Vidéo castée"),
+        (err) => console.error("Erreur en castant la vidéo:", err)
+      );
+    }
+
+    function startCasting() {
+      chrome.cast.requestSession(onRequestSessionSuccess, onError);
+    }
+
+    document.getElementById('cast-button').addEventListener('click', startCasting);
   </script>
 
 </body>
