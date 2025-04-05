@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html> 
 <html lang="fr">
 <head>
@@ -47,10 +44,18 @@
             z-index: 1000;
         }
 
+        #logo-cast {
+            position: absolute;
+            top: 10px;
+            left: 60px;
+            height: 40px;
+            z-index: 1000;
+        }
+
         #movie-title {
             position: absolute;
             top: 15px;
-            left: 70px;
+            left: 110px;
             font-size: 24px;
             color: white;
             font-family: 'NetflixSans', sans-serif;
@@ -65,9 +70,11 @@
     <a href="javascript:history.back()">
         <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
     </a>
-    
+
+    <img id="logo-cast" src="https://github.com/Cyprdu/films/blob/main/casting.png?raw=true" alt="Logo Cast">
+
     <div id="movie-title">Harry Potter à l'école des sorciers (2001)</div>
-    
+
     <div id="player-container">
         <div id="player"></div>
     </div>
@@ -85,17 +92,12 @@
             title: "Harry Potter à l'école des sorciers",
         });
 
-    
-
         var movieTitle = document.getElementById('movie-title');
-        
-        // Mettre à jour dynamiquement le titre de l'onglet avec le titre du film
-        document.title = movieTitle.textContent; // Assure-toi que le texte est récupéré depuis l'élément HTML
-        
-        // Afficher le titre pendant 10 secondes à chaque visite
+        document.title = movieTitle.textContent;
+
         movieTitle.style.display = 'block';
         movieTitle.style.opacity = '1';
-        
+
         setTimeout(function() {
             movieTitle.style.opacity = '0';
             setTimeout(function() {
