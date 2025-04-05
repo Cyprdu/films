@@ -2,14 +2,19 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lecteur en plein écran</title>
-  <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png"/>
-  
-  <!-- SDK Google Cast -->
-  <script src="https://www.gstatic.com/cast/sdk/libs/sender/1.0/cast_framework.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lecteur Chromecast</title>
+
+  <!-- Icône Netflix -->
+  <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png" />
+
+  <!-- Google Cast Sender SDK -->
+  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+
+  <!-- PlayerJS (lecture locale) -->
   <script src="playerjs.js" type="text/javascript"></script>
 
+  <!-- Styles -->
   <style>
     @font-face {
       font-family: 'NetflixSans';
@@ -23,6 +28,7 @@
       height: 100%;
       overflow: hidden;
       background-color: black;
+      font-family: 'NetflixSans', sans-serif;
     }
 
     #player-container {
@@ -44,74 +50,73 @@
       left: 10px;
       width: 40px;
       height: 40px;
-      cursor: pointer;
       z-index: 1000;
+      cursor: pointer;
     }
 
-    #logo-cast {
+    #cast-button {
       position: absolute;
       top: 10px;
       right: 10px;
+      width: 40px;
       height: 40px;
-      cursor: pointer;
       z-index: 1000;
+      cursor: pointer;
     }
 
     #movie-title {
       position: absolute;
       top: 15px;
-      left: 70px;
-      font-size: 24px;
+      left: 60px;
       color: white;
-      font-family: 'NetflixSans', sans-serif;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      display: none;
+      font-size: 24px;
       z-index: 1000;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+      opacity: 0;
       transition: opacity 0.3s ease;
     }
   </style>
 </head>
+
 <body>
 
+  <!-- Bouton retour -->
   <a href="javascript:history.back()">
-    <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
+    <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour" />
   </a>
 
-  <img id="logo-cast" src="https://github.com/Cyprdu/films/blob/main/casting.png?raw=true" alt="Logo Cast">
+  <!-- Bouton Cast personnalisé -->
+  <img id="cast-button" src="https://github.com/Cyprdu/films/blob/main/casting.png?raw=true" alt="Cast" />
 
+  <!-- Titre du film -->
   <div id="movie-title">Harry Potter à l'école des sorciers (2001)</div>
 
+  <!-- Conteneur du player -->
   <div id="player-container">
     <div id="player"></div>
   </div>
 
+  <!-- Script principal -->
   <script>
     const videoURL = "https://cineshow.xyz/movies/Harry-Potter-a-l'ecole-des-sorciers.mp4";
     const posterURL = "https://image.tmdb.org/t/p/original/hziiv14OpD73u9gAak4XDDfBKa2.jpg";
+    const title = "Harry Potter à l'école des sorciers";
 
-    // Lancer PlayerJS en local
+    // Initialiser le player local avec PlayerJS
     const player = new Playerjs({
       id: "player",
       file: videoURL,
       poster: posterURL,
       autoplay: 1,
-      subtitle: "",
-      default_subtitle: "",
-      rename_audio: {"French": "Français"},
-      default_audio: "Français",
-      title: "Harry Potter à l'école des sorciers"
+      title: title
     });
 
-    // Afficher le titre temporairement
-    const movieTitle = document.getElementById('movie-title');
-    movieTitle.style.display = 'block';
-    movieTitle.style.opacity = '1';
-    setTimeout(() => {
-      movieTitle.style.opacity = '0';
-      setTimeout(() => movieTitle.style.display = 'none', 300);
-    }, 10000);
+    // Affichage du titre temporairement
+    const titleEl = document.getElementById('movie-title');
+    setTimeout(() => { titleEl.style.opacity = 1; }, 200);
+    setTimeout(() => { titleEl.style.opacity = 0; }, 6000);
 
-    // Initialiser Google Cast
+    // Initialisation de Cast Framework
     window['__onGCastApiAvailable'] = function(isAvailable) {
       if (isAvailable) {
         cast.framework.CastContext.getInstance().setOptions({
@@ -122,33 +127,32 @@
     };
 
     // Fonction pour caster la vidéo
-    function castVideo() {
+    function launchCast() {
       const context = cast.framework.CastContext.getInstance();
-      const session = context.getCurrentSession();
 
-      if (session) {
-        const mediaInfo = new chrome.cast.media.MediaInfo(videoURL, 'video/mp4');
-        mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
-        mediaInfo.metadata.title = "Harry Potter à l'école des sorciers";
-        mediaInfo.metadata.images = [{ url: posterURL }];
+      context.requestSession()
+        .then(() => {
+          const session = context.getCurrentSession();
+          if (!session) return;
 
-        const request = new chrome.cast.media.LoadRequest(mediaInfo);
-        session.loadMedia(request).then(
-          () => console.log("Vidéo castée avec succès"),
-          (err) => console.error("Erreur de cast :", err)
-        );
-      } else {
-        console.log("Aucune session Cast active");
-      }
+          const mediaInfo = new chrome.cast.media.MediaInfo(videoURL, 'video/mp4');
+          mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
+          mediaInfo.metadata.title = title;
+          mediaInfo.metadata.images = [{ url: posterURL }];
+
+          const request = new chrome.cast.media.LoadRequest(mediaInfo);
+
+          session.loadMedia(request)
+            .then(() => console.log("Vidéo castée avec succès"))
+            .catch(err => console.error("Erreur lors du cast :", err));
+        })
+        .catch(err => {
+          console.error("Erreur d'initialisation Cast :", err);
+        });
     }
 
-    // Clic sur le logo = lancer cast
-    document.getElementById('logo-cast').addEventListener('click', () => {
-      const context = cast.framework.CastContext.getInstance();
-      context.requestSession()
-        .then(() => castVideo())
-        .catch(err => console.error("Erreur de session Cast :", err));
-    });
+    // Lier le clic sur le bouton cast
+    document.getElementById('cast-button').addEventListener('click', launchCast);
   </script>
 
 </body>
