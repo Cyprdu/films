@@ -1,0 +1,112 @@
+<!DOCTYPE html> 
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur en plein écran</title>
+    <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
+    <script src="playerjs.js" type="text/javascript"></script>
+
+    <style>
+        @font-face {
+            font-family: 'NetflixSans';
+            src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        #player-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+
+        #back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        #movie-title {
+            position: absolute;
+            top: 13px;
+            left: 70px;
+            font-size: 24px;
+            color: white;
+            font-family: 'NetflixSans', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()">
+        <div id="back-button">
+            <img src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour" width="50" height="50">
+        </div>
+    </a>
+    
+    <div id="movie-title">Le Comte de Monte-Cristo</div>
+    
+    <div id="player-container">
+        <div id="player"></div>
+    </div>
+
+    <script>
+        // Verrouillage de l'orientation en paysage si disponible
+        function lockOrientation() {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock("landscape").catch(function(err) {
+                    console.warn("Le verrouillage de l'orientation a échoué :", err);
+                });
+            }
+        }
+
+        // Exécuter après le chargement complet de la page
+        window.addEventListener("load", function() {
+            lockOrientation();
+        });
+
+        var player = new Playerjs({
+            id: "player",
+            file: "https://cineshow.xyz/movies/Le-Comte-de-Monte-Cristo.mp4",
+            poster: "https://image.tmdb.org/t/p/original/umSVRfRs7TRq1hNmZ0epTY72ma3.jpg",
+            autoplay: 0,
+            subtitle: "[Français Forcé]https://sous-titres.netlify.app/subtitles/cristo.vtt,[Français]https://sous-titres.netlify.app/subtitles/STFULLMonte-Cristo.vtt,[Français Malentendants]https://sous-titres.netlify.app/subtitles/SOURD.vtt,[English]https://sous-titres.netlify.app/subtitles/thecomte.vtt,[Português]https://sous-titres.netlify.app/subtitles/potugais-monte-cristo.vtt,[Arabic]https://sous-titres.netlify.app/subtitles/arabic.vtt,[Vietnamese]https://sous-titres.netlify.app/subtitles/vietnamese-monte-cristo.vtt,[Czech]https://sous-titres.netlify.app/subtitles/czech-monte-cristo.vtt,[Estonian]https://sous-titres.netlify.app/subtitles/estonian-monte-cristo.vtt,[Turkish]https://sous-titres.netlify.app/subtitles/turkish.vtt",
+            default_subtitle: "[Français Forcé]"
+        });
+
+        var movieTitle = document.getElementById('movie-title');
+        
+        document.title = movieTitle.textContent;
+
+        movieTitle.style.display = 'block';
+        movieTitle.style.opacity = '1';
+        
+        setTimeout(function() {
+            movieTitle.style.opacity = '0';
+            setTimeout(function() {
+                movieTitle.style.display = 'none';
+            }, 300);
+        }, 10000);
+    </script>
+</body>
+</html>
