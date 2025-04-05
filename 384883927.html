@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lecteur Cast (Lite)</title>
+  <title>Lecteur Chromecast (Lite)</title>
 
   <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
 
-  <!-- Cast SDK uniquement (autre bibliothèque que Cast Framework) -->
-  <script type="text/javascript" src="https://path/to/cast.js"></script>
+  <!-- Cast SDK uniquement (sans CastFramework) -->
+  <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
 
   <!-- PlayerJS -->
   <script src="playerjs.js" type="text/javascript"></script>
@@ -80,27 +80,27 @@
 
   <script>
     const videoURL = "https://cineshow.xyz/movies/Harry-Potter-a-l'ecole-des-sorciers.mp4";
-    const posterURL = "https://image.tmdb.org/t/p/original/lWZcuIQVc8d1hmXj3vPgYc5Fm5b.jpg";
+    const posterURL = "https://image.tmdb.org/t/p/original/hziiv14OpD73u9gAak4XDDfBKa2.jpg";
     const title = "Harry Potter à l'école des sorciers";
 
     // Init local player
     const player = new Playerjs({
       id: "player",
       file: videoURL,
-      poster: "https://image.tmdb.org/t/p/original/hziiv14OpD73u9gAak4XDDfBKa2.jpg",
+      poster: posterURL,
       autoplay: 1,
       title: title
     });
 
-    // Initialisation de la bibliothèque Cast (autre API fictive)
-    window['__onCastApiAvailable'] = function(isAvailable) {
+    // Cast API init
+    window['__onGCastApiAvailable'] = function(isAvailable) {
       if (isAvailable) {
-        const sessionRequest = new castAPI.SessionRequest(castAPI.DEFAULT_MEDIA_RECEIVER_APP_ID);
-        const apiConfig = new castAPI.ApiConfig(sessionRequest,
+        const sessionRequest = new chrome.cast.SessionRequest(chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID);
+        const apiConfig = new chrome.cast.ApiConfig(sessionRequest,
           sessionListener,
           receiverListener
         );
-        castAPI.initialize(apiConfig, onInitSuccess, onError);
+        chrome.cast.initialize(apiConfig, onInitSuccess, onError);
       }
     };
 
@@ -109,8 +109,8 @@
     }
 
     function receiverListener(e) {
-      if (e === castAPI.ReceiverAvailability.AVAILABLE) {
-        console.log("Cast disponible");
+      if (e === chrome.cast.ReceiverAvailability.AVAILABLE) {
+        console.log("Chromecast disponible");
       }
     }
 
@@ -123,12 +123,12 @@
     }
 
     function onRequestSessionSuccess(session) {
-      const mediaInfo = new castAPI.media.MediaInfo(videoURL, 'video/mp4');
-      mediaInfo.metadata = new castAPI.media.GenericMediaMetadata();
+      const mediaInfo = new chrome.cast.media.MediaInfo(videoURL, 'video/mp4');
+      mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
       mediaInfo.metadata.title = title;
       mediaInfo.metadata.images = [{ url: posterURL }];
 
-      const request = new castAPI.media.LoadRequest(mediaInfo);
+      const request = new chrome.cast.media.LoadRequest(mediaInfo);
       session.loadMedia(request,
         () => console.log("Vidéo castée"),
         (err) => console.error("Erreur en castant la vidéo:", err)
@@ -136,7 +136,7 @@
     }
 
     function startCasting() {
-      castAPI.requestSession(onRequestSessionSuccess, onError);
+      chrome.cast.requestSession(onRequestSessionSuccess, onError);
     }
 
     document.getElementById('cast-button').addEventListener('click', startCasting);
