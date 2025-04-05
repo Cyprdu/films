@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lecteur en plein écran</title>
     <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
+    <script src="https://www.gstatic.com/cast/sdk/libs/sender/1.0/cast_framework.js"></script>
     <style>
         @font-face {
             font-family: 'NetflixSans';
@@ -74,31 +75,153 @@
         <div id="player"></div>
     </div>
 
-    <script src="https://www.gstatic.com/cast/sdk/libs/sender/1.0/cast_framework.js"></script>
     <script>
+        // Initialisation du Cast API
         let castSession = null;
 
         function castInit() {
+            // Configurer le contexte de Cast
             cast.framework.CastContext.getInstance().setOptions({
                 receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
                 autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
             });
 
+            // Ajouter un événement de clic sur le logo pour commencer le casting
             document.getElementById('logo-cast').addEventListener('click', castVideo);
         }
 
+        // Fonction pour caster la vidéo
         function castVideo() {
+            // Créer un objet MediaInfo pour spécifier l'URL et le type de média
             const mediaInfo = new chrome.cast.media.MediaInfo("https://cineshow.xyz/movies/Harry-Potter-a-l%27ecole-des-sorciers.mp4", "video/mp4");
 
+            // Créer une requête de chargement de média
             const request = new chrome.cast.media.LoadRequest(mediaInfo);
+
+            // Charger la vidéo sur le Chromecast
             castSession.loadMedia(request, function() {
-                console.log("Video is playing on the Chromecast device");
+                console.log("Vidéo en cours de lecture sur le Chromecast.");
             }, function(error) {
-                console.error("Error loading media: ", error);
+                console.error("Erreur lors du chargement de la vidéo : ", error);
             });
         }
 
-        // Initialize the Cast API
+        // Initialiser Cast API lors du chargement de la page
+        window.onload = function() {
+            castInit();
+        };
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur en plein écran</title>
+    <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
+    <script src="https://www.gstatic.com/cast/sdk/libs/sender/1.0/cast_framework.js"></script>
+    <style>
+        @font-face {
+            font-family: 'NetflixSans';
+            src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        #player-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        #logo-cast {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            height: 40px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        #movie-title {
+            position: absolute;
+            top: 15px;
+            left: 70px;
+            font-size: 24px;
+            color: white;
+            font-family: 'NetflixSans', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()">
+        <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
+    </a>
+
+    <img id="logo-cast" src="https://github.com/Cyprdu/films/blob/main/casting.png?raw=true" alt="Logo Cast">
+
+    <div id="movie-title">Harry Potter à l'école des sorciers (2001)</div>
+
+    <div id="player-container">
+        <div id="player"></div>
+    </div>
+
+    <script>
+        // Initialisation du Cast API
+        let castSession = null;
+
+        function castInit() {
+            // Configurer le contexte de Cast
+            cast.framework.CastContext.getInstance().setOptions({
+                receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
+                autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
+            });
+
+            // Ajouter un événement de clic sur le logo pour commencer le casting
+            document.getElementById('logo-cast').addEventListener('click', castVideo);
+        }
+
+        // Fonction pour caster la vidéo
+        function castVideo() {
+            // Créer un objet MediaInfo pour spécifier l'URL et le type de média
+            const mediaInfo = new chrome.cast.media.MediaInfo("https://cineshow.xyz/movies/Harry-Potter-a-l%27ecole-des-sorciers.mp4", "video/mp4");
+
+            // Créer une requête de chargement de média
+            const request = new chrome.cast.media.LoadRequest(mediaInfo);
+
+            // Charger la vidéo sur le Chromecast
+            castSession.loadMedia(request, function() {
+                console.log("Vidéo en cours de lecture sur le Chromecast.");
+            }, function(error) {
+                console.error("Erreur lors du chargement de la vidéo : ", error);
+            });
+        }
+
+        // Initialiser Cast API lors du chargement de la page
         window.onload = function() {
             castInit();
         };
