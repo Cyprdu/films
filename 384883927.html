@@ -1,230 +1,146 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecteur en plein écran</title>
-    <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
-    <script src="https://www.gstatic.com/cast/sdk/libs/sender/1.0/cast_framework.js"></script>
-    <style>
-        @font-face {
-            font-family: 'NetflixSans';
-            src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecteur Cast (Lite)</title>
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: black;
-        }
+  <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
 
-        #player-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+  <!-- Cast SDK uniquement (autre bibliothèque que Cast Framework) -->
+  <script type="text/javascript" src="https://path/to/cast.js"></script>
 
-        #back-button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            z-index: 1000;
-        }
+  <!-- PlayerJS -->
+  <script src="playerjs.js" type="text/javascript"></script>
 
-        #logo-cast {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            height: 40px;
-            z-index: 1000;
-            cursor: pointer;
-        }
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
 
-        #movie-title {
-            position: absolute;
-            top: 15px;
-            left: 70px;
-            font-size: 24px;
-            color: white;
-            font-family: 'NetflixSans', sans-serif;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            display: none;
-            z-index: 1000;
-            transition: opacity 0.3s ease;
-        }
-    </style>
+    #player-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    #player {
+      width: 100%;
+      height: 100%;
+    }
+
+    #back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 40px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    #cast-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    #movie-title {
+      position: absolute;
+      top: 15px;
+      left: 60px;
+      color: white;
+      font-size: 24px;
+      z-index: 1000;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+    }
+  </style>
 </head>
 <body>
-    <a href="javascript:history.back()">
-        <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
-    </a>
 
-    <img id="logo-cast" src="https://github.com/Cyprdu/films/blob/main/casting.png?raw=true" alt="Logo Cast">
+  <a href="javascript:history.back()">
+    <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
+  </a>
 
-    <div id="movie-title">Harry Potter à l'école des sorciers (2001)</div>
+  <img id="cast-button" src="https://github.com/Cyprdu/films/blob/main/casting.png?raw=true" alt="Cast">
 
-    <div id="player-container">
-        <div id="player"></div>
-    </div>
+  <div id="movie-title">Harry Potter à l'école des sorciers (2001)</div>
 
-    <script>
-        // Initialisation du Cast API
-        let castSession = null;
+  <div id="player-container">
+    <div id="player"></div>
+  </div>
 
-        function castInit() {
-            // Configurer le contexte de Cast
-            cast.framework.CastContext.getInstance().setOptions({
-                receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
-                autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
-            });
+  <script>
+    const videoURL = "https://cineshow.xyz/movies/Harry-Potter-a-l'ecole-des-sorciers.mp4";
+    const posterURL = "https://image.tmdb.org/t/p/original/lWZcuIQVc8d1hmXj3vPgYc5Fm5b.jpg";
+    const title = "Harry Potter à l'école des sorciers";
 
-            // Ajouter un événement de clic sur le logo pour commencer le casting
-            document.getElementById('logo-cast').addEventListener('click', castVideo);
-        }
+    // Init local player
+    const player = new Playerjs({
+      id: "player",
+      file: videoURL,
+      poster: "https://image.tmdb.org/t/p/original/hziiv14OpD73u9gAak4XDDfBKa2.jpg",
+      autoplay: 1,
+      title: title
+    });
 
-        // Fonction pour caster la vidéo
-        function castVideo() {
-            // Créer un objet MediaInfo pour spécifier l'URL et le type de média
-            const mediaInfo = new chrome.cast.media.MediaInfo("https://cineshow.xyz/movies/Harry-Potter-a-l%27ecole-des-sorciers.mp4", "video/mp4");
+    // Initialisation de la bibliothèque Cast (autre API fictive)
+    window['__onCastApiAvailable'] = function(isAvailable) {
+      if (isAvailable) {
+        const sessionRequest = new castAPI.SessionRequest(castAPI.DEFAULT_MEDIA_RECEIVER_APP_ID);
+        const apiConfig = new castAPI.ApiConfig(sessionRequest,
+          sessionListener,
+          receiverListener
+        );
+        castAPI.initialize(apiConfig, onInitSuccess, onError);
+      }
+    };
 
-            // Créer une requête de chargement de média
-            const request = new chrome.cast.media.LoadRequest(mediaInfo);
+    function sessionListener(session) {
+      console.log("Session active :", session.sessionId);
+    }
 
-            // Charger la vidéo sur le Chromecast
-            castSession.loadMedia(request, function() {
-                console.log("Vidéo en cours de lecture sur le Chromecast.");
-            }, function(error) {
-                console.error("Erreur lors du chargement de la vidéo : ", error);
-            });
-        }
+    function receiverListener(e) {
+      if (e === castAPI.ReceiverAvailability.AVAILABLE) {
+        console.log("Cast disponible");
+      }
+    }
 
-        // Initialiser Cast API lors du chargement de la page
-        window.onload = function() {
-            castInit();
-        };
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecteur en plein écran</title>
-    <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
-    <script src="https://www.gstatic.com/cast/sdk/libs/sender/1.0/cast_framework.js"></script>
-    <style>
-        @font-face {
-            font-family: 'NetflixSans';
-            src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
-        }
+    function onInitSuccess() {
+      console.log("Cast API initialisée");
+    }
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: black;
-        }
+    function onError(err) {
+      console.error("Erreur Cast:", err);
+    }
 
-        #player-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+    function onRequestSessionSuccess(session) {
+      const mediaInfo = new castAPI.media.MediaInfo(videoURL, 'video/mp4');
+      mediaInfo.metadata = new castAPI.media.GenericMediaMetadata();
+      mediaInfo.metadata.title = title;
+      mediaInfo.metadata.images = [{ url: posterURL }];
 
-        #back-button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            z-index: 1000;
-        }
+      const request = new castAPI.media.LoadRequest(mediaInfo);
+      session.loadMedia(request,
+        () => console.log("Vidéo castée"),
+        (err) => console.error("Erreur en castant la vidéo:", err)
+      );
+    }
 
-        #logo-cast {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            height: 40px;
-            z-index: 1000;
-            cursor: pointer;
-        }
+    function startCasting() {
+      castAPI.requestSession(onRequestSessionSuccess, onError);
+    }
 
-        #movie-title {
-            position: absolute;
-            top: 15px;
-            left: 70px;
-            font-size: 24px;
-            color: white;
-            font-family: 'NetflixSans', sans-serif;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            display: none;
-            z-index: 1000;
-            transition: opacity 0.3s ease;
-        }
-    </style>
-</head>
-<body>
-    <a href="javascript:history.back()">
-        <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
-    </a>
+    document.getElementById('cast-button').addEventListener('click', startCasting);
+  </script>
 
-    <img id="logo-cast" src="https://github.com/Cyprdu/films/blob/main/casting.png?raw=true" alt="Logo Cast">
-
-    <div id="movie-title">Harry Potter à l'école des sorciers (2001)</div>
-
-    <div id="player-container">
-        <div id="player"></div>
-    </div>
-
-    <script>
-        // Initialisation du Cast API
-        let castSession = null;
-
-        function castInit() {
-            // Configurer le contexte de Cast
-            cast.framework.CastContext.getInstance().setOptions({
-                receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
-                autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
-            });
-
-            // Ajouter un événement de clic sur le logo pour commencer le casting
-            document.getElementById('logo-cast').addEventListener('click', castVideo);
-        }
-
-        // Fonction pour caster la vidéo
-        function castVideo() {
-            // Créer un objet MediaInfo pour spécifier l'URL et le type de média
-            const mediaInfo = new chrome.cast.media.MediaInfo("https://cineshow.xyz/movies/Harry-Potter-a-l%27ecole-des-sorciers.mp4", "video/mp4");
-
-            // Créer une requête de chargement de média
-            const request = new chrome.cast.media.LoadRequest(mediaInfo);
-
-            // Charger la vidéo sur le Chromecast
-            castSession.loadMedia(request, function() {
-                console.log("Vidéo en cours de lecture sur le Chromecast.");
-            }, function(error) {
-                console.error("Erreur lors du chargement de la vidéo : ", error);
-            });
-        }
-
-        // Initialiser Cast API lors du chargement de la page
-        window.onload = function() {
-            castInit();
-        };
-    </script>
 </body>
 </html>
