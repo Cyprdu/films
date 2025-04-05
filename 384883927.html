@@ -1,109 +1,155 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecteur en plein écran</title>
-    <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
-    <script src="playerjs.js" type="text/javascript"></script>
-    <style>
-        @font-face {
-            font-family: 'NetflixSans';
-            src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lecteur en plein écran</title>
+  <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png"/>
+  
+  <!-- SDK Google Cast -->
+  <script src="https://www.gstatic.com/cast/sdk/libs/sender/1.0/cast_framework.js"></script>
+  <script src="playerjs.js" type="text/javascript"></script>
 
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: black;
-        }
+  <style>
+    @font-face {
+      font-family: 'NetflixSans';
+      src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
+    }
 
-        #player-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: black;
+    }
 
-        #player {
-            width: 100%;
-            height: 100%;
-        }
+    #player-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
 
-        #back-button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            z-index: 1000;
-        }
+    #player {
+      width: 100%;
+      height: 100%;
+    }
 
-        #logo-cast {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            height: 40px;
-            z-index: 1000;
-        }
+    #back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      z-index: 1000;
+    }
 
-        #movie-title {
-            position: absolute;
-            top: 15px;
-            left: 70px;
-            font-size: 24px;
-            color: white;
-            font-family: 'NetflixSans', sans-serif;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            display: none;
-            z-index: 1000;
-            transition: opacity 0.3s ease;
-        }
-    </style>
+    #logo-cast {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      height: 40px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    #movie-title {
+      position: absolute;
+      top: 15px;
+      left: 70px;
+      font-size: 24px;
+      color: white;
+      font-family: 'NetflixSans', sans-serif;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+    }
+  </style>
 </head>
 <body>
-    <a href="javascript:history.back()">
-        <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
-    </a>
 
-    <img id="logo-cast" src="https://github.com/Cyprdu/films/blob/main/casting.png?raw=true" alt="Logo Cast">
+  <a href="javascript:history.back()">
+    <img id="back-button" src="https://raw.githubusercontent.com/Cyprdu/films/refs/heads/main/en-arriere.png" alt="Retour">
+  </a>
 
-    <div id="movie-title">Harry Potter à l'école des sorciers (2001)</div>
+  <img id="logo-cast" src="https://github.com/Cyprdu/films/blob/main/casting.png?raw=true" alt="Logo Cast">
 
-    <div id="player-container">
-        <div id="player"></div>
-    </div>
+  <div id="movie-title">Harry Potter à l'école des sorciers (2001)</div>
 
-    <script>
-        var player = new Playerjs({
-            id: "player",
-            file: "https://cineshow.xyz/movies/Harry-Potter-a-l'ecole-des-sorciers.mp4",
-            poster: "https://image.tmdb.org/t/p/original/hziiv14OpD73u9gAak4XDDfBKa2.jpg",
-            autoplay: 1,
-            subtitle: "",
-            default_subtitle: "",
-            rename_audio: {"French": "Français"},
-            default_audio: "Français",
-            title: "Harry Potter à l'école des sorciers",
+  <div id="player-container">
+    <div id="player"></div>
+  </div>
+
+  <script>
+    const videoURL = "https://cineshow.xyz/movies/Harry-Potter-a-l'ecole-des-sorciers.mp4";
+    const posterURL = "https://image.tmdb.org/t/p/original/hziiv14OpD73u9gAak4XDDfBKa2.jpg";
+
+    // Lancer PlayerJS en local
+    const player = new Playerjs({
+      id: "player",
+      file: videoURL,
+      poster: posterURL,
+      autoplay: 1,
+      subtitle: "",
+      default_subtitle: "",
+      rename_audio: {"French": "Français"},
+      default_audio: "Français",
+      title: "Harry Potter à l'école des sorciers"
+    });
+
+    // Afficher le titre temporairement
+    const movieTitle = document.getElementById('movie-title');
+    movieTitle.style.display = 'block';
+    movieTitle.style.opacity = '1';
+    setTimeout(() => {
+      movieTitle.style.opacity = '0';
+      setTimeout(() => movieTitle.style.display = 'none', 300);
+    }, 10000);
+
+    // Initialiser Google Cast
+    window['__onGCastApiAvailable'] = function(isAvailable) {
+      if (isAvailable) {
+        cast.framework.CastContext.getInstance().setOptions({
+          receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
+          autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
         });
+      }
+    };
 
-        var movieTitle = document.getElementById('movie-title');
-        document.title = movieTitle.textContent;
+    // Fonction pour caster la vidéo
+    function castVideo() {
+      const context = cast.framework.CastContext.getInstance();
+      const session = context.getCurrentSession();
 
-        movieTitle.style.display = 'block';
-        movieTitle.style.opacity = '1';
+      if (session) {
+        const mediaInfo = new chrome.cast.media.MediaInfo(videoURL, 'video/mp4');
+        mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
+        mediaInfo.metadata.title = "Harry Potter à l'école des sorciers";
+        mediaInfo.metadata.images = [{ url: posterURL }];
 
-        setTimeout(function() {
-            movieTitle.style.opacity = '0';
-            setTimeout(function() {
-                movieTitle.style.display = 'none';
-            }, 300);
-        }, 10000);
-    </script>
+        const request = new chrome.cast.media.LoadRequest(mediaInfo);
+        session.loadMedia(request).then(
+          () => console.log("Vidéo castée avec succès"),
+          (err) => console.error("Erreur de cast :", err)
+        );
+      } else {
+        console.log("Aucune session Cast active");
+      }
+    }
+
+    // Clic sur le logo = lancer cast
+    document.getElementById('logo-cast').addEventListener('click', () => {
+      const context = cast.framework.CastContext.getInstance();
+      context.requestSession()
+        .then(() => castVideo())
+        .catch(err => console.error("Erreur de session Cast :", err));
+    });
+  </script>
+
 </body>
 </html>
