@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Lecteur en plein écran</title>
   <link rel="icon" href="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" type="image/png">
   <script src="../playerjs.js" type="text/javascript"></script>
@@ -16,23 +16,22 @@
     html, body {
       margin: 0;
       padding: 0;
-      width: 100vh; /* inversé pour tenir compte de la rotation */
-      height: 100vw;
+      width: 100vw;
+      height: 100vh;
       overflow: hidden;
       background-color: black;
     }
 
     #rotated-wrapper {
-      position: absolute;
-      width: 100vw;
-      height: 100vh;
-      transform: rotate(90deg);
-      transform-origin: center;
+      width: 100vh;
+      height: 100vw;
       position: absolute;
       top: 50%;
       left: 50%;
-      translate: -50% -50%;
+      transform: rotate(90deg) translateY(-100%);
+      transform-origin: center;
       background-color: black;
+      overflow: hidden;
     }
 
     #player-container {
