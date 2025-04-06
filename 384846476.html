@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html> 
 <html lang="fr">
 <head>
@@ -13,6 +10,10 @@
         @font-face {
             font-family: 'NetflixSans';
             src: url('https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2') format('woff2');
+        }
+
+        html {
+            font-size: 125%;
         }
 
         html, body {
@@ -39,22 +40,22 @@
 
         #back-button {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            width: 40px;
-            height: 40px;
+            top: 12.5px; /* 10 * 1.25 */
+            left: 12.5px;
+            width: 50px; /* 40 * 1.25 */
+            height: 50px;
             cursor: pointer;
             z-index: 1000;
         }
 
         #movie-title {
             position: absolute;
-            top: 15px;
-            left: 70px;
-            font-size: 24px;
+            top: 18.75px; /* 15 * 1.25 */
+            left: 87.5px; /* 70 * 1.25 */
+            font-size: 30px; /* 24 * 1.25 */
             color: white;
             font-family: 'NetflixSans', sans-serif;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.5);
             display: none;
             z-index: 1000;
             transition: opacity 0.3s ease;
@@ -85,17 +86,12 @@
             title:"Harry Potter et la Chambre des secrets",
         });
 
-    
-
         var movieTitle = document.getElementById('movie-title');
-        
-        // Mettre à jour dynamiquement le titre de l'onglet avec le titre du film
-        document.title = movieTitle.textContent; // Assure-toi que le texte est récupéré depuis l'élément HTML
-        
-        // Afficher le titre pendant 10 secondes à chaque visite
+        document.title = movieTitle.textContent;
+
         movieTitle.style.display = 'block';
         movieTitle.style.opacity = '1';
-        
+
         setTimeout(function() {
             movieTitle.style.opacity = '0';
             setTimeout(function() {
