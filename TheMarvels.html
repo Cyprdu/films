@@ -56,6 +56,31 @@
             z-index: 1000;
             transition: opacity 0.3s ease;
         }
+        html {
+    font-size: 125%;
+}
+
+#player-container {
+    transform: scale(1.25);
+    transform-origin: top left;
+    width: 80%;
+    height: 80%;
+}
+
+#back-button {
+    top: 12.5px;
+    left: 12.5px;
+    width: 50px;
+    height: 50px;
+}
+
+#movie-title {
+    top: 18.75px;
+    left: 87.5px;
+    font-size: 30px;
+    text-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.5);
+}
+
     </style>
 </head>
 <body>
@@ -72,13 +97,14 @@
     <script>
         var player = new Playerjs({
             id: "player",
-            file: "https://matoc24312.cloudmatoc.com/files/aa/jOFbZ0k0OtxGsUopjSt8w2I2kzxnHu50iLcc.m3u8",
+            file: "https://cineshow.xyz/movies/The-Marvels.mp4",
             poster: "https://image.tmdb.org/t/p/original/w4pRLYYbhHn3sh9kqRgPZM6GjyS.jpg",
             autoplay: 0,
             subtitle: "",
             default_subtitle: "",
             rename_audio: {"French": "Français"},
-            default_audio: "Français"
+            default_audio: "Français",
+            title : "The Marvels",
         });
 
     
