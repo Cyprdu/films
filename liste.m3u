@@ -1,0 +1,37 @@
+#EXTM3U
+
+#EXTINF:-1 tvg-id="TF1" tvg-logo="http://103.176.90.118/picons/logos/france/TF1.png" group-title="TV",TF1
+https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/tf1plus/tf1.m3u8
+
+#EXTINF:-1 tvg-id="FRANCE2" tvg-logo="http://103.176.90.118/picons/logos/france/FRANCE2FHD.png" group-title="TV",FRANCE 2
+http://line.trx-ott.com/d838d49d16/49986cdaa05b/506637
+
+#EXTINF:-1 tvg-id="FRANCE3" tvg-logo="http://103.176.90.118/picons/logos/france/FRANCE3FHD.png" group-title="TV",FRANCE 3
+http://line.trx-ott.com/d838d49d16/49986cdaa05b/506636
+
+#EXTINF:-1 tvg-id="CANALPLUSUHD" tvg-logo="http://103.176.90.118/picons/logos/logos/Canal-Plus.png" group-title="TV",CANAL+ UHD
+http://line.trx-ott.com/d838d49d16/49986cdaa05b/506635
+
+#EXTINF:-1 tvg-id="FRANCE5" tvg-logo="http://103.176.90.118/picons/logos/france/FRANCE4FHD.png" group-title="TV",FRANCE 5
+http://line.trx-ott.com/d838d49d16/49986cdaa05b/506634
+
+#EXTINF:-1 tvg-id="M6" tvg-logo="http://103.176.90.118/picons/logos/france/M6.png" group-title="TV",M6
+http://line.trx-ott.com/d838d49d16/49986cdaa05b/506633
+
+#EXTINF:-1 tvg-id="ARTE" tvg-logo="https://i.ibb.co/BPpZPBn/arte.png" group-title="TV",ARTE
+https://artesimulcast.akamaized.net/hls/live/2031003/artelive_fr/index.m3u8
+
+#EXTINF:-1 tvg-id="W9" tvg-logo="http://103.176.90.118/picons/logos/france/W9.png" group-title="TV",W9
+http://line.trx-ott.com/d838d49d16/49986cdaa05b/506629
+
+#EXTINF:-1 tvg-id="TMC" tvg-logo="http://103.176.90.118/picons/logos/france/TMC-1.png" group-title="TV",TMC
+https://raw.githubusercontent.com/Paradise-91/ParaTV/main/streams/tf1plus/tmc.m3u8
+
+#EXTINF:-1 tvg-id="CANALLIVE1" tvg-logo="http://103.176.90.118/picons/logos/logos/Canal-Plus.png" group-title="TV",CANAL+ LIVE 1
+http://line.trx-ott.com/d838d49d16/49986cdaa05b/1640373
+
+#EXTINF:-1 tvg-id="CANALLIVE2" tvg-logo="http://103.176.90.118/picons/logos/logos/Canal-Plus.png" group-title="TV",CANAL+ LIVE 2
+http://line.trx-ott.com/d838d49d16/49986cdaa05b/1640377
+
+#EXTINF:-1 tvg-id="CANALLIVE3" tvg-logo="http://103.176.90.118/picons/logos/logos/Canal-Plus.png" group-title="TV",CANAL+ LIVE 3
+http://line.trx-ott.com/d838d49d16/49986cdaa05b/1640372
